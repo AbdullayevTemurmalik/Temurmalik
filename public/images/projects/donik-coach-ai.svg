@@ -1,0 +1,84 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#0E1621" />
+
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="tg-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#17212B" stroke-width="0.8" opacity="0.6" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="750" fill="url(#tg-grid)" />
+
+  <!-- Telegram Top Header -->
+  <rect x="50" y="30" width="1100" height="64" rx="12" fill="#17212B" stroke="#242F3D" stroke-width="1.5" />
+  
+  <!-- Bot Avatar -->
+  <circle cx="92" cy="62" r="20" fill="#2AABEE" />
+  <text x="84" y="68" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold">D</text>
+  
+  <text x="124" y="56" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold">Donik Coach AI</text>
+  <text x="124" y="74" fill="#2AABEE" font-family="sans-serif" font-size="12">bot · @donikcoach_bot · Telegram Mini App</text>
+
+  <rect x="970" y="48" width="150" height="28" rx="6" fill="#2AABEE" fill-opacity="0.15" stroke="#2AABEE" stroke-width="1" />
+  <text x="990" y="66" fill="#2AABEE" font-family="sans-serif" font-size="12" font-weight="bold">Mini App Ochiq ↗</text>
+
+  <!-- Left: Meal Photo & AI Calorie Analysis -->
+  <rect x="50" y="114" width="530" height="596" rx="12" fill="#17212B" stroke="#242F3D" stroke-width="1.5" />
+  <text x="80" y="152" fill="#F3F4F6" font-family="sans-serif" font-size="16" font-weight="bold">1. Taom suratidan kaloriya aniqlash</text>
+  <text x="80" y="176" fill="#8B949E" font-family="sans-serif" font-size="13">Multimodal Vision model orqali tahlil</text>
+
+  <!-- Photo Box Representation -->
+  <rect x="80" y="200" width="470" height="220" rx="10" fill="#0E1621" stroke="#242F3D" stroke-width="1" />
+  <rect x="100" y="220" width="160" height="180" rx="8" fill="#242F3D" />
+  <text x="135" y="315" fill="#6B7280" font-family="sans-serif" font-size="13">[ Taom surati ]</text>
+
+  <!-- Macro Stats Result -->
+  <text x="280" y="245" fill="#FFFFFF" font-family="sans-serif" font-size="17" font-weight="bold">Tovuqli Guruch &amp; Salat</text>
+  <text x="280" y="270" fill="#2AABEE" font-family="monospace" font-size="20" font-weight="bold">520 kcal</text>
+
+  <g transform="translate(280, 290)">
+    <!-- Protein -->
+    <rect x="0" y="0" width="170" height="22" rx="4" fill="#1E2C3A" />
+    <text x="10" y="15" fill="#E5E7EB" font-family="sans-serif" font-size="11">Oqsil (Protein): <tspan fill="#34D399" font-weight="bold">42g</tspan></text>
+    
+    <!-- Carbs -->
+    <rect x="0" y="30" width="170" height="22" rx="4" fill="#1E2C3A" />
+    <text x="10" y="45" fill="#E5E7EB" font-family="sans-serif" font-size="11">Uglevod (Carbs): <tspan fill="#FBBF24" font-weight="bold">58g</tspan></text>
+
+    <!-- Fat -->
+    <rect x="0" y="60" width="170" height="22" rx="4" fill="#1E2C3A" />
+    <text x="10" y="75" fill="#E5E7EB" font-family="sans-serif" font-size="11">Yog&apos; (Fat): <tspan fill="#F87171" font-weight="bold">12g</tspan></text>
+  </g>
+
+  <!-- AI Verification Badge -->
+  <rect x="80" y="440" width="470" height="60" rx="8" fill="#0A364F" stroke="#2AABEE" stroke-width="1" stroke-opacity="0.5" />
+  <text x="105" y="475" fill="#E5E7EB" font-family="sans-serif" font-size="12">✓ Masalliqlar aniqligi: 94% · Kunlik me&apos;yorga kiritildi</text>
+
+  <!-- Right: 9 Dietary Rations & Workout Platform -->
+  <rect x="610" y="114" width="540" height="596" rx="12" fill="#17212B" stroke="#242F3D" stroke-width="1.5" />
+  <text x="640" y="152" fill="#F3F4F6" font-family="sans-serif" font-size="16" font-weight="bold">2. 9 ta Professional Ratsion &amp; Zal Mashqlari</text>
+  <text x="640" y="176" fill="#8B949E" font-family="sans-serif" font-size="13">Maqsadga muvofiq tuzilgan rejalar</text>
+
+  <!-- 3 Rations Cards Preview -->
+  <g transform="translate(640, 205)">
+    <rect x="0" y="0" width="480" height="65" rx="8" fill="#242F3D" />
+    <text x="20" y="28" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold">Ratsion #1 — Quruq mushak to&apos;plash (Lean Bulk)</text>
+    <text x="20" y="48" fill="#9CA3AF" font-family="sans-serif" font-size="12">2,800 kcal / kun · 5 mahal taomlanish grafigi</text>
+    
+    <rect x="0" y="78" width="480" height="65" rx="8" fill="#242F3D" />
+    <text x="20" y="106" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold">Ratsion #2 — Qorin va yog&apos;larni eritish (Cut)</text>
+    <text x="20" y="126" fill="#9CA3AF" font-family="sans-serif" font-size="12">1,900 kcal / kun · Past uglevodli maxsus menyu</text>
+
+    <rect x="0" y="156" width="480" height="65" rx="8" fill="#242F3D" />
+    <text x="20" y="184" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold">Ratsion #3 — Sportchilar uchun balans</text>
+    <text x="20" y="204" fill="#9CA3AF" font-family="sans-serif" font-size="12">2,400 kcal / kun · Energiya va tiklanish balansi</text>
+  </g>
+
+  <!-- Gym Workouts Sub-Panel -->
+  <rect x="640" y="450" width="480" height="135" rx="8" fill="#0E1621" stroke="#242F3D" stroke-width="1" />
+  <text x="660" y="480" fill="#2AABEE" font-family="monospace" font-size="13" font-weight="bold">ZAL MASHQLARI PLATFORMASI</text>
+  <text x="660" y="508" fill="#E5E7EB" font-family="sans-serif" font-size="13">Ko&apos;krak va Triseps mashg&apos;ulotlari (Dushanba)</text>
+  <text x="660" y="532" fill="#9CA3AF" font-family="sans-serif" font-size="12">4 ta mashq · Yondashuvlar: 4x10 · To&apos;g&apos;ri texnika video/ko&apos;rsatmasi</text>
+  <text x="660" y="558" fill="#34D399" font-family="monospace" font-size="12">Faol Telegram Mini App orqali ishlaydi</text>
+</svg>

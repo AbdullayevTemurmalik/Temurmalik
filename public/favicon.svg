@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#0B0F14"/>
+  <rect x="1" y="1" width="30" height="30" rx="7" stroke="#26313D" stroke-width="1.5"/>
+  <!-- Elegant terminal lambda symbol -->
+  <path d="M9 22L15 10L17 10L23 22H20.5L16 13L11.5 22H9Z" fill="#79C0A5"/>
+  <circle cx="21" cy="21" r="1.5" fill="#79B8FF"/>
+</svg>

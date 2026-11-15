@@ -1,0 +1,77 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#0B0F19" />
+  
+  <!-- Subtle Grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1F293D" stroke-width="0.8" opacity="0.4" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="750" fill="url(#grid)" />
+
+  <!-- Top App Bar -->
+  <rect x="40" y="30" width="1120" height="56" rx="10" fill="#111827" stroke="#1F2937" stroke-width="1.5" />
+  <circle cx="72" cy="58" r="6" fill="#EF4444" opacity="0.8" />
+  <circle cx="94" cy="58" r="6" fill="#F59E0B" opacity="0.8" />
+  <circle cx="116" cy="58" r="6" fill="#10B981" opacity="0.8" />
+
+  <!-- App Header Text -->
+  <text x="150" y="63" fill="#10B981" font-family="monospace" font-size="14" font-weight="bold">&lt;/&gt; RunCode.uz</text>
+  <text x="270" y="63" fill="#6B7280" font-family="monospace" font-size="13">Kurslar · Masalalar · AI Maslahatchi</text>
+  
+  <rect x="1000" y="44" width="130" height="28" rx="6" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1" />
+  <text x="1025" y="62" fill="#10B981" font-family="monospace" font-size="12" font-weight="bold">Ishga tushirish ▶</text>
+
+  <!-- Left Sidebar (Curriculum / Lesson) -->
+  <rect x="40" y="106" width="340" height="604" rx="10" fill="#111827" stroke="#1F2937" stroke-width="1.5" />
+  <text x="64" y="145" fill="#F3F4F6" font-family="sans-serif" font-size="16" font-weight="bold">12. Massivlar bilan ishlash</text>
+  <text x="64" y="172" fill="#9CA3AF" font-family="sans-serif" font-size="13">JavaScript asoslari moduli</text>
+
+  <!-- Lesson Content Preview -->
+  <rect x="64" y="200" width="292" height="110" rx="8" fill="#1F2937" fill-opacity="0.5" />
+  <text x="80" y="230" fill="#E5E7EB" font-family="sans-serif" font-size="13" font-weight="600">Vazifa talabi:</text>
+  <text x="80" y="255" fill="#9CA3AF" font-family="sans-serif" font-size="12">Berilgan sonlar massividan faqat</text>
+  <text x="80" y="275" fill="#9CA3AF" font-family="sans-serif" font-size="12">juft sonlarni ajratib qaytaring.</text>
+
+  <!-- AI Teacher Hint Box -->
+  <rect x="64" y="330" width="292" height="160" rx="8" fill="#064E3B" fill-opacity="0.25" stroke="#059669" stroke-width="1" />
+  <circle cx="85" cy="355" r="5" fill="#10B981" />
+  <text x="98" y="360" fill="#34D399" font-family="monospace" font-size="13" font-weight="bold">AI O&apos;qituvchi Maslahati</text>
+  <text x="80" y="390" fill="#A7F3D0" font-family="sans-serif" font-size="12">Maslahat: Array.prototype.filter()</text>
+  <text x="80" y="412" fill="#A7F3D0" font-family="sans-serif" font-size="12">metodidan foydalanib, son % 2 === 0</text>
+  <text x="80" y="434" fill="#A7F3D0" font-family="sans-serif" font-size="12">shartini tekshiring.</text>
+  <text x="80" y="465" fill="#6EE7B7" font-family="monospace" font-size="11">Google Gemini 2.0 orqali tahlil qilindi</text>
+
+  <!-- Right Code Editor Area -->
+  <rect x="400" y="106" width="760" height="420" rx="10" fill="#0D1117" stroke="#1F2937" stroke-width="1.5" />
+  
+  <!-- Editor Tabs -->
+  <rect x="400" y="106" width="760" height="40" rx="10" fill="#161B22" />
+  <rect x="416" y="114" width="120" height="32" rx="6" fill="#0D1117" stroke="#1F2937" stroke-width="1" />
+  <text x="436" y="134" fill="#58A6FF" font-family="monospace" font-size="12">solution.js</text>
+  <text x="556" y="134" fill="#8B949E" font-family="monospace" font-size="12">tests.js</text>
+
+  <!-- Code Content -->
+  <g font-family="monospace" font-size="14" line-height="24">
+    <text x="430" y="180" fill="#8B949E">1  <tspan fill="#FF7B72">function</tspan> <tspan fill="#D2A8FF">filterEvenNumbers</tspan>(<tspan fill="#FFA657">numbers</tspan>) {</text>
+    <text x="430" y="210" fill="#8B949E">2    <tspan fill="#8B949E">// Juft sonlarni filtrlash</tspan></text>
+    <text x="430" y="240" fill="#8B949E">3    <tspan fill="#FF7B72">return</tspan> numbers.<tspan fill="#79C0FF">filter</tspan>((<tspan fill="#FFA657">num</tspan>) =&gt; {</text>
+    <text x="430" y="270" fill="#8B949E">4      <tspan fill="#FF7B72">return</tspan> num % <tspan fill="#79C0FF">2</tspan> === <tspan fill="#79C0FF">0</tspan>;</text>
+    <text x="430" y="300" fill="#8B949E">5    });</text>
+    <text x="430" y="330" fill="#8B949E">6  }</text>
+    <text x="430" y="360" fill="#8B949E">7  </text>
+    <text x="430" y="390" fill="#8B949E">8  <tspan fill="#FF7B72">export default</tspan> filterEvenNumbers;</text>
+  </g>
+
+  <!-- Output / Test Runner Console -->
+  <rect x="400" y="542" width="760" height="168" rx="10" fill="#111827" stroke="#1F2937" stroke-width="1.5" />
+  <rect x="400" y="542" width="760" height="34" rx="10" fill="#161B22" />
+  <text x="424" y="564" fill="#8B949E" font-family="monospace" font-size="12">Terminal &amp; Test Results</text>
+
+  <circle cx="430" cy="595" r="5" fill="#10B981" />
+  <text x="445" y="600" fill="#E5E7EB" font-family="monospace" font-size="13">Test Suite: <tspan fill="#10B981">4 / 4 PASSED</tspan></text>
+  <text x="445" y="625" fill="#9CA3AF" font-family="monospace" font-size="12">✓ filterEvenNumbers([1, 2, 3, 4, 6]) =&gt; [2, 4, 6] (1.2ms)</text>
+  <text x="445" y="648" fill="#9CA3AF" font-family="monospace" font-size="12">✓ filterEvenNumbers([]) =&gt; [] (0.4ms)</text>
+  <text x="445" y="671" fill="#10B981" font-family="monospace" font-size="12">All test cases verified successfully.</text>
+</svg>
