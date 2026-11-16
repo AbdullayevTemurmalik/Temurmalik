@@ -81,7 +81,7 @@ ${t.terminal.statusText}`;
 
   return (
     <div
-      className="w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] shadow-2xl overflow-hidden font-mono text-xs sm:text-[13px] leading-relaxed transition-all"
+      className="w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] shadow-2xl overflow-hidden font-mono text-xs sm:text-[13px] leading-relaxed transition-colors select-text"
       aria-label="Interactive Developer Terminal"
     >
       {/* Terminal Title Bar */}
@@ -123,12 +123,12 @@ ${t.terminal.statusText}`;
         ))}
       </div>
 
-      {/* Terminal Body with Sequential Step-by-Step Reveal */}
-      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-x-auto min-h-[340px]">
+      {/* Terminal Body with Stable Pre-Reserved Full Height (Zero Layout Shift) */}
+      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-x-auto min-h-[520px] sm:min-h-[500px] flex flex-col justify-start">
         {/* Command 1: whoami (Visible at step >= 1) */}
         {visibleSteps >= 1 && (
           <div
-            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`animate-terminal-step transition-opacity duration-300 ${
               activeTab !== "whoami" ? "opacity-75" : ""
             }`}
           >
@@ -149,7 +149,7 @@ ${t.terminal.statusText}`;
         {/* Command 2: uptime (Visible at step >= 2) */}
         {visibleSteps >= 2 && (
           <div
-            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`animate-terminal-step transition-opacity duration-300 ${
               activeTab !== "uptime" ? "opacity-75" : ""
             }`}
           >
@@ -173,7 +173,7 @@ ${t.terminal.statusText}`;
         {/* Command 3: cat profile.json (Visible at step >= 3) */}
         {visibleSteps >= 3 && (
           <div
-            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`animate-terminal-step transition-opacity duration-300 ${
               activeTab !== "profile" ? "opacity-75" : ""
             }`}
           >
@@ -185,7 +185,6 @@ ${t.terminal.statusText}`;
 {`{
   "age": 17,
   "location": "Uzbekistan",
-  "experience": "3+ years",
   "projects": "30+",
   "clients": "5+",
   "focus": ["Backend", "AI", "Full-Stack"]
@@ -197,7 +196,7 @@ ${t.terminal.statusText}`;
         {/* Command 4: ls projects/ (Visible at step >= 4) */}
         {visibleSteps >= 4 && (
           <div
-            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`animate-terminal-step transition-opacity duration-300 ${
               activeTab !== "projects" ? "opacity-75" : ""
             }`}
           >
@@ -205,7 +204,7 @@ ${t.terminal.statusText}`;
               <span className="text-[var(--accent-primary)] font-semibold">$</span>
               <span className="text-[var(--accent-secondary)]">ls projects/</span>
             </div>
-            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-3 gap-1 text-xs">
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] flex flex-wrap gap-x-3 gap-y-1 sm:grid sm:grid-cols-3 sm:gap-1 text-xs">
               <span className="text-[var(--accent-primary)]">runcode-web/</span>
               <span className="text-[var(--accent-secondary)]">donik-coach-ai/</span>
               <span className="text-[var(--accent-highlight)]">al-harameen/</span>
@@ -216,7 +215,7 @@ ${t.terminal.statusText}`;
         {/* Command 5: status (Visible at step >= 5) */}
         {visibleSteps >= 5 && (
           <div
-            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`animate-terminal-step transition-opacity duration-300 ${
               activeTab !== "status" ? "opacity-75" : ""
             }`}
           >

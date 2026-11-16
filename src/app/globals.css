@@ -114,6 +114,22 @@
   animation: blink 1.05s infinite;
 }
 
+/* Terminal step smooth reveal */
+@keyframes terminalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-terminal-step {
+  animation: terminalFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Preloader hidden state when already seen in tab session */
 html.intro-seen #intro-preloader-root {
   display: none !important;
