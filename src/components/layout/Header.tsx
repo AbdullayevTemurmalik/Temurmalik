@@ -106,10 +106,10 @@ export function Header() {
     setMobileMenuOpen(false);
 
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    // Allow the 1250ms smooth scroll to complete before scroll-away checking is active
+    // Allow smooth scroll to complete before scroll-away checking is active
     scrollTimeoutRef.current = setTimeout(() => {
       isProgrammaticScrollRef.current = false;
-    }, 1350);
+    }, 2000);
 
     const isHome =
       pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
@@ -120,8 +120,17 @@ export function Header() {
       if (el) {
         const yOffset = -70; // offset for sticky header
         const y = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset + yOffset);
-        smoothScrollTo(y, 1250);
+        const dist = Math.abs(y - window.pageYOffset);
+        const calculatedDuration = Math.min(
+          2400,
+          Math.max(1000, Math.round(800 + Math.sqrt(dist) * 26))
+        );
+        smoothScrollTo(y, calculatedDuration);
         window.history.pushState(null, "", `#${sectionId}`);
+        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          isProgrammaticScrollRef.current = false;
+        }, calculatedDuration + 150);
       }
     }
   };

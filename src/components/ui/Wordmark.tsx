@@ -15,7 +15,7 @@ interface WordmarkProps {
 /**
  * Typography-first wordmark reading "Temurmalik".
  * Strictly follows the branding rule: no "TM", no "TM.DEV", no monograms.
- * Clicking reliably navigates to homepage top with 2x slower smooth glide.
+ * Clicking reliably navigates to homepage top with slow, calm, gentle glide (1750ms).
  */
 export function Wordmark({ className = "", onClick }: WordmarkProps) {
   const { locale } = useTranslation();
@@ -32,7 +32,13 @@ export function Wordmark({ className = "", onClick }: WordmarkProps) {
 
     if (isHome) {
       e.preventDefault();
-      smoothScrollTo(0, 1100);
+      // Slow, calm, gentle glide to top (scaled with distance, up to 2600ms)
+      const dist = window.pageYOffset;
+      const duration = Math.min(
+        2600,
+        Math.max(1200, Math.round(900 + Math.sqrt(dist) * 28))
+      );
+      smoothScrollTo(0, duration);
       if (window.location.hash) {
         window.history.pushState(null, "", `/${locale}`);
       }

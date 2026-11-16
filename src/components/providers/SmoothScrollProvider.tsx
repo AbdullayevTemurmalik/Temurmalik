@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 
 /**
  * Luxury Inertia Smooth Scroll Provider.
- * Dampens mouse wheel & touchpad scroll by 50% (2x slower, calm, and velvet smooth).
- * Respects prefers-reduced-motion and preserves natural touch device behavior.
+ * Dampens mouse wheel & touchpad scroll to an ultra-calm, velvet pace (speedMultiplier: 0.26, lerp: 0.052).
+ * Respects prefers-reduced-motion and gracefully synchronizes with programmatic scrolls.
  */
 export function SmoothScrollProvider({
   children
@@ -36,8 +36,8 @@ export function SmoothScrollProvider({
       const diff = targetYRef.current - currentYRef.current;
 
       if (Math.abs(diff) > 0.5) {
-        // Silky smooth easing factor (0.08 = graceful momentum)
-        currentYRef.current += diff * 0.085;
+        // Calm, velvety deceleration (0.052)
+        currentYRef.current += diff * 0.052;
         window.scrollTo(0, currentYRef.current);
         rafId = requestAnimationFrame(animate);
       } else {
@@ -77,8 +77,8 @@ export function SmoothScrollProvider({
         document.documentElement.scrollHeight - window.innerHeight
       );
 
-      // Dampen wheel speed by 50% (2x slower, calm and controlled)
-      const speedMultiplier = 0.5;
+      // Calibrated slower wheel speed for a controlled, calm downward pace
+      const speedMultiplier = 0.26;
       const delta = e.deltaY * speedMultiplier;
 
       targetYRef.current = Math.max(0, Math.min(maxScroll, targetYRef.current + delta));
@@ -97,12 +97,30 @@ export function SmoothScrollProvider({
       }
     };
 
+    // Pause inertia immediately when a programmatic smooth scroll begins
+    const handleProgrammaticScroll = (e: Event) => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      isRunningRef.current = false;
+      const customEvent = e as CustomEvent<{ targetY?: number }>;
+      const target =
+        typeof customEvent.detail?.targetY === "number"
+          ? customEvent.detail.targetY
+          : window.pageYOffset;
+      currentYRef.current = target;
+      targetYRef.current = target;
+    };
+
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("scroll", handleScrollSync, { passive: true });
+    window.addEventListener("programmatic-scroll", handleProgrammaticScroll);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("scroll", handleScrollSync);
+      window.removeEventListener("programmatic-scroll", handleProgrammaticScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
