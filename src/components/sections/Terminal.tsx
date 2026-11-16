@@ -123,8 +123,8 @@ ${t.terminal.statusText}`;
         ))}
       </div>
 
-      {/* Terminal Body with Stable Pre-Reserved Full Height (Zero Layout Shift) */}
-      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-x-auto min-h-[520px] sm:min-h-[500px] flex flex-col justify-start">
+      {/* Terminal Body with Fixed Stable Height (Zero Layout Shift at all steps) */}
+      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-y-auto overflow-x-auto h-[570px] sm:h-[530px] flex flex-col justify-start">
         {/* Command 1: whoami (Visible at step >= 1) */}
         {visibleSteps >= 1 && (
           <div
