@@ -8,6 +8,7 @@ import { Locale } from "@/i18n/config";
 import { useTranslation } from "@/i18n/context";
 import { ArrowUpRight, ArrowRight } from "@/components/ui/Icons";
 import { TechBadge } from "@/components/ui/TechBadge";
+import { useInView } from "@/components/ui/ScrollReveal";
 
 interface ProjectCardProps {
   project: LocalizedProject;
@@ -18,10 +19,18 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   const { t, locale: currentLocale } = useTranslation();
   const content = project.translations[currentLocale] || project.translations.en;
+  const { ref, inView } = useInView<HTMLElement>({
+    threshold: 0.12,
+    rootMargin: "0px 0px -50px 0px",
+    triggerOnce: true
+  });
 
   return (
     <article
-      className="group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs"
+      ref={ref}
+      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs will-change-[transform,opacity] ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
       aria-labelledby={`project-title-${project.id}`}
     >
       <div
@@ -29,10 +38,14 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           reverse ? "lg:grid-flow-dense" : ""
         }`}
       >
-        {/* Visual / Screenshot Column */}
+        {/* Visual / Screenshot Column — Smooth Entrance */}
         <div
-          className={`lg:col-span-7 ${
+          className={`lg:col-span-7 transition-all duration-750 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             reverse ? "lg:col-start-6" : ""
+          } ${
+            inView
+              ? "opacity-100 translate-y-0 scale-100"
+              : "opacity-0 translate-y-6 scale-[0.98]"
           }`}
         >
           <Link
@@ -53,14 +66,18 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           </Link>
         </div>
 
-        {/* Content Column */}
+        {/* Content Column — Staggered details reveal as user scrolls */}
         <div
           className={`lg:col-span-5 flex flex-col justify-between space-y-5 ${
             reverse ? "lg:col-start-1" : ""
           }`}
         >
           {/* Header Metadata */}
-          <div className="space-y-2">
+          <div
+            className={`space-y-2 transition-all duration-700 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="text-[var(--accent-primary)] font-semibold tracking-wider">
                 {"//"} {project.number} · {project.year}
@@ -87,13 +104,21 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
             </p>
           </div>
 
-          {/* Description */}
-          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          {/* Description — Emerges smoothly */}
+          <p
+            className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-all duration-700 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             {content.description}
           </p>
 
-          {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 pt-1">
+          {/* Tech Badges — Cascade entrance */}
+          <div
+            className={`flex flex-wrap gap-1.5 pt-1 transition-all duration-700 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             {project.technologies.slice(0, 5).map((tech) => (
               <TechBadge key={tech} name={tech} size="sm" />
             ))}
@@ -105,7 +130,11 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           </div>
 
           {/* Separate Actions: Internal Case Study vs External Live Link */}
-          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs">
+          <div
+            className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-all duration-700 delay-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             <Link
               href={`/${currentLocale}/projects/${project.slug}`}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[var(--bg-base)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-2xs"

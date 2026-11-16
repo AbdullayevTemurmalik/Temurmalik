@@ -12,9 +12,14 @@ import {
   ArrowUpRight
 } from "@/components/ui/Icons";
 import { useTranslation } from "@/i18n/context";
+import { useInView } from "@/components/ui/ScrollReveal";
 
 export function Contact() {
   const { t } = useTranslation();
+  const { ref, inView } = useInView<HTMLDivElement>({
+    threshold: 0.12,
+    rootMargin: "0px 0px -40px 0px"
+  });
 
   const contactMethods = [
     {
@@ -60,7 +65,10 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-28 border-t border-[var(--border-subtle)] scroll-mt-20">
+    <section
+      id="contact"
+      className="py-20 sm:py-28 border-t border-[var(--border-subtle)] scroll-mt-20"
+    >
       <Container>
         <div className="max-w-3xl mx-auto text-center">
           <SectionHeading
@@ -70,9 +78,12 @@ export function Contact() {
             className="text-center [&>div]:justify-center [&>p]:mx-auto"
           />
 
-          {/* Contact Direct Channels — 4 Verified Channels */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-4 font-mono text-xs sm:text-sm">
-            {contactMethods.map((method) => {
+          {/* Contact Direct Channels — 4 Verified Channels Staggered Reveal */}
+          <div
+            ref={ref}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-4 font-mono text-xs sm:text-sm"
+          >
+            {contactMethods.map((method, idx) => {
               const Icon = method.icon;
               return (
                 <a
@@ -81,7 +92,16 @@ export function Contact() {
                   target={method.isExternal ? "_blank" : undefined}
                   rel={method.isExternal ? "noopener noreferrer" : undefined}
                   aria-label={method.ariaLabel}
-                  className="group flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs"
+                  style={{
+                    transitionDuration: "750ms",
+                    transitionDelay: `${idx * 110}ms`,
+                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+                  }}
+                  className={`group flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs will-change-[transform,opacity] ${
+                    inView
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-6"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="p-2 rounded-md bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">
@@ -106,7 +126,9 @@ export function Contact() {
           {/* Direct Notice */}
           <div className="mt-10 pt-6 border-t border-[var(--border-subtle)]/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[var(--text-muted)]">
             <span>{t.contact.utcNote}</span>
-            <span className="text-[var(--accent-primary)]">{t.contact.remoteBadge}</span>
+            <span className="text-[var(--accent-primary)]">
+              {t.contact.remoteBadge}
+            </span>
           </div>
         </div>
       </Container>

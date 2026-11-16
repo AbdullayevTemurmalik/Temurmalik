@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { useInView } from "./ScrollReveal";
 
 interface SectionHeadingProps {
   label: string;
@@ -15,19 +18,27 @@ export function SectionHeading({
   className = "",
   id
 }: SectionHeadingProps) {
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
+
   return (
-    <div className={`mb-10 sm:mb-14 ${className}`} id={id}>
+    <div
+      ref={ref}
+      id={id}
+      className={`mb-10 sm:mb-14 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      } ${className}`}
+    >
       <div className="flex items-center gap-2 mb-3">
-        <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-[#79C0A5] uppercase">
+        <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-[var(--accent-primary)] uppercase">
           {label}
         </span>
-        <span className="h-px w-8 bg-[#26313D]" />
+        <span className="h-px w-8 bg-[var(--border-subtle)]" />
       </div>
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#E6EDF3]">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[var(--text-primary)]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2.5 text-sm sm:text-base text-[#8B949E] max-w-2xl leading-relaxed">
+        <p className="mt-2.5 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
           {subtitle}
         </p>
       )}
