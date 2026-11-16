@@ -9,8 +9,9 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function About() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px"
+    threshold: 0.08,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   return (
@@ -29,7 +30,7 @@ export function About() {
           {/* Main Story & Philosophy */}
           <div
             style={{
-              transitionDuration: "750ms",
+              transitionDuration: "1350ms",
               transitionDelay: "150ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
@@ -47,7 +48,7 @@ export function About() {
           {/* Quick Technical Specs / Profile Summary Card */}
           <div
             style={{
-              transitionDuration: "750ms",
+              transitionDuration: "1350ms",
               transitionDelay: "300ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}

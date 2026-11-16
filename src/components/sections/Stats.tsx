@@ -8,8 +8,9 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function Stats() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLElement>({
-    threshold: 0.15,
-    rootMargin: "0px 0px -30px 0px"
+    threshold: 0.1,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   const stats = [
@@ -41,8 +42,8 @@ export function Stats() {
             <div
               key={stat.label}
               style={{
-                transitionDuration: "700ms",
-                transitionDelay: `${idx * 120}ms`,
+                transitionDuration: "1350ms",
+                transitionDelay: `${idx * 160}ms`,
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
               }}
               className={`flex flex-col transition-all will-change-[transform,opacity] ${

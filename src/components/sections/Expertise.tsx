@@ -10,8 +10,9 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function Expertise() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.1,
-    rootMargin: "0px 0px -40px 0px"
+    threshold: 0.08,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   return (
@@ -26,14 +27,14 @@ export function Expertise() {
           subtitle={t.expertise.subtitle}
         />
 
-        {/* 4 Technical Cards — Smooth Staggered Scroll Reveal */}
+        {/* 4 Technical Cards — Smooth Staggered Scroll Reveal (2x slower) */}
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {t.expertise.domains.map((area, idx) => (
             <div
               key={area.id}
               style={{
-                transitionDuration: "750ms",
-                transitionDelay: `${idx * 120}ms`,
+                transitionDuration: "1350ms",
+                transitionDelay: `${idx * 160}ms`,
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
               }}
               className={`group rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] shadow-xs will-change-[transform,opacity] ${

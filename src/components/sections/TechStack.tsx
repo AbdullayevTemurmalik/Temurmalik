@@ -11,7 +11,8 @@ export function TechStack() {
   const { t, locale } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
     threshold: 0.08,
-    rootMargin: "0px 0px -40px 0px"
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   return (
@@ -27,7 +28,7 @@ export function TechStack() {
           {/* Left Column: Section Narrative & Technical Focus */}
           <div
             style={{
-              transitionDuration: "750ms",
+              transitionDuration: "1350ms",
               transitionDelay: "100ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
@@ -94,7 +95,7 @@ export function TechStack() {
           {/* Right Column: 6 Categories (Frontend, Backend, Database, DevOps, Tools, AI Integration) */}
           <div
             style={{
-              transitionDuration: "750ms",
+              transitionDuration: "1350ms",
               transitionDelay: "200ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}

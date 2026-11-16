@@ -9,8 +9,9 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function Approach() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px"
+    threshold: 0.08,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   return (
@@ -33,8 +34,8 @@ export function Approach() {
             <div
               key={item.step}
               style={{
-                transitionDuration: "750ms",
-                transitionDelay: `${idx * 140}ms`,
+                transitionDuration: "1350ms",
+                transitionDelay: `${idx * 160}ms`,
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
               }}
               className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 relative flex flex-col justify-between transition-all hover:border-[var(--border-hover)] shadow-xs will-change-[transform,opacity] ${

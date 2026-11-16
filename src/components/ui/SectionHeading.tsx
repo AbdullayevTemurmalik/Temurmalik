@@ -18,13 +18,21 @@ export function SectionHeading({
   className = "",
   id
 }: SectionHeadingProps) {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
+  const { ref, inView } = useInView<HTMLDivElement>({
+    threshold: 0.08,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
+  });
 
   return (
     <div
       ref={ref}
       id={id}
-      className={`mb-10 sm:mb-14 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      style={{
+        transitionDuration: "1350ms",
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+      }}
+      className={`mb-10 sm:mb-14 transition-all will-change-[transform,opacity] ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
     >

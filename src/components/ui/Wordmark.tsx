@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { useTranslation } from "@/i18n/context";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 interface WordmarkProps {
   className?: string;
@@ -14,7 +15,7 @@ interface WordmarkProps {
 /**
  * Typography-first wordmark reading "Temurmalik".
  * Strictly follows the branding rule: no "TM", no "TM.DEV", no monograms.
- * Clicking reliably navigates to homepage top and resets scroll/hash.
+ * Clicking reliably navigates to homepage top with 2x slower smooth glide.
  */
 export function Wordmark({ className = "", onClick }: WordmarkProps) {
   const { locale } = useTranslation();
@@ -31,7 +32,7 @@ export function Wordmark({ className = "", onClick }: WordmarkProps) {
 
     if (isHome) {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      smoothScrollTo(0, 1100);
       if (window.location.hash) {
         window.history.pushState(null, "", `/${locale}`);
       }

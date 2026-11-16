@@ -10,15 +10,16 @@ export interface UseInViewOptions {
 
 /**
  * High-performance, lightweight hook using native IntersectionObserver.
- * GPU-accelerated and accessible with full prefers-reduced-motion support.
+ * GPU-accelerated with full prefers-reduced-motion support.
+ * Continuous reveal (triggerOnce: false) ensures scrolling up and down keeps animations alive.
  */
 export function useInView<T extends HTMLElement = HTMLDivElement>(
   options: UseInViewOptions = {}
 ) {
   const {
-    threshold = 0.1,
-    rootMargin = "0px 0px -40px 0px",
-    triggerOnce = true
+    threshold = 0.08,
+    rootMargin = "20px 0px -30px 0px",
+    triggerOnce = false
   } = options;
 
   const ref = useRef<T | null>(null);
@@ -84,9 +85,10 @@ export interface ScrollRevealProps {
   className?: string;
   animation?: "fade-up" | "fade-in" | "fade-down" | "scale-up";
   delay?: number; // ms
-  duration?: number; // ms
+  duration?: number; // ms — 2x slower cinematic pace
   threshold?: number;
   rootMargin?: string;
+  triggerOnce?: boolean;
   as?: React.ElementType;
 }
 
@@ -95,12 +97,17 @@ export function ScrollReveal({
   className = "",
   animation = "fade-up",
   delay = 0,
-  duration = 750,
-  threshold = 0.1,
-  rootMargin = "0px 0px -40px 0px",
+  duration = 1350,
+  threshold = 0.08,
+  rootMargin = "20px 0px -30px 0px",
+  triggerOnce = false,
   as: Component = "div"
 }: ScrollRevealProps) {
-  const { ref, inView } = useInView<HTMLElement>({ threshold, rootMargin });
+  const { ref, inView } = useInView<HTMLElement>({
+    threshold,
+    rootMargin,
+    triggerOnce
+  });
 
   const getAnimationStyles = () => {
     switch (animation) {

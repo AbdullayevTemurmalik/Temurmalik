@@ -19,16 +19,21 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   const { t, locale: currentLocale } = useTranslation();
   const content = project.translations[currentLocale] || project.translations.en;
+  // triggerOnce: false allows silky re-reveal when scrolling back up and down
   const { ref, inView } = useInView<HTMLElement>({
-    threshold: 0.12,
-    rootMargin: "0px 0px -50px 0px",
-    triggerOnce: true
+    threshold: 0.08,
+    rootMargin: "20px 0px -40px 0px",
+    triggerOnce: false
   });
 
   return (
     <article
       ref={ref}
-      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all duration-750 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs will-change-[transform,opacity] ${
+      style={{
+        transitionDuration: "1350ms",
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+      }}
+      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs will-change-[transform,opacity] ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       aria-labelledby={`project-title-${project.id}`}
@@ -38,9 +43,14 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           reverse ? "lg:grid-flow-dense" : ""
         }`}
       >
-        {/* Visual / Screenshot Column — Smooth Entrance */}
+        {/* Visual / Screenshot Column — 2x Slower Cinema Entrance */}
         <div
-          className={`lg:col-span-7 transition-all duration-750 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          style={{
+            transitionDuration: "1350ms",
+            transitionDelay: "150ms",
+            transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+          }}
+          className={`lg:col-span-7 transition-all ${
             reverse ? "lg:col-start-6" : ""
           } ${
             inView
@@ -66,7 +76,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           </Link>
         </div>
 
-        {/* Content Column — Staggered details reveal as user scrolls */}
+        {/* Content Column — Pastdagi ma'lumotlar 2x sekin chiroyli kaskad bilan */}
         <div
           className={`lg:col-span-5 flex flex-col justify-between space-y-5 ${
             reverse ? "lg:col-start-1" : ""
@@ -74,8 +84,13 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
         >
           {/* Header Metadata */}
           <div
-            className={`space-y-2 transition-all duration-700 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            style={{
+              transitionDuration: "1350ms",
+              transitionDelay: "300ms",
+              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+            }}
+            className={`space-y-2 transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             <div className="flex items-center justify-between text-xs font-mono">
@@ -106,8 +121,13 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
 
           {/* Description — Emerges smoothly */}
           <p
-            className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-all duration-700 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            style={{
+              transitionDuration: "1350ms",
+              transitionDelay: "450ms",
+              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+            }}
+            className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             {content.description}
@@ -115,8 +135,13 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
 
           {/* Tech Badges — Cascade entrance */}
           <div
-            className={`flex flex-wrap gap-1.5 pt-1 transition-all duration-700 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            style={{
+              transitionDuration: "1350ms",
+              transitionDelay: "600ms",
+              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+            }}
+            className={`flex flex-wrap gap-1.5 pt-1 transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             {project.technologies.slice(0, 5).map((tech) => (
@@ -131,8 +156,13 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
 
           {/* Separate Actions: Internal Case Study vs External Live Link */}
           <div
-            className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-all duration-700 delay-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            style={{
+              transitionDuration: "1350ms",
+              transitionDelay: "750ms",
+              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+            }}
+            className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             <Link

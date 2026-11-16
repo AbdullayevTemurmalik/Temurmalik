@@ -29,12 +29,11 @@ const emptySubscribe = () => () => {};
 const isSeenSnapshot = (): boolean => {
   try {
     return (
-      document.documentElement.classList.contains("intro-seen") ||
-      sessionStorage.getItem("temurmalik_intro_seen") === "true" ||
-      (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
     );
   } catch {
-    return true;
+    return false;
   }
 };
 
@@ -54,10 +53,6 @@ export function IntroPreloader() {
   const sequenceStartedRef = useRef(false);
 
   const handleSkip = () => {
-    try {
-      sessionStorage.setItem("temurmalik_intro_seen", "true");
-      document.documentElement.classList.add("intro-seen");
-    } catch {}
     document.body.style.overflow = "";
     document.body.style.touchAction = "";
     setIsFinished(true);
@@ -90,10 +85,6 @@ export function IntroPreloader() {
 
           // Exit transition duration: 550ms with cubic-bezier(0.76, 0, 0.24, 1)
           timer = setTimeout(() => {
-            try {
-              sessionStorage.setItem("temurmalik_intro_seen", "true");
-              document.documentElement.classList.add("intro-seen");
-            } catch {}
             document.body.style.overflow = "";
             document.body.style.touchAction = "";
             setIsFinished(true);

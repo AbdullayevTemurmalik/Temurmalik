@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTranslation } from "@/i18n/context";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,6 +63,7 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   // Active state is explicitly triggered ONLY when the user clicks a nav link
+  // Uses 2x slower cinematic smooth scroll (~1250ms)
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     setActiveSection(sectionId);
     setMobileMenuOpen(false);
@@ -74,8 +76,8 @@ export function Header() {
       const el = document.getElementById(sectionId);
       if (el) {
         const yOffset = -70; // offset for sticky header
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
+        const y = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset + yOffset);
+        smoothScrollTo(y, 1250);
         window.history.pushState(null, "", `#${sectionId}`);
       }
     }

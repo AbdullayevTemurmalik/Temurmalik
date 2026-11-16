@@ -157,7 +157,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem('temurmalik_intro_seen')==='true'||(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('intro-seen');}}catch(e){}`
+            __html: `try{if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-seen');}}catch(e){}`
           }}
         />
       </head>

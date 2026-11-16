@@ -17,8 +17,9 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function Contact() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px"
+    threshold: 0.08,
+    rootMargin: "20px 0px -30px 0px",
+    triggerOnce: false
   });
 
   const contactMethods = [
@@ -93,8 +94,8 @@ export function Contact() {
                   rel={method.isExternal ? "noopener noreferrer" : undefined}
                   aria-label={method.ariaLabel}
                   style={{
-                    transitionDuration: "750ms",
-                    transitionDelay: `${idx * 110}ms`,
+                    transitionDuration: "1350ms",
+                    transitionDelay: `${idx * 140}ms`,
                     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
                   }}
                   className={`group flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs will-change-[transform,opacity] ${
