@@ -150,6 +150,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem('temurmalik_intro_seen')==='true'||(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('intro-seen');}}catch(e){}`
+          }}
+        />
       </head>
       <body className="font-sans antialiased bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen flex flex-col selection:bg-[var(--accent-primary)]/20 selection:text-[var(--text-primary)]">
         {/* Skip to Content for Accessibility */}

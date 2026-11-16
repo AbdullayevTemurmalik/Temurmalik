@@ -113,3 +113,16 @@
 .animate-cursor-blink {
   animation: blink 1.05s infinite;
 }
+
+/* Preloader hidden state when already seen in tab session */
+html.intro-seen #intro-preloader-root {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Dennis Snellenberg-inspired smooth cubic bezier curve for exit curtain */
+.ease-curtain {
+  transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
