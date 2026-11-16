@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -16,6 +16,9 @@ export function Header() {
   const pathname = usePathname();
   const { t, locale } = useTranslation();
 
+  const isManualScrollRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const navItems = [
     { label: t.nav.about, href: `/${locale}#about`, sectionId: "about" },
     { label: t.nav.expertise, href: `/${locale}#expertise`, sectionId: "expertise" },
@@ -28,30 +31,47 @@ export function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Simple active section detection on home pages (e.g. /en or /uz)
+      // Don't override active section while smooth-scrolling programmatically from a click
+      if (isManualScrollRef.current) return;
+
       const isHome = pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
-      if (isHome) {
-        const sections = ["about", "expertise", "tech-stack", "projects", "contact"];
-        let current = "";
-        for (const section of sections) {
-          const el = document.getElementById(section);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 160 && rect.bottom >= 160) {
-              current = section;
-              break;
-            }
+      if (!isHome) {
+        setActiveSection("");
+        return;
+      }
+
+      // Check if user has scrolled near bottom of page (guarantee Contact is active)
+      const isBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const sections = ["about", "expertise", "tech-stack", "projects", "contact"];
+      const headerFocalPoint = 130;
+      let current = "";
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= headerFocalPoint && rect.bottom > headerFocalPoint) {
+            current = section;
+            break;
           }
         }
-        setActiveSection(current);
-      } else {
-        setActiveSection("");
       }
+
+      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, [pathname, locale]);
 
   // Escape key handler for mobile menu
@@ -74,8 +94,29 @@ export function Header() {
     }
   }, [mobileMenuOpen]);
 
-  const handleNavClick = () => {
-    setMobileMenuOpen(false);
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    const isHome = pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
+    if (isHome) {
+      e.preventDefault();
+      setActiveSection(sectionId);
+      isManualScrollRef.current = true;
+      setMobileMenuOpen(false);
+
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const yOffset = -70; // offset for sticky header
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        window.history.pushState(null, "", `#${sectionId}`);
+      }
+
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => {
+        isManualScrollRef.current = false;
+      }, 850);
+    } else {
+      setMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -91,7 +132,7 @@ export function Header() {
           {/* Brand Wordmark */}
           <Wordmark />
 
-          {/* Desktop Navigation Links — Unified without duplicate button */}
+          {/* Desktop Navigation Links — Pure, clean typography without noisy hover boxes */}
           <nav
             className="hidden md:flex items-center gap-1 font-mono text-xs sm:text-sm"
             aria-label="Main Navigation"
@@ -102,13 +143,18 @@ export function Header() {
                 <Link
                   key={item.sectionId}
                   href={item.href}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
+                  onClick={(e) => handleLinkClick(e, item.sectionId)}
+                  className={`relative px-3 py-1.5 rounded font-mono transition-colors duration-150 outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-secondary)] ${
                     isActive
-                      ? "text-[var(--text-primary)] bg-[var(--bg-surface)] font-semibold shadow-2xs border border-[var(--border-subtle)]"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
+                      ? "text-[var(--text-primary)] font-semibold"
+                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   {item.label}
+                  {/* Subtle 2px terminal accent line indicator that ONLY renders on the active link */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-all duration-200" />
+                  )}
                 </Link>
               );
             })}
@@ -167,17 +213,26 @@ export function Header() {
           aria-label="Mobile Navigation"
         >
           <div className="flex flex-col gap-2 font-mono text-base">
-            {navItems.map((item) => (
-              <Link
-                key={item.sectionId}
-                href={item.href}
-                onClick={handleNavClick}
-                className="px-4 py-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--accent-primary)] transition-colors flex items-center justify-between"
-              >
-                <span>{item.label}</span>
-                <span className="text-xs text-[var(--accent-primary)]">→</span>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.sectionId;
+              return (
+                <Link
+                  key={item.sectionId}
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.sectionId)}
+                  className={`px-4 py-3 rounded-lg border transition-colors flex items-center justify-between ${
+                    isActive
+                      ? "border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold"
+                      : "border-[var(--border-subtle)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <span className="text-xs text-[var(--accent-primary)]">
+                    {isActive ? "●" : "→"}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mt-auto pt-8 border-t border-[var(--border-subtle)] text-xs font-mono text-[var(--text-secondary)]">
