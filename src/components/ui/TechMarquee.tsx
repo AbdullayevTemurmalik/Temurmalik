@@ -21,7 +21,8 @@ export function TechMarquee({
 
   return (
     <div
-      className={`relative w-full overflow-hidden border-y border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 py-3 sm:py-3.5 select-none ${className}`}
+      className={`relative w-full max-w-full overflow-hidden border-y border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 py-3 sm:py-3.5 select-none ${className}`}
+      style={{ contain: "paint" }}
       aria-hidden="true"
     >
       {/* Left subtle fade gradient */}

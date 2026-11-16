@@ -182,7 +182,7 @@ export function IntroPreloader() {
 
       {/* Dennis Snellenberg signature curved SVG curtain bottom */}
       <svg
-        className="absolute top-full left-0 w-full overflow-visible pointer-events-none fill-[var(--bg-base)]"
+        className="absolute top-full left-0 w-full overflow-hidden pointer-events-none fill-[var(--bg-base)]"
         style={{ height: "120px" }}
         viewBox="0 0 1000 120"
         preserveAspectRatio="none"

@@ -57,12 +57,18 @@ export function SmoothScrollProvider({
         return;
       }
 
-      // Don't intercept inside scrollable code blocks, textareas, or inner scroll containers
+      // If the wheel event is predominantly horizontal (e.g. trackpad side-swipe), let native handle it
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        return;
+      }
+
+      // Don't intercept inside scrollable code blocks, textareas, horizontal scrollers, or inner scroll containers
       const target = e.target as HTMLElement | null;
       if (
         target?.closest("pre") ||
         target?.closest("textarea") ||
-        target?.closest("[data-lenis-prevent]")
+        target?.closest("[data-lenis-prevent]") ||
+        target?.closest(".overflow-x-auto")
       ) {
         return;
       }

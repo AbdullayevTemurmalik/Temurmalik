@@ -161,7 +161,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen flex flex-col selection:bg-[var(--accent-primary)]/20 selection:text-[var(--text-primary)]">
+      <body className="font-sans antialiased bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen flex flex-col selection:bg-[var(--accent-primary)]/20 selection:text-[var(--text-primary)] max-w-full overflow-x-clip">
         {/* Skip to Content for Accessibility */}
         <a
           href="#main-content"

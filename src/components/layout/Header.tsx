@@ -238,8 +238,10 @@ export function Header() {
 
       {/* Mobile Slide-Over Drawer from RIGHT */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-transform duration-300 ease-out ${
-          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-all duration-300 ease-out ${
+          mobileMenuOpen
+            ? "translate-x-0 opacity-100 visible pointer-events-auto"
+            : "translate-x-full opacity-0 invisible pointer-events-none"
         }`}
         role="dialog"
         aria-modal="true"
