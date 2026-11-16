@@ -4,6 +4,7 @@ import React from "react";
 import { Container } from "@/components/ui/Container";
 import { techStackCategories } from "@/data/techStack";
 import { useTranslation } from "@/i18n/context";
+import { SkillBadge } from "@/components/ui/SkillBadge";
 
 export function TechStack() {
   const { t, locale } = useTranslation();
@@ -39,11 +40,11 @@ export function TechStack() {
 
               <div className="space-y-2">
                 <div>
-                  <span className="text-[var(--text-secondary)] block text-[11px]">{locale === "uz" ? "Asosiy Mutaxassislik" : "Primary Role"}</span>
+                  <span className="text-[var(--text-secondary)] block text-[11px]">{t.techStack.primaryRoleLabel}</span>
                   <span className="text-[var(--text-primary)] font-medium">{t.techStack.primaryRole}</span>
                 </div>
                 <div className="pt-2 border-t border-[var(--border-subtle)]/40">
-                  <span className="text-[var(--text-secondary)] block text-[11px]">{locale === "uz" ? "Ixtisoslashuv" : "Specialization"}</span>
+                  <span className="text-[var(--text-secondary)] block text-[11px]">{t.techStack.specializationLabel}</span>
                   <span className="text-[var(--accent-secondary)] font-medium">{t.techStack.specialization}</span>
                 </div>
                 <div className="pt-2 border-t border-[var(--border-subtle)]/40 flex justify-between">
@@ -91,16 +92,10 @@ export function TechStack() {
                     {description}
                   </p>
 
-                  {/* Technology Badges */}
+                  {/* Interactive Clickable Technology Badges with Verified Official URLs */}
                   <div className="flex flex-wrap gap-2 pt-1">
                     {category.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="font-mono text-xs px-2.5 py-1 rounded bg-[var(--bg-base)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] transition-colors inline-flex items-center gap-1.5"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-[var(--accent-primary)]/70" />
-                        {skill}
-                      </span>
+                      <SkillBadge key={skill} skillName={skill} />
                     ))}
                   </div>
                 </div>

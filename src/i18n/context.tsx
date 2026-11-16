@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Locale, defaultLocale, isValidLocale } from "./config";
 import { dictionaries, Dictionary } from "./translations";
 
@@ -23,7 +23,6 @@ export function I18nProvider({
   const [locale, setLocale] = useState<Locale>(initialLocale);
   const [prevInitialLocale, setPrevInitialLocale] = useState(initialLocale);
   const router = useRouter();
-  const pathname = usePathname();
 
   // If initialLocale changes between navigations, sync state during render
   if (initialLocale !== prevInitialLocale && isValidLocale(initialLocale)) {
@@ -43,19 +42,27 @@ export function I18nProvider({
   const switchLocale = (targetLocale: Locale) => {
     if (targetLocale === locale) return;
 
+    if (typeof document !== "undefined") {
+      document.cookie = `NEXT_LOCALE=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+
     setLocale(targetLocale);
 
-    if (pathname) {
-      const segments = pathname.split("/");
-      if (isValidLocale(segments[1])) {
-        segments[1] = targetLocale;
-        const newPath = segments.join("/");
-        router.push(newPath);
+    if (typeof window !== "undefined") {
+      const currentPath = window.location.pathname;
+      const hash = window.location.hash || "";
+      const segments = currentPath.split("/").filter(Boolean);
+
+      let targetPath = `/${targetLocale}`;
+      if (segments.length > 0 && isValidLocale(segments[0])) {
+        segments[0] = targetLocale;
+        targetPath = `/${segments.join("/")}${hash}`;
       } else {
-        router.push(`/${targetLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`);
+        const cleanPath = currentPath === "/" ? "" : currentPath;
+        targetPath = `/${targetLocale}${cleanPath}${hash}`;
       }
-    } else {
-      router.push(`/${targetLocale}`);
+
+      router.push(targetPath);
     }
   };
 

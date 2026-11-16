@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "expertise": "Especialidad",
+    "techStack": "Stack Tecnológico",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "themeDark": "Modo oscuro",
+    "themeLight": "Modo claro",
+    "language": "Idioma",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "hero": {
+    "eyebrow": "Hola, soy Temurmalik.",
+    "heading": "Desarrollador Full-Stack.",
+    "subheading": "Especializado en Backend e Ingeniería de IA.",
+    "description": "Soy Temurmalik Abdullayev, desarrollador de 17 años de Uzbekistán. Construyo sistemas backend fiables, aplicaciones web modernas y productos impulsados por IA.",
+    "exploreBtn": "Explorar Proyectos",
+    "contactBtn": "Contacto",
+    "availableText": "Disponible para contratos de desarrollo seleccionados",
+    "metaTags": "Uzbekistán · Backend · IA · Ingeniería Web"
+  },
+  "terminal": {
+    "title": "temurmalik@portfolio: ~",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "tabs": {
+      "whoami": "whoami",
+      "uptime": "uptime",
+      "profile": "profile.json",
+      "projects": "projects/",
+      "status": "status"
+    },
+    "role": "Desarrollador Full-Stack",
+    "focusLabel": "Enfoque",
+    "focusValue": "Backend e Ingeniería de IA",
+    "uptimeDesc": "3 años de experiencia continua en desarrollo",
+    "statusText": "Construyendo software fiable y sistemas inteligentes.",
+    "yearsUnit": "años"
+  },
+  "stats": {
+    "experienceValue": "3+",
+    "experienceLabel": "Años de Experiencia",
+    "experienceMeta": "Desarrollo continuo y despliegues",
+    "projectsValue": "30+",
+    "projectsLabel": "Proyectos Realizados",
+    "projectsMeta": "Aplicaciones web, backends y bots",
+    "clientsValue": "5+",
+    "clientsLabel": "Clientes Reales",
+    "clientsMeta": "Empresas y fundadores de productos"
+  },
+  "about": {
+    "label": "01 / Sobre mí",
+    "heading": "Ingeniería con propósito.",
+    "subtitle": "Enfocado en sistemas backend resilientes, API REST escalables e integraciones prácticas de IA.",
+    "paragraphs": [
+      "Soy Temurmalik Abdullayev, un desarrollador de software de 17 años de Uzbekistán. Durante los últimos tres años, me he sumergido en arquitecturas backend, modelado de bases de datos y desarrollo web moderno.",
+      "En lugar de perseguir modas pasajeras en el frontend, mi enfoque de ingeniería se basa en la fiabilidad fundamental del servidor: diseñar contratos de API predecibles, gestionar migraciones con PostgreSQL y Prisma, validación estricta con Zod y seguridad de sesiones.",
+      "Al desarrollar productos para usuarios, combino backends sólidos en Node.js y TypeScript con interfaces de React y Next.js rápidas y accesibles. También integro modelos de inteligencia artificial de Google Gemini en plataformas educativas y automatización en Telegram para resolver cuellos de botella reales."
+    ],
+    "specTitle": "Especificación del Perfil",
+    "specIndex": "v3.4",
+    "specs": {
+      "locationLabel": "Ubicación",
+      "locationValue": "Uzbekistán",
+      "ageLabel": "Edad",
+      "ageValue": "17 años",
+      "expLabel": "Experiencia",
+      "expValue": "3+ años continuos",
+      "stacksLabel": "Stacks Principales",
+      "stacksValue": "Node.js · TS · React · PostgreSQL",
+      "specLabel": "Especialización",
+      "specValue": "Backend e Ingeniería de IA",
+      "statusLabel": "Estado",
+      "statusValue": "Disponible para contratos"
+    }
+  },
+  "expertise": {
+    "label": "02 / Áreas de Dominio",
+    "heading": "Competencias técnicas clave.",
+    "subtitle": "Capacidades refinadas a través de despliegues en producción real, retos arquitectónicos y entregas a clientes.",
+    "coreDomain": "Área Principal",
+    "domains": [
+      {
+        "id": "backend",
+        "number": "01",
+        "title": "Ingeniería Backend",
+        "summary": "API, autenticación, modelos de datos y arquitectura de servidores.",
+        "description": "Diseño de sistemas robustos en el lado del servidor con flujos de datos predecibles, endpoints REST limpios y bases de datos relacionales preparadas para tráfico real.",
+        "capabilities": [
+          "Diseño de esquemas relacionales, índices y migraciones de datos",
+          "Patrones de autenticación, gestión de JWT y seguridad de sesiones",
+          "Saneamiento de entradas, manejo defensivo de errores y rate limiting",
+          "Flujos WebSocket y comunicación bidireccional en tiempo real"
+        ],
+        "skills": [
+          "Node.js",
+          "Express.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Prisma ORM",
+          "REST API",
+          "JWT"
+        ]
+      },
+      {
+        "id": "fullstack",
+        "number": "02",
+        "title": "Desarrollo Full-Stack",
+        "summary": "Aplicaciones web modernas, interfaces responsivas y ciclo completo.",
+        "description": "Construcción de productos digitales fluidos donde el frontend refleja fielmente la semántica del backend con cero fricción. Alto rendimiento y accesibilidad.",
+        "capabilities": [
+          "Arquitectura basada en componentes y tipado estricto en TypeScript",
+          "Diseño responsivo Mobile-First con tipografía fluida",
+          "Gestión de estado y límites limpios entre cliente y servidor",
+          "Optimización de Core Web Vitals sin cambios inesperados de diseño"
+        ],
+        "skills": [
+          "React",
+          "Next.js",
+          "Vue.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Redux",
+          "HTML5/CSS3"
+        ]
+      },
+      {
+        "id": "ai-integration",
+        "number": "03",
+        "title": "Integración de IA",
+        "summary": "Aplicaciones con IA, automatización inteligente e integración de modelos.",
+        "description": "Integración práctica de modelos de inteligencia artificial en productos utilizables: flujos de prompts, análisis visual multimodal, respuestas estructuradas y chatbots.",
+        "capabilities": [
+          "Análisis de imágenes para estimación nutricional y calorías en bots",
+          "Asistencia pedagógica contextual y sugerencias automáticas de código",
+          "Validación estricta de esquemas en salidas JSON estructuradas de LLM",
+          "Streaming de baja latencia y gestión de contingencias tolerante a fallos"
+        ],
+        "skills": [
+          "Gemini API",
+          "Multimodal Vision",
+          "Claude Code",
+          "Cursor",
+          "Antigravity",
+          "Codex"
+        ]
+      },
+      {
+        "id": "infrastructure",
+        "number": "04",
+        "title": "Despliegue e Infraestructura",
+        "summary": "Flujos de despliegue, configuración de servidores, Git, CI/CD y mantenimiento.",
+        "description": "Entrega de software con disciplina y reproducibilidad: CI/CD automatizado, gestión de variables de entorno y despliegues sin interrupciones en la nube.",
+        "capabilities": [
+          "Pipelines de integración y despliegue continuo (CI/CD)",
+          "Configuraciones de funciones Edge y Serverless en Vercel",
+          "Contenedores en Railway y aprovisionamiento gestionado de PostgreSQL",
+          "Registro de errores en producción y monitorización de disponibilidad"
+        ],
+        "skills": [
+          "Linux",
+          "Docker",
+          "Git",
+          "GitHub",
+          "Vercel",
+          "Railway",
+          "Postman"
+        ]
+      }
+    ]
+  },
+  "techStack": {
+    "label": "Fundamento Técnico",
+    "heading": "Stack Tecnológico",
+    "subtitle": "Tecnologías y herramientas que utilizo para crear productos digitales fiables.",
+    "scopeTitle": "Alcance Arquitectónico",
+    "scopeIndex": "Verificado",
+    "primaryRole": "Desarrollador Full-Stack",
+    "specialization": "Especializado en Backend e Ingeniería de IA",
+    "uptimeLabel": "Tiempo de Actividad",
+    "uptimeValue": "3+ años continuos",
+    "primaryRoleLabel": "Rol principal",
+    "specializationLabel": "Especialización",
+    "openOfficialSite": "Abrir sitio web oficial de {name}"
+  },
+  "projects": {
+    "label": "03 / Trabajos Seleccionados",
+    "heading": "Proyectos seleccionados. Productos reales.",
+    "subtitle": "Tres sistemas de producción centrales que demuestran ingeniería backend, arquitecturas completas e integraciones prácticas de IA.",
+    "viewCaseStudy": "Ver caso de estudio",
+    "liveProject": "Proyecto en vivo",
+    "sourceCode": "Repositorio",
+    "backToProjects": "Volver a proyectos",
+    "backHome": "Volver al inicio",
+    "statusShipped": "Lanzado",
+    "statusActive": "Activo",
+    "allProjectsHeading": "Proyectos seleccionados. Productos reales.",
+    "allProjectsSubtitle": "Análisis profundos de arquitectura backend, API tipadas, interfaces web responsivas y soluciones prácticas de IA.",
+    "prevProject": "Proyecto anterior",
+    "nextProject": "Proyecto siguiente",
+    "specificationsTitle": "Especificaciones",
+    "roleLabel": "Mi Rol",
+    "timelineLabel": "Periodo / Año",
+    "categoryLabel": "Categoría",
+    "liveEndpointLabel": "Enlace en vivo",
+    "techUsedLabel": "Tecnologías y librerías",
+    "visitLiveBtn": "Visitar sistema",
+    "overviewTitle": "Descripción general",
+    "problemTitle": "Problema y objetivos",
+    "solutionTitle": "Solución y arquitectura",
+    "featuresTitle": "Características verificadas",
+    "decisionsTitle": "Decisiones técnicas clave"
+  },
+  "approach": {
+    "label": "04 / Metodología",
+    "heading": "Ritmo de ingeniería disciplinado.",
+    "subtitle": "Un flujo metódico desde la definición del problema hasta el despliegue seguro en producción.",
+    "phasePrefix": "Fase",
+    "stageLabel": "Etapa",
+    "verifiedMethod": "Metodología comprobada",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Comprender el problema",
+        "description": "Cada proyecto comienza con un análisis claro de los requisitos, flujos de datos y restricciones clave."
+      },
+      {
+        "step": "02",
+        "title": "Construir una solución fiable",
+        "description": "Separación limpia de responsabilidades, tipado estricto, gestión sólida de errores y esquemas escalables."
+      },
+      {
+        "step": "03",
+        "title": "Probar, desplegar y optimizar",
+        "description": "Compilaciones automatizadas, control de calidad minucioso, entornos estables en Vercel/Railway y monitorización continua."
+      }
+    ]
+  },
+  "contact": {
+    "label": "05 / Contacto",
+    "heading": "Construyamos algo extraordinario.",
+    "subtitle": "Estoy abierto a discutir contratos de ingeniería backend, desarrollo de productos full-stack e integraciones de IA.",
+    "utcNote": "Operando desde Uzbekistán (UTC+5)",
+    "remoteBadge": "● Disponible para colaboración remota a nivel mundial"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "designedBy": "Diseñado y desarrollado por Temurmalik."
+  },
+  "notFound": {
+    "code": "404: PÁGINA_NO_ENCONTRADA",
+    "title": "La ruta no existe.",
+    "description": "La ruta solicitada no pudo ser resuelta por el servidor. Verifique la dirección o vuelva al inicio.",
+    "returnHome": "Volver al inicio",
+    "exploreProjects": "Explorar proyectos"
+  },
+  "intro": {
+    "skip": "Saltar [ESC]",
+    "skipAria": "Saltar animación de introducción"
+  }
+}

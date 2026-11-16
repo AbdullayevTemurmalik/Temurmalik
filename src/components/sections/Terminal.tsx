@@ -7,7 +7,7 @@ import { useTranslation } from "@/i18n/context";
 export function Terminal() {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<"whoami" | "uptime" | "profile" | "projects" | "status">("whoami");
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
 
   const fullTerminalText = `temurmalik@portfolio: ~
 $ whoami
@@ -16,7 +16,7 @@ ${t.terminal.role}
 ${t.terminal.focusLabel}: ${t.terminal.focusValue}
 
 $ uptime
-3 ${locale === "uz" ? "yil" : "years"} (${t.terminal.uptimeDesc})
+3 ${t.terminal.yearsUnit} (${t.terminal.uptimeDesc})
 
 $ cat profile.json
 {
@@ -111,7 +111,7 @@ ${t.terminal.statusText}`;
           <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-primary)]">
             <p>
               <span className="text-[var(--accent-primary)] font-semibold">
-                3 {locale === "uz" ? "yil" : "years"}
+                3 {t.terminal.yearsUnit}
               </span>{" "}
               <span className="text-[var(--text-muted)] text-xs">
                 ({t.terminal.uptimeDesc})

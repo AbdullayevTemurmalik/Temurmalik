@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 
-console.log("=== TEMURMALIK PORTFOLIO — TECHNICAL SEO & I18N VALIDATION ===");
+console.log("=== TEMURMALIK PORTFOLIO — TECHNICAL SEO, I18N & TECH STACK VALIDATION ===");
 
 let errorsCount = 0;
 
@@ -28,11 +28,18 @@ for (const loc of expectedLocales) {
   assert(configContent.includes(`"${loc}"`), `Locale '${loc}' declared in src/i18n/config.ts`);
 }
 
-// 2. Validate All 12 Locale Dictionaries exist and have matching keys
-
+// 2. Validate All 12 Locale JSON files exist in messages/ and parse without error
 for (const loc of expectedLocales) {
-  const locPath = path.join(rootDir, `src/i18n/locales/${loc}.ts`);
-  assert(fs.existsSync(locPath), `Dictionary file exists for locale '${loc}'`);
+  const jsonPath = path.join(rootDir, `messages/${loc}.json`);
+  assert(fs.existsSync(jsonPath), `JSON translation file exists: messages/${loc}.json`);
+  if (fs.existsSync(jsonPath)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+      assert(!!parsed.nav && !!parsed.hero && !!parsed.techStack, `Valid JSON content structure for '${loc}.json'`);
+    } catch (e) {
+      assert(false, `Invalid JSON syntax in messages/${loc}.json: ${e.message}`);
+    }
+  }
 }
 
 // 3. Validate Canonical Domain in site.ts
@@ -51,7 +58,7 @@ assert(
   "Full name is verified 'Temurmalik Abdullayev'"
 );
 
-// 4. Validate Structured Data (Person, WebSite, Breadcrumbs)
+// 4. Validate Structured Data
 const rootLayoutPath = path.join(rootDir, "src/app/layout.tsx");
 const rootLayoutContent = fs.readFileSync(rootLayoutPath, "utf8");
 assert(
@@ -110,6 +117,29 @@ assert(
   globalsCss.includes('[dir="rtl"]'),
   "globals.css includes RTL overrides for terminal, code, and monospace"
 );
+
+// 9. Validate Interactive Clickable Tech Badges in skills.ts
+const skillsPath = path.join(rootDir, "src/data/skills.ts");
+const skillsContent = fs.readFileSync(skillsPath, "utf8");
+const expectedSkills = [
+  "HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Next.js", "Tailwind CSS", "Bootstrap", "Redux",
+  "Node.js", "Express.js", "REST API", "JWT Authentication", "Telegram Bot API",
+  "PostgreSQL", "MongoDB", "pgAdmin",
+  "Linux", "Docker", "Git", "GitHub", "Vercel", "Railway",
+  "Postman", "Visual Studio Code", "Figma",
+  "Claude Code", "Cursor", "Antigravity", "ChatGPT", "Codex", "VSCode Copilot", "Google Gemini API", "Multimodal Vision"
+];
+
+for (const skill of expectedSkills) {
+  assert(skillsContent.includes(`"${skill}":`), `Official skill link mapped for '${skill}'`);
+}
+
+// 10. Validate SkillBadge component is used in TechStack and Expertise
+const techStackComponent = fs.readFileSync(path.join(rootDir, "src/components/sections/TechStack.tsx"), "utf8");
+assert(techStackComponent.includes("<SkillBadge"), "TechStack renders clickable SkillBadge components");
+
+const expertiseComponent = fs.readFileSync(path.join(rootDir, "src/components/sections/Expertise.tsx"), "utf8");
+assert(expertiseComponent.includes("<SkillBadge"), "Expertise renders clickable SkillBadge components");
 
 console.log("\n==================================================");
 if (errorsCount === 0) {

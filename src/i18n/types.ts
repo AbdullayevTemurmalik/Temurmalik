@@ -11,6 +11,10 @@ export interface Dictionary {
     openMenu: string;
     closeMenu: string;
   };
+  intro: {
+    skip: string;
+    skipAria: string;
+  };
   hero: {
     eyebrow: string;
     heading: string;
@@ -37,6 +41,7 @@ export interface Dictionary {
     focusValue: string;
     uptimeDesc: string;
     statusText: string;
+    yearsUnit: string;
   };
   stats: {
     experienceValue: string;
@@ -93,9 +98,12 @@ export interface Dictionary {
     scopeTitle: string;
     scopeIndex: string;
     primaryRole: string;
+    primaryRoleLabel: string;
     specialization: string;
+    specializationLabel: string;
     uptimeLabel: string;
     uptimeValue: string;
+    openOfficialSite: string;
   };
   projects: {
     label: string;

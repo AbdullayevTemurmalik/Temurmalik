@@ -27,20 +27,24 @@ export async function generateMetadata({
 
   if (!isValidLocale(locale)) return {};
 
-  const isUz = locale === "uz";
-  const title = isUz
-    ? `Tanlangan Loyihalar — ${siteConfig.name}`
-    : `Selected Projects — ${siteConfig.name}`;
+  const t = dictionaries[locale as Locale] || dictionaries.en;
+  const baseUrl = siteConfig.url;
+  const title = `${t.projects.allProjectsHeading} — ${siteConfig.name}`;
+  const description = `${t.projects.allProjectsSubtitle} — ${siteConfig.fullName}: RunCode Web, Donik Coach AI, Al Harameen.`;
 
-  const description = isUz
-    ? `${siteConfig.fullName} tomonidan yaratilgan real production loyihalari va arxitektura tahlillari: RunCode Web, Donik Coach AI va Al Harameen Uzbekistan.`
-    : `Case studies and production systems built by ${siteConfig.fullName}: RunCode Web, Donik Coach AI, and Al Harameen Uzbekistan.`;
+  const languageAlternates: Record<string, string> = {
+    "x-default": `${baseUrl}/en/projects`
+  };
+  for (const loc of locales) {
+    languageAlternates[loc] = `${baseUrl}/${loc}/projects`;
+  }
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/projects`
+      canonical: `${baseUrl}/${locale}/projects`,
+      languages: languageAlternates
     }
   };
 }

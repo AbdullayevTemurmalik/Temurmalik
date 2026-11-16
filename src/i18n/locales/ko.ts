@@ -1,225 +1,240 @@
 import { Dictionary } from "../types";
 
 export const ko: Dictionary = {
-  nav: {
-    about: "소개",
-    expertise: "전문 분야",
-    techStack: "기술 스택",
-    projects: "프로젝트",
-    contact: "연락처",
-    themeDark: "다크 모드",
-    themeLight: "라이트 모드",
-    language: "언어",
-    openMenu: "메뉴 열기",
-    closeMenu: "메뉴 닫기"
+  "nav": {
+    "about": "소개",
+    "expertise": "전문 분야",
+    "techStack": "기술 스택",
+    "projects": "프로젝트",
+    "contact": "연락처",
+    "themeDark": "다크 모드",
+    "themeLight": "라이트 모드",
+    "language": "언어",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
   },
-  hero: {
-    eyebrow: "안녕하세요, 테무르말릭입니다.",
-    heading: "풀스택 개발자.",
-    subheading: "백엔드 및 AI 엔지니어링 집중.",
-    description:
-      "우즈베키스탄 출신의 17세 개발자로서 안정적인 백엔드 아키텍처, 최신 웹 애플리케이션 및 실용적인 인공지능 솔루션을 설계하고 구축합니다.",
-    exploreBtn: "프로젝트 둘러보기",
-    contactBtn: "연락하기",
-    availableText: "신규 엔지니어링 프로젝트 문의 가능",
-    metaTags: "우즈베키스탄 · 백엔드 · AI · 웹 엔지니어링"
+  "hero": {
+    "eyebrow": "안녕하세요, 테무르말릭입니다.",
+    "heading": "풀스택 개발자.",
+    "subheading": "백엔드 및 AI 엔지니어링 집중.",
+    "description": "우즈베키스탄 출신의 17세 개발자로서 안정적인 백엔드 아키텍처, 최신 웹 애플리케이션 및 실용적인 인공지능 솔루션을 설계하고 구축합니다.",
+    "exploreBtn": "프로젝트 둘러보기",
+    "contactBtn": "연락하기",
+    "availableText": "신규 엔지니어링 프로젝트 문의 가능",
+    "metaTags": "우즈베키스탄 · 백엔드 · AI · 웹 엔지니어링"
   },
-  terminal: {
-    title: "temurmalik@portfolio: ~",
-    copy: "복사",
-    copied: "복사됨!",
-    tabs: {
-      whoami: "whoami",
-      uptime: "uptime",
-      profile: "profile.json",
-      projects: "projects/",
-      status: "status"
+  "terminal": {
+    "title": "temurmalik@portfolio: ~",
+    "copy": "복사",
+    "copied": "복사됨!",
+    "tabs": {
+      "whoami": "whoami",
+      "uptime": "uptime",
+      "profile": "profile.json",
+      "projects": "projects/",
+      "status": "status"
     },
-    role: "풀스택 개발자",
-    focusLabel: "전문 분야",
-    focusValue: "백엔드 & AI 엔지니어링",
-    uptimeDesc: "3년 이상의 실무 개발 경험",
-    statusText: "안정적인 소프트웨어 아키텍처와 지능형 시스템 구축 중."
+    "role": "풀스택 개발자",
+    "focusLabel": "전문 분야",
+    "focusValue": "백엔드 & AI 엔지니어링",
+    "uptimeDesc": "3년 이상의 실무 개발 경험",
+    "statusText": "안정적인 소프트웨어 아키텍처와 지능형 시스템 구축 중.",
+    "yearsUnit": "년"
   },
-  stats: {
-    experienceValue: "3+",
-    experienceLabel: "개발 경력 (년)",
-    experienceMeta: "지속적인 풀스택 설계 및 배포 경험",
-    projectsValue: "30+",
-    projectsLabel: "완료된 프로젝트",
-    projectsMeta: "웹 플랫폼, 백엔드 서비스, AI 봇",
-    clientsValue: "5+",
-    clientsLabel: "실제 클라이언트",
-    clientsMeta: "사업체 및 스타트업 창업가 협업"
+  "stats": {
+    "experienceValue": "3+",
+    "experienceLabel": "개발 경력 (년)",
+    "experienceMeta": "지속적인 풀스택 설계 및 배포 경험",
+    "projectsValue": "30+",
+    "projectsLabel": "완료된 프로젝트",
+    "projectsMeta": "웹 플랫폼, 백엔드 서비스, AI 봇",
+    "clientsValue": "5+",
+    "clientsLabel": "실제 클라이언트",
+    "clientsMeta": "사업체 및 스타트업 창업가 협업"
   },
-  about: {
-    label: "01 / 소개",
-    heading: "목적 지향 엔지니어링.",
-    subtitle:
-      "안정적인 백엔드 시스템, 확장 가능한 REST API 및 실용적인 AI 모델 통합에 집중합니다.",
-    paragraphs: [
+  "about": {
+    "label": "01 / 소개",
+    "heading": "목적 지향 엔지니어링.",
+    "subtitle": "안정적인 백엔드 시스템, 확장 가능한 REST API 및 실용적인 AI 모델 통합에 집중합니다.",
+    "paragraphs": [
       "저는 우즈베키스탄에서 활동하는 17세 풀스택 개발자 테무르말릭 압둘라예프(Temurmalik Abdullayev)입니다. 복잡한 문제를 단순하고 예측 가능하며 유지보수성이 뛰어난 소프트웨어 아키텍처로 전환하는 것을 목표로 합니다.",
       "지난 3년 동안 Node.js, Express, PostgreSQL, React, Next.js를 기반으로 견고한 웹 플랫폼과 텔레그램 기반 자동화 시스템을 구축해왔습니다. 구글 제미나이(Google Gemini) 등의 멀티모달 모델을 실무에 직접 통합하여 사용자 가치를 창출합니다.",
       "겉치레적인 디자인보다 철저한 타입 안정성, 데이터 정합성, 명확한 에러 핸들링을 우선시하며, 실제 비즈니스 문제를 해결하는 프로덕션 레벨의 결과물을 제공합니다."
     ],
-    specTitle: "엔지니어링 프로필 명세",
-    specIndex: "SPEC-01",
-    specs: {
-      locationLabel: "위치",
-      locationValue: "우즈베키스탄 (UTC+5)",
-      ageLabel: "나이",
-      ageValue: "17세",
-      expLabel: "경력",
-      expValue: "3년 이상",
-      stacksLabel: "핵심 스택",
-      stacksValue: "Node.js · PostgreSQL · React · AI",
-      specLabel: "전문성",
-      specValue: "백엔드 아키텍처 & 지능형 시스템",
-      statusLabel: "현재 상태",
-      statusValue: "신규 프로젝트 수주 가능"
+    "specTitle": "엔지니어링 프로필 명세",
+    "specIndex": "SPEC-01",
+    "specs": {
+      "locationLabel": "위치",
+      "locationValue": "우즈베키스탄 (UTC+5)",
+      "ageLabel": "나이",
+      "ageValue": "17세",
+      "expLabel": "경력",
+      "expValue": "3년 이상",
+      "stacksLabel": "핵심 스택",
+      "stacksValue": "Node.js · PostgreSQL · React · AI",
+      "specLabel": "전문성",
+      "specValue": "백엔드 아키텍처 & 지능형 시스템",
+      "statusLabel": "현재 상태",
+      "statusValue": "신규 프로젝트 수주 가능"
     }
   },
-  expertise: {
-    label: "02 / 전문 영역",
-    heading: "핵심 역량 및 엔지니어링 분야.",
-    subtitle:
-      "안정적인 백엔드 서버부터 반응형 프론트엔드 및 AI 통합까지 전 과정을 포괄합니다.",
-    coreDomain: "핵심 기술 영역",
-    domains: [
+  "expertise": {
+    "label": "02 / 전문 영역",
+    "heading": "핵심 역량 및 엔지니어링 분야.",
+    "subtitle": "안정적인 백엔드 서버부터 반응형 프론트엔드 및 AI 통합까지 전 과정을 포괄합니다.",
+    "coreDomain": "핵심 기술 영역",
+    "domains": [
       {
-        id: "backend",
-        number: "01",
-        title: "백엔드 아키텍처 & API 설계",
-        summary: "확장 가능하고 복원력 있는 서버 사이드 인프라 구축.",
-        description:
-          "Node.js, Express, PostgreSQL을 기반으로 정밀한 RESTful 엔드포인트와 안전한 인증 체계, 견고한 데이터 모델링을 구현합니다.",
-        capabilities: [
+        "id": "backend",
+        "number": "01",
+        "title": "백엔드 아키텍처 & API 설계",
+        "summary": "확장 가능하고 복원력 있는 서버 사이드 인프라 구축.",
+        "description": "Node.js, Express, PostgreSQL을 기반으로 정밀한 RESTful 엔드포인트와 안전한 인증 체계, 견고한 데이터 모델링을 구현합니다.",
+        "capabilities": [
           "RESTful API 아키텍처 설계 및 구현",
           "PostgreSQL 및 Prisma ORM을 통한 데이터 모델링",
           "JWT 기반 무상태 인증 및 세션 보안",
           "WebSockets를 통한 실시간 양방향 통신"
         ],
-        skills: ["Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "REST APIs", "JWT"]
+        "skills": [
+          "Node.js",
+          "Express.js",
+          "PostgreSQL",
+          "Prisma ORM",
+          "REST APIs",
+          "JWT"
+        ]
       },
       {
-        id: "ai",
-        number: "02",
-        title: "AI 통합 & 텔레그램 봇 엔지니어링",
-        summary: "멀티모달 모델과 대화형 인터페이스를 결합한 지능형 시스템.",
-        description:
-          "Google Gemini API와 텔레그램 봇 API를 연동하여 이미지 분석, 지능형 챗봇, 자동화된 워크플로우를 실현합니다.",
-        capabilities: [
+        "id": "ai",
+        "number": "02",
+        "title": "AI 통합 & 텔레그램 봇 엔지니어링",
+        "summary": "멀티모달 모델과 대화형 인터페이스를 결합한 지능형 시스템.",
+        "description": "Google Gemini API와 텔레그램 봇 API를 연동하여 이미지 분석, 지능형 챗봇, 자동화된 워크플로우를 실현합니다.",
+        "capabilities": [
           "Google Gemini 멀티모달 비전 및 추론 모델 연동",
           "대규모 트래픽을 처리하는 텔레그램 봇 아키텍처",
           "이미지 기반 영양 성분 및 데이터 자동 추론",
           "프롬프트 엔지니어링 및 컨텍스트 기반 AI 튜터 시스템"
         ],
-        skills: ["Gemini API", "Telegram Bot API", "Multimodal Vision", "Prompt Design", "Automation"]
+        "skills": [
+          "Gemini API",
+          "Telegram Bot API",
+          "Multimodal Vision",
+          "Prompt Design",
+          "Automation"
+        ]
       },
       {
-        id: "frontend",
-        number: "03",
-        title: "현대적 웹 프론트엔드 & 풀스택",
-        summary: "고성능, 접근성, 반응형 인터랙션을 갖춘 클라이언트 인터페이스.",
-        description:
-          "React, Next.js, TypeScript, Tailwind CSS를 활용하여 빠른 페이지 로딩과 직관적인 사용자 경험을 보장합니다.",
-        capabilities: [
+        "id": "frontend",
+        "number": "03",
+        "title": "현대적 웹 프론트엔드 & 풀스택",
+        "summary": "고성능, 접근성, 반응형 인터랙션을 갖춘 클라이언트 인터페이스.",
+        "description": "React, Next.js, TypeScript, Tailwind CSS를 활용하여 빠른 페이지 로딩과 직관적인 사용자 경험을 보장합니다.",
+        "capabilities": [
           "Next.js App Router 기반의 서버/클라이언트 컴포넌트 구조",
           "Tailwind CSS 기반의 시스템 디자인 및 다크/라이트 테마",
           "모바일 퍼스트 반응형 레이아웃 및 320px 최적화",
           "구조화된 SEO 마크업 및 다국어 지원"
         ],
-        skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Responsive UI", "SEO"]
+        "skills": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Responsive UI",
+          "SEO"
+        ]
       }
     ]
   },
-  techStack: {
-    label: "03 / 기술 스택",
-    heading: "프로덕션에서 검증된 도구와 기술.",
-    subtitle:
-      "실제 프로젝트 개발과 배포에 직접 활용하는 6개 카테고리의 기술 스택입니다.",
-    scopeTitle: "기술 스택 사양",
-    scopeIndex: "STACK-03",
-    primaryRole: "풀스택 엔지니어",
-    specialization: "백엔드 및 AI 집중",
-    uptimeLabel: "터미널 가동 시간",
-    uptimeValue: "3년 이상의 실무 개발"
+  "techStack": {
+    "label": "03 / 기술 스택",
+    "heading": "프로덕션에서 검증된 도구와 기술.",
+    "subtitle": "실제 프로젝트 개발과 배포에 직접 활용하는 6개 카테고리의 기술 스택입니다.",
+    "scopeTitle": "기술 스택 사양",
+    "scopeIndex": "STACK-03",
+    "primaryRole": "풀스택 엔지니어",
+    "specialization": "백엔드 및 AI 집중",
+    "uptimeLabel": "터미널 가동 시간",
+    "uptimeValue": "3년 이상의 실무 개발",
+    "primaryRoleLabel": "주요 역할",
+    "specializationLabel": "전문 분야",
+    "openOfficialSite": "{name} 공식 웹사이트 열기"
   },
-  projects: {
-    label: "04 / 주요 프로젝트",
-    heading: "검증된 프로덕션 프로젝트.",
-    subtitle:
-      "실제 사용자와 클라이언트를 위해 개발하고 성공적으로 배포한 대표 프로젝트입니다.",
-    viewCaseStudy: "케이스 스터디 보기",
-    liveProject: "실제 사이트 방문",
-    sourceCode: "소스 코드",
-    backToProjects: "모든 프로젝트로 돌아가기",
-    backHome: "홈으로 돌아가기",
-    statusShipped: "배포 완료",
-    statusActive: "운영 중",
-    allProjectsHeading: "선별된 프로젝트 아카이브",
-    allProjectsSubtitle: "아키텍처, 기술적 의사결정 및 검증된 성과.",
-    prevProject: "이전 프로젝트",
-    nextProject: "다음 프로젝트",
-    specificationsTitle: "프로젝트 사양",
-    roleLabel: "역할",
-    timelineLabel: "기간",
-    categoryLabel: "분야",
-    liveEndpointLabel: "실제 엔드포인트",
-    techUsedLabel: "사용 기술",
-    visitLiveBtn: "라이브 데모 실행",
-    overviewTitle: "개요 및 아키텍처",
-    problemTitle: "해결하고자 한 과제",
-    solutionTitle: "엔지니어링 솔루션",
-    featuresTitle: "검증된 주요 기능",
-    decisionsTitle: "주요 기술적 의사결정"
+  "projects": {
+    "label": "04 / 주요 프로젝트",
+    "heading": "검증된 프로덕션 프로젝트.",
+    "subtitle": "실제 사용자와 클라이언트를 위해 개발하고 성공적으로 배포한 대표 프로젝트입니다.",
+    "viewCaseStudy": "케이스 스터디 보기",
+    "liveProject": "실제 사이트 방문",
+    "sourceCode": "소스 코드",
+    "backToProjects": "모든 프로젝트로 돌아가기",
+    "backHome": "홈으로 돌아가기",
+    "statusShipped": "배포 완료",
+    "statusActive": "운영 중",
+    "allProjectsHeading": "선별된 프로젝트 아카이브",
+    "allProjectsSubtitle": "아키텍처, 기술적 의사결정 및 검증된 성과.",
+    "prevProject": "이전 프로젝트",
+    "nextProject": "다음 프로젝트",
+    "specificationsTitle": "프로젝트 사양",
+    "roleLabel": "역할",
+    "timelineLabel": "기간",
+    "categoryLabel": "분야",
+    "liveEndpointLabel": "실제 엔드포인트",
+    "techUsedLabel": "사용 기술",
+    "visitLiveBtn": "라이브 데모 실행",
+    "overviewTitle": "개요 및 아키텍처",
+    "problemTitle": "해결하고자 한 과제",
+    "solutionTitle": "엔지니어링 솔루션",
+    "featuresTitle": "검증된 주요 기능",
+    "decisionsTitle": "주요 기술적 의사결정"
   },
-  approach: {
-    label: "05 / 작업 프로세스",
-    heading: "예측 가능하고 규율 있는 개발 방식.",
-    subtitle:
-      "요구사항 분석부터 배포 및 유지보수까지 일관된 엔지니어링 표준을 따릅니다.",
-    phasePrefix: "단계",
-    stageLabel: "체계적 프로세스",
-    verifiedMethod: "검증된 엔지니어링 방법론",
-    steps: [
+  "approach": {
+    "label": "05 / 작업 프로세스",
+    "heading": "예측 가능하고 규율 있는 개발 방식.",
+    "subtitle": "요구사항 분석부터 배포 및 유지보수까지 일관된 엔지니어링 표준을 따릅니다.",
+    "phasePrefix": "단계",
+    "stageLabel": "체계적 프로세스",
+    "verifiedMethod": "검증된 엔지니어링 방법론",
+    "steps": [
       {
-        step: "01",
-        title: "아키텍처 설계 & 데이터 모델링",
-        description:
-          "코드를 작성하기 전 데이터베이스 관계, API 규격, 상태 흐름을 명확히 정의하여 재작업 위험을 최소화합니다."
+        "step": "01",
+        "title": "아키텍처 설계 & 데이터 모델링",
+        "description": "코드를 작성하기 전 데이터베이스 관계, API 규격, 상태 흐름을 명확히 정의하여 재작업 위험을 최소화합니다."
       },
       {
-        step: "02",
-        title: "타입 안정성 & 모듈식 구현",
-        description:
-          "TypeScript와 엄격한 입력 검증을 적용하여 런타임 오류를 방지하고 유지보수가 쉬운 모듈 구조를 만듭니다."
+        "step": "02",
+        "title": "타입 안정성 & 모듈식 구현",
+        "description": "TypeScript와 엄격한 입력 검증을 적용하여 런타임 오류를 방지하고 유지보수가 쉬운 모듈 구조를 만듭니다."
       },
       {
-        step: "03",
-        title: "통합, 최적화 & 프로덕션 배포",
-        description:
-          "AI 모델 연동, 엣지 캐싱, 성능 최적화 후 Vercel 및 Railway에 안정적으로 배포합니다."
+        "step": "03",
+        "title": "통합, 최적화 & 프로덕션 배포",
+        "description": "AI 모델 연동, 엣지 캐싱, 성능 최적화 후 Vercel 및 Railway에 안정적으로 배포합니다."
       }
     ]
   },
-  contact: {
-    label: "06 / 연락처",
-    heading: "새로운 가치를 함께 만들어보세요.",
-    subtitle:
-      "백엔드 개발, AI 솔루션 도입, 웹 플랫폼 구축 등 프로젝트 협업을 환영합니다.",
-    utcNote: "우즈베키스탄 시간대 (UTC+5) 기준 신속한 응답 제공",
-    remoteBadge: "원격 프로젝트 및 글로벌 협업 가능"
+  "contact": {
+    "label": "06 / 연락처",
+    "heading": "새로운 가치를 함께 만들어보세요.",
+    "subtitle": "백엔드 개발, AI 솔루션 도입, 웹 플랫폼 구축 등 프로젝트 협업을 환영합니다.",
+    "utcNote": "우즈베키스탄 시간대 (UTC+5) 기준 신속한 응답 제공",
+    "remoteBadge": "원격 프로젝트 및 글로벌 협업 가능"
   },
-  footer: {
-    rights: "All rights reserved.",
-    designedBy: "Designed & Built with Next.js, React, and Tailwind CSS."
+  "footer": {
+    "rights": "All rights reserved.",
+    "designedBy": "Designed & Built with Next.js, React, and Tailwind CSS."
   },
-  notFound: {
-    code: "404",
-    title: "페이지를 찾을 수 없습니다",
-    description: "요청하신 주소가 올바르지 않거나 다른 경로로 이동되었을 수 있습니다.",
-    returnHome: "홈으로 돌아가기",
-    exploreProjects: "프로젝트 살펴보기"
+  "notFound": {
+    "code": "404",
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "요청하신 주소가 올바르지 않거나 다른 경로로 이동되었을 수 있습니다.",
+    "returnHome": "홈으로 돌아가기",
+    "exploreProjects": "프로젝트 살펴보기"
+  },
+  "intro": {
+    "skip": "건너뛰기 [ESC]",
+    "skipAria": "인트로 애니메이션 건너뛰기"
   }
 };

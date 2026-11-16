@@ -50,7 +50,7 @@ export function IntroPreloader() {
   const [index, setIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  const { locale } = useTranslation();
+  const { t } = useTranslation();
   const sequenceStartedRef = useRef(false);
 
   const handleSkip = () => {
@@ -156,9 +156,9 @@ export function IntroPreloader() {
           type="button"
           onClick={handleSkip}
           className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] px-2.5 py-1 rounded border border-[var(--border-subtle)] hover:border-[var(--border-hover)] bg-[var(--bg-surface)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
-          aria-label={locale === "uz" ? "Kirish animatsiyasini o‘tkazib yuborish" : "Skip introductory animation"}
+          aria-label={t.intro?.skipAria || "Skip introductory animation"}
         >
-          {locale === "uz" ? "O‘tkazib yuborish [ESC]" : "Skip [ESC]"}
+          {t.intro?.skip || "Skip [ESC]"}
         </button>
       </div>
 

@@ -4,6 +4,7 @@ import React from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useTranslation } from "@/i18n/context";
+import { SkillBadge } from "@/components/ui/SkillBadge";
 
 export function Expertise() {
   const { t } = useTranslation();
@@ -53,15 +54,14 @@ export function Expertise() {
                 ))}
               </div>
 
-              {/* Technologies used in this domain */}
+              {/* Technologies used in this domain — All clickable to official documentation */}
               <div className="flex flex-wrap gap-1.5 pt-5 mt-4 border-t border-[var(--border-subtle)]/40">
                 {area.skills.map((skill) => (
-                  <span
+                  <SkillBadge
                     key={skill}
-                    className="font-mono text-[11px] px-2 py-0.5 rounded bg-[var(--bg-base)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
-                  >
-                    {skill}
-                  </span>
+                    skillName={skill}
+                    className="text-[11px] py-1 px-2"
+                  />
                 ))}
               </div>
             </div>
