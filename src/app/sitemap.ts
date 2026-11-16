@@ -1,34 +1,47 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { projects } from "@/data/projects";
+import { getAllProjectSlugs } from "@/data/localizedProjects";
+import { locales } from "@/i18n/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  const lastModified = new Date("2026-11-15T00:00:00.000Z");
+  const lastModified = new Date("2026-11-16T00:00:00.000Z");
+  const slugs = getAllProjectSlugs();
 
-  // Core static pages
-  const staticPages: MetadataRoute.Sitemap = [
+  const entries: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified,
       changeFrequency: "weekly",
       priority: 1.0
-    },
-    {
-      url: `${baseUrl}/projects`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9
     }
   ];
 
-  // Dynamic project routes
-  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified,
-    changeFrequency: "monthly",
-    priority: 0.8
-  }));
+  for (const locale of locales) {
+    entries.push(
+      {
+        url: `${baseUrl}/${locale}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 1.0
+      },
+      {
+        url: `${baseUrl}/${locale}/projects`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 0.9
+      }
+    );
 
-  return [...staticPages, ...projectPages];
+    for (const slug of slugs) {
+      entries.push({
+        url: `${baseUrl}/${locale}/projects/${slug}`,
+        lastModified,
+        changeFrequency: "monthly",
+        priority: 0.8
+      });
+    }
+  }
+
+  return entries;
 }

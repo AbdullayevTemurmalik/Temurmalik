@@ -1,87 +1,113 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/config/site";
-import { GitHubIcon, InstagramIcon, MailIcon, ArrowUpRight } from "@/components/ui/Icons";
+import {
+  GitHubIcon,
+  TelegramIcon,
+  InstagramIcon,
+  MailIcon,
+  ArrowUpRight
+} from "@/components/ui/Icons";
+import { useTranslation } from "@/i18n/context";
 
 export function Contact() {
-  const isDev = process.env.NODE_ENV === "development";
+  const { t } = useTranslation();
+
+  const contactMethods = [
+    {
+      key: "telegram",
+      name: "Telegram",
+      handle: siteConfig.social.telegram.label,
+      url: siteConfig.social.telegram.url,
+      icon: TelegramIcon,
+      accentColor: "text-[var(--accent-secondary)]",
+      ariaLabel: "Contact Temurmalik on Telegram @TM_Backdev",
+      isExternal: true
+    },
+    {
+      key: "email",
+      name: "Email",
+      handle: siteConfig.social.email.label,
+      url: siteConfig.social.email.url,
+      icon: MailIcon,
+      accentColor: "text-[var(--accent-primary)]",
+      ariaLabel: "Send direct email to tmaq77@gmail.com",
+      isExternal: false
+    },
+    {
+      key: "github",
+      name: "GitHub",
+      handle: siteConfig.social.github.handle,
+      url: siteConfig.social.github.url,
+      icon: GitHubIcon,
+      accentColor: "text-[var(--text-primary)]",
+      ariaLabel: "View Temurmalik's GitHub repositories",
+      isExternal: true
+    },
+    {
+      key: "instagram",
+      name: "Instagram",
+      handle: siteConfig.social.instagram.label,
+      url: siteConfig.social.instagram.url,
+      icon: InstagramIcon,
+      accentColor: "text-[var(--accent-highlight)]",
+      ariaLabel: "View Temurmalik's Instagram profile @temur_devv",
+      isExternal: true
+    }
+  ];
 
   return (
-    <section id="contact" className="py-20 sm:py-28 border-t border-[#26313D] scroll-mt-20">
+    <section id="contact" className="py-20 sm:py-28 border-t border-[var(--border-subtle)] scroll-mt-20">
       <Container>
         <div className="max-w-3xl mx-auto text-center">
           <SectionHeading
-            label="05 / Contact"
-            title="Let's build something useful."
-            subtitle="I'm open to discussing backend engineering contracts, full-stack product development, and practical AI integrations."
+            label={t.contact.label}
+            title={t.contact.heading}
+            subtitle={t.contact.subtitle}
             className="text-center [&>div]:justify-center [&>p]:mx-auto"
           />
 
-          {/* Contact Direct Channels */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 font-mono text-xs sm:text-sm">
-            {/* GitHub - Verified official */}
-            <a
-              href={siteConfig.social.github.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-md bg-[#16202C] text-[#E6EDF3] border border-[#26313D] hover:border-[#79B8FF]/60 hover:bg-[#1C2836] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
-              aria-label="Visit Temurmalik on GitHub"
-            >
-              <GitHubIcon className="w-4 h-4 text-[#79C0A5]" />
-              <span>GitHub / AbdullayevTemurmalik</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#8B949E]" />
-            </a>
+          {/* Contact Direct Channels — 4 Verified Channels */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-4 font-mono text-xs sm:text-sm">
+            {contactMethods.map((method) => {
+              const Icon = method.icon;
+              return (
+                <a
+                  key={method.key}
+                  href={method.url}
+                  target={method.isExternal ? "_blank" : undefined}
+                  rel={method.isExternal ? "noopener noreferrer" : undefined}
+                  aria-label={method.ariaLabel}
+                  className="group flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="p-2 rounded-md bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </span>
+                    <div className="text-left">
+                      <span className="block text-[11px] text-[var(--text-secondary)] uppercase tracking-wider font-semibold">
+                        {method.name}
+                      </span>
+                      <span className="text-[var(--text-primary)] font-medium transition-colors">
+                        {method.handle}
+                      </span>
+                    </div>
+                  </div>
 
-            {/* Email - Configured / Graceful Fallback */}
-            {siteConfig.social.email.isConfigured ? (
-              <a
-                href={siteConfig.social.email.url}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-md bg-[#16202C] text-[#E6EDF3] border border-[#26313D] hover:border-[#79C0A5]/60 hover:bg-[#1C2836] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
-                aria-label="Send email to Temurmalik"
-              >
-                <MailIcon className="w-4 h-4 text-[#79C0A5]" />
-                <span>{siteConfig.social.email.label}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#8B949E]" />
-              </a>
-            ) : isDev ? (
-              <div
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-md bg-[#121922]/50 text-[#6E7681] border border-dashed border-[#26313D] cursor-not-allowed text-xs"
-                title="Configurable via NEXT_PUBLIC_CONTACT_EMAIL in .env"
-              >
-                <MailIcon className="w-4 h-4 opacity-50" />
-                <span>Email (configure via ENV)</span>
-              </div>
-            ) : null}
-
-            {/* Instagram - Configured / Graceful Fallback */}
-            {siteConfig.social.instagram.isConfigured ? (
-              <a
-                href={siteConfig.social.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-md bg-[#16202C] text-[#E6EDF3] border border-[#26313D] hover:border-[#79B8FF]/60 hover:bg-[#1C2836] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
-                aria-label="Visit Temurmalik on Instagram"
-              >
-                <InstagramIcon className="w-4 h-4 text-[#79C0A5]" />
-                <span>{siteConfig.social.instagram.label}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#8B949E]" />
-              </a>
-            ) : isDev ? (
-              <div
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-md bg-[#121922]/50 text-[#6E7681] border border-dashed border-[#26313D] cursor-not-allowed text-xs"
-                title="Configurable via NEXT_PUBLIC_INSTAGRAM_URL in .env"
-              >
-                <InstagramIcon className="w-4 h-4 opacity-50" />
-                <span>Instagram (configure via ENV)</span>
-              </div>
-            ) : null}
+                  <ArrowUpRight className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--accent-primary)] transition-colors shrink-0" />
+                </a>
+              );
+            })}
           </div>
 
           {/* Direct Notice */}
-          <p className="mt-8 text-xs font-mono text-[#6E7681]">
-            Operating from Uzbekistan (UTC+5) · Responsive for remote collaboration worldwide
-          </p>
+          <div className="mt-10 pt-6 border-t border-[var(--border-subtle)]/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-[var(--text-muted)]">
+            <span>{t.contact.utcNote}</span>
+            <span className="text-[var(--accent-primary)]">{t.contact.remoteBadge}</span>
+          </div>
         </div>
       </Container>
     </section>

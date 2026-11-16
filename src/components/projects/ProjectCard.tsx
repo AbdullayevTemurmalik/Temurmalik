@@ -1,19 +1,27 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Project } from "@/data/projects";
+import { LocalizedProject } from "@/data/localizedProjects";
+import { Locale } from "@/i18n/config";
+import { useTranslation } from "@/i18n/context";
 import { ArrowUpRight, ArrowRight } from "@/components/ui/Icons";
 import { TechBadge } from "@/components/ui/TechBadge";
 
 interface ProjectCardProps {
-  project: Project;
+  project: LocalizedProject;
+  locale?: Locale;
   reverse?: boolean;
 }
 
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
+  const { t, locale: currentLocale } = useTranslation();
+  const content = project.translations[currentLocale] || project.translations.en;
+
   return (
     <article
-      className="group relative rounded-xl border border-[#26313D] bg-[#121922] p-6 sm:p-8 transition-all duration-300 hover:border-[#394858] hover:bg-[#16202C]/90 overflow-hidden"
+      className="group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs"
       aria-labelledby={`project-title-${project.id}`}
     >
       <div
@@ -28,9 +36,9 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           }`}
         >
           <Link
-            href={`/projects/${project.slug}`}
-            className="block relative rounded-lg border border-[#26313D] bg-[#0E151E] overflow-hidden aspect-[16/10] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF] group/img"
-            aria-label={`View case study for ${project.title}`}
+            href={`/${currentLocale}/projects/${project.slug}`}
+            className="block relative rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-base)] overflow-hidden aspect-[16/10] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] group/img"
+            aria-label={`${t.projects.viewCaseStudy} — ${content.title}`}
           >
             <Image
               src={project.imageSrc}
@@ -54,34 +62,34 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Header Metadata */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-[#79C0A5] font-semibold tracking-wider">
-                {"//"} {project.number}
+              <span className="text-[var(--accent-primary)] font-semibold tracking-wider">
+                {"//"} {project.number} · {project.year}
               </span>
-              <span className="text-[#8B949E] px-2 py-0.5 rounded bg-[#16202C] border border-[#26313D]">
-                {project.category}
+              <span className="text-[var(--text-secondary)] px-2 py-0.5 rounded bg-[var(--bg-base)] border border-[var(--border-subtle)]">
+                {content.category}
               </span>
             </div>
 
             <h3
               id={`project-title-${project.id}`}
-              className="text-2xl sm:text-3xl font-bold tracking-tight text-[#E6EDF3] group-hover:text-white transition-colors"
+              className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors"
             >
               <Link
-                href={`/projects/${project.slug}`}
-                className="hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#79B8FF] rounded"
+                href={`/${currentLocale}/projects/${project.slug}`}
+                className="hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-secondary)] rounded"
               >
-                {project.title}
+                {content.title}
               </Link>
             </h3>
 
-            <p className="text-xs sm:text-sm font-mono text-[#79B8FF]">
-              {project.tagline}
+            <p className="text-xs sm:text-sm font-mono text-[var(--accent-secondary)]">
+              {content.tagline}
             </p>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-[#8B949E] leading-relaxed">
-            {project.description}
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {content.description}
           </p>
 
           {/* Tech Badges */}
@@ -90,30 +98,30 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
               <TechBadge key={tech} name={tech} size="sm" />
             ))}
             {project.technologies.length > 5 && (
-              <span className="font-mono text-xs text-[#6E7681] px-1.5 py-0.5">
+              <span className="font-mono text-xs text-[var(--text-muted)] px-1.5 py-0.5">
                 +{project.technologies.length - 5}
               </span>
             )}
           </div>
 
           {/* Separate Actions: Internal Case Study vs External Live Link */}
-          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#26313D]/70 font-mono text-xs">
+          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs">
             <Link
-              href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#182330] text-[#E6EDF3] border border-[#26313D] hover:bg-[#202E3F] hover:border-[#394858] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
+              href={`/${currentLocale}/projects/${project.slug}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[var(--bg-base)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-2xs"
             >
-              <span>View Case Study</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#79C0A5]" />
+              <span>{t.projects.viewCaseStudy}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
             </Link>
 
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#16202C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
-              aria-label={`Open live site for ${project.title} in new tab`}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-base)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+              aria-label={`${t.projects.liveProject}: ${content.title}`}
             >
-              <span>Live Project</span>
+              <span>{t.projects.liveProject}</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-current opacity-80" />
             </a>
           </div>

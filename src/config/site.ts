@@ -2,8 +2,9 @@ export interface SocialLink {
   name: string;
   url: string;
   label: string;
+  handle: string;
   isConfigured: boolean;
-  icon: "github" | "instagram" | "email";
+  icon: "github" | "telegram" | "instagram" | "email";
 }
 
 export interface SiteConfig {
@@ -30,6 +31,7 @@ export interface SiteConfig {
   };
   social: {
     github: SocialLink;
+    telegram: SocialLink;
     instagram: SocialLink;
     email: SocialLink;
   };
@@ -42,7 +44,7 @@ export interface SiteConfig {
 
 /**
  * Single source of truth for Temurmalik's profile, contact details, and site configuration.
- * Editable by the owner in one central place.
+ * All contact info is verified by the owner.
  */
 export const siteConfig: SiteConfig = {
   name: "Temurmalik",
@@ -76,24 +78,33 @@ export const siteConfig: SiteConfig = {
       name: "GitHub",
       url: "https://github.com/AbdullayevTemurmalik",
       label: "github.com/AbdullayevTemurmalik",
+      handle: "AbdullayevTemurmalik",
       isConfigured: true,
       icon: "github"
     },
-    // Configurable placeholders for email and Instagram.
-    // If not set, production gracefully hides or marks as unconfigured without broken links.
-    email: {
-      name: "Email",
-      url: process.env.NEXT_PUBLIC_CONTACT_EMAIL ? `mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}` : "",
-      label: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "email@temurmalik.dev (configure via ENV)",
-      isConfigured: Boolean(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
-      icon: "email"
+    telegram: {
+      name: "Telegram",
+      url: "https://t.me/TM_Backdev",
+      label: "@TM_Backdev",
+      handle: "TM_Backdev",
+      isConfigured: true,
+      icon: "telegram"
     },
     instagram: {
       name: "Instagram",
-      url: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
-      label: process.env.NEXT_PUBLIC_INSTAGRAM_URL ? "@instagram" : "@instagram (configure via ENV)",
-      isConfigured: Boolean(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
+      url: "https://instagram.com/temur_devv",
+      label: "@temur_devv",
+      handle: "temur_devv",
+      isConfigured: true,
       icon: "instagram"
+    },
+    email: {
+      name: "Email",
+      url: "mailto:tmaq77@gmail.com",
+      label: "tmaq77@gmail.com",
+      handle: "tmaq77@gmail.com",
+      isConfigured: true,
+      icon: "email"
     }
   },
   approach: [

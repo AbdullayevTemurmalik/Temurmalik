@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useTranslation } from "@/i18n/context";
 
 interface WordmarkProps {
   className?: string;
@@ -10,19 +13,21 @@ interface WordmarkProps {
  * Strictly follows the branding rule: no "TM", no "TM.DEV", no monograms.
  */
 export function Wordmark({ className = "" }: WordmarkProps) {
+  const { locale } = useTranslation();
+
   return (
     <Link
-      href="/"
-      className={`group inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#79B8FF] rounded ${className}`}
+      href={`/${locale}`}
+      className={`group inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] rounded-md px-1 py-0.5 ${className}`}
       aria-label={`${siteConfig.name} - Home`}
     >
-      <span className="font-mono text-xs font-semibold text-[#79C0A5] transition-colors group-hover:text-[#79B8FF]">
+      <span className="font-mono text-sm font-bold text-[var(--accent-primary)] transition-colors">
         λ
       </span>
-      <span className="font-mono text-base font-semibold tracking-tight text-[#E6EDF3] transition-colors group-hover:text-white">
+      <span className="font-mono text-base sm:text-lg font-bold tracking-tight text-[var(--text-primary)] transition-colors">
         {siteConfig.name}
       </span>
-      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#79C0A5]/80 group-hover:bg-[#79B8FF] transition-colors" />
+      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] transition-colors" />
     </Link>
   );
 }

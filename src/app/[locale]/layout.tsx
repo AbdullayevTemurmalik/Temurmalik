@@ -1,0 +1,46 @@
+import React from "react";
+import { notFound } from "next/navigation";
+import { Locale, locales, isValidLocale } from "@/i18n/config";
+import { I18nProvider } from "@/i18n/context";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function LocaleLayout({
+  children,
+  params
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
+      <I18nProvider initialLocale={locale as Locale}>
+        <Header />
+        <main id="main-content" className="flex-1 flex flex-col">
+          {children}
+        </main>
+        <Footer />
+      </I18nProvider>
+    </ThemeProvider>
+  );
+}

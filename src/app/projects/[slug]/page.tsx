@@ -1,72 +1,19 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getProjectBySlug, projects } from "@/data/projects";
-import { siteConfig } from "@/config/site";
-import { ProjectDetailView } from "@/components/projects/ProjectDetailView";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
+import { getAllProjectSlugs } from "@/data/localizedProjects";
 
-interface ProjectPageProps {
+interface ProjectRedirectProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug
-  }));
+  const slugs = getAllProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({
-  params
-}: ProjectPageProps): Promise<Metadata> {
+export default async function ProjectRedirect({ params }: ProjectRedirectProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
-
-  if (!project) {
-    return {
-      title: "Project Not Found"
-    };
-  }
-
-  const title = `${project.title} — ${siteConfig.name}`;
-  const description = `${project.tagline}. ${project.description}`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `/projects/${project.slug}`
-    },
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url: `${siteConfig.url}/projects/${project.slug}`,
-      images: [
-        {
-          url: project.imageSrc,
-          width: 1200,
-          height: 750,
-          alt: project.imageAlt
-        }
-      ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [project.imageSrc]
-    }
-  };
-}
-
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
-
-  if (!project) {
-    notFound();
-  }
-
-  return <ProjectDetailView project={project} />;
+  redirect(`/${defaultLocale}/projects/${slug}`);
 }

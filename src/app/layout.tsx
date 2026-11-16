@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +16,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0B0F14",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0F14" }
+  ],
   width: "device-width",
   initialScale: 1
 };
@@ -105,7 +106,12 @@ export default function RootLayout({
     jobTitle: siteConfig.title,
     description: siteConfig.shortBio,
     url: siteConfig.url,
-    sameAs: [siteConfig.social.github.url],
+    email: "tmaq77@gmail.com",
+    sameAs: [
+      siteConfig.social.github.url,
+      siteConfig.social.telegram.url,
+      siteConfig.social.instagram.url
+    ],
     address: {
       "@type": "PostalAddress",
       addressCountry: "Uzbekistan"
@@ -132,8 +138,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark`}
-      style={{ colorScheme: "dark" }}
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <script
@@ -145,20 +151,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
       </head>
-      <body className="font-sans antialiased bg-[#0B0F14] text-[#E6EDF3] min-h-screen flex flex-col selection:bg-[#79C0A5]/20 selection:text-[#E6EDF3]">
+      <body className="font-sans antialiased bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen flex flex-col selection:bg-[var(--accent-primary)]/20 selection:text-[var(--text-primary)]">
         {/* Skip to Content for Accessibility */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#121922] border border-[#79B8FF] text-[#79B8FF] font-mono text-sm rounded shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[var(--bg-surface)] border border-[var(--accent-secondary)] text-[var(--accent-secondary)] font-mono text-sm rounded shadow-lg"
         >
           Skip to main content
         </a>
 
-        <Header />
-        <main id="main-content" className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

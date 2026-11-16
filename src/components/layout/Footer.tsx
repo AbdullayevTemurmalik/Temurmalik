@@ -1,105 +1,100 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { siteConfig } from "@/config/site";
-import { GitHubIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
+import { GitHubIcon, TelegramIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
+import { useTranslation } from "@/i18n/context";
 
 export function Footer() {
   const currentYear = 2026;
+  const { t, locale } = useTranslation();
 
   return (
-    <footer className="w-full border-t border-[#26313D] bg-[#0B0F14] pt-12 pb-16 text-[#8B949E]">
+    <footer className="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-base)] pt-12 pb-16 text-[var(--text-secondary)]">
       <Container>
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-[#26313D]/60">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-[var(--border-subtle)]">
           <div className="space-y-2">
             <Wordmark />
-            <p className="text-xs sm:text-sm text-[#8B949E] font-mono max-w-sm">
-              {siteConfig.title} · {siteConfig.specialization}
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)] font-mono max-w-sm">
+              {t.hero.heading} · {t.hero.subheading}
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-xs sm:text-sm">
-            <Link href="/#about" className="hover:text-[#E6EDF3] transition-colors">
-              About
+            <Link href={`/${locale}#about`} className="hover:text-[var(--text-primary)] transition-colors">
+              {t.nav.about}
             </Link>
-            <Link href="/#expertise" className="hover:text-[#E6EDF3] transition-colors">
-              Expertise
+            <Link href={`/${locale}#expertise`} className="hover:text-[var(--text-primary)] transition-colors">
+              {t.nav.expertise}
             </Link>
-            <Link href="/#projects" className="hover:text-[#E6EDF3] transition-colors">
-              Projects
+            <Link href={`/${locale}#tech-stack`} className="hover:text-[var(--text-primary)] transition-colors">
+              {t.nav.techStack}
             </Link>
-            <Link href="/#approach" className="hover:text-[#E6EDF3] transition-colors">
-              Approach
+            <Link href={`/${locale}#projects`} className="hover:text-[var(--text-primary)] transition-colors">
+              {t.nav.projects}
             </Link>
-            <Link href="/#contact" className="hover:text-[#E6EDF3] transition-colors">
-              Contact
+            <Link href={`/${locale}#contact`} className="hover:text-[var(--text-primary)] transition-colors">
+              {t.nav.contact}
             </Link>
           </div>
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono">
           <div className="space-y-1">
-            <p className="text-[#E6EDF3]">
-              © {currentYear} {siteConfig.fullName}. All rights reserved.
+            <p className="text-[var(--text-primary)]">
+              © {currentYear} {siteConfig.fullName}. {t.footer.rights}
             </p>
-            <p className="text-[#6E7681]">
-              Designed & engineered by {siteConfig.name}.
+            <p className="text-[var(--text-muted)]">
+              {t.footer.designedBy}
             </p>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links — All 4 verified channels */}
           <div className="flex items-center gap-3">
-            {/* GitHub - verified official */}
+            {/* Telegram - Primary */}
+            <a
+              href={siteConfig.social.telegram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Telegram @TM_Backdev"
+              className="p-2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--accent-secondary)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+            >
+              <TelegramIcon className="w-4 h-4" />
+            </a>
+
+            {/* Email */}
+            <a
+              href={siteConfig.social.email.url}
+              aria-label="Email tmaq77@gmail.com"
+              className="p-2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+            >
+              <MailIcon className="w-4 h-4" />
+            </a>
+
+            {/* GitHub */}
             <a
               href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile of Temurmalik Abdullayev"
-              className="p-2 rounded-md border border-[#26313D] bg-[#121922] text-[#8B949E] hover:text-[#E6EDF3] hover:border-[#394858] transition-colors"
+              className="p-2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
             >
               <GitHubIcon className="w-4 h-4" />
             </a>
 
-            {/* Email - if configured */}
-            {siteConfig.social.email.isConfigured ? (
-              <a
-                href={siteConfig.social.email.url}
-                aria-label="Send email to Temurmalik"
-                className="p-2 rounded-md border border-[#26313D] bg-[#121922] text-[#8B949E] hover:text-[#E6EDF3] hover:border-[#394858] transition-colors"
-              >
-                <MailIcon className="w-4 h-4" />
-              </a>
-            ) : process.env.NODE_ENV === "development" ? (
-              <span
-                title="Email unconfigured in ENV (NEXT_PUBLIC_CONTACT_EMAIL)"
-                className="p-2 rounded-md border border-[#26313D]/40 bg-[#121922]/50 text-[#6E7681] cursor-not-allowed"
-                aria-hidden="true"
-              >
-                <MailIcon className="w-4 h-4 opacity-40" />
-              </span>
-            ) : null}
-
-            {/* Instagram - if configured */}
-            {siteConfig.social.instagram.isConfigured ? (
-              <a
-                href={siteConfig.social.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram profile of Temurmalik"
-                className="p-2 rounded-md border border-[#26313D] bg-[#121922] text-[#8B949E] hover:text-[#E6EDF3] hover:border-[#394858] transition-colors"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
-            ) : process.env.NODE_ENV === "development" ? (
-              <span
-                title="Instagram unconfigured in ENV (NEXT_PUBLIC_INSTAGRAM_URL)"
-                className="p-2 rounded-md border border-[#26313D]/40 bg-[#121922]/50 text-[#6E7681] cursor-not-allowed"
-                aria-hidden="true"
-              >
-                <InstagramIcon className="w-4 h-4 opacity-40" />
-              </span>
-            ) : null}
+            {/* Instagram */}
+            <a
+              href={siteConfig.social.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram @temur_devv"
+              className="p-2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--accent-highlight)] hover:border-[var(--border-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+            >
+              <InstagramIcon className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </Container>

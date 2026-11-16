@@ -5,49 +5,56 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Container } from "@/components/ui/Container";
-
-const navItems = [
-  { label: "About", href: "/#about", sectionId: "about" },
-  { label: "Expertise", href: "/#expertise", sectionId: "expertise" },
-  { label: "Projects", href: "/#projects", sectionId: "projects" },
-  { label: "Approach", href: "/#approach", sectionId: "approach" },
-  { label: "Contact", href: "/#contact", sectionId: "contact" }
-];
+import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useTranslation } from "@/i18n/context";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
   const pathname = usePathname();
+  const { t, locale } = useTranslation();
+
+  const navItems = [
+    { label: t.nav.about, href: `/${locale}#about`, sectionId: "about" },
+    { label: t.nav.expertise, href: `/${locale}#expertise`, sectionId: "expertise" },
+    { label: t.nav.techStack, href: `/${locale}#tech-stack`, sectionId: "tech-stack" },
+    { label: t.nav.projects, href: `/${locale}#projects`, sectionId: "projects" },
+    { label: t.nav.contact, href: `/${locale}#contact`, sectionId: "contact" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Simple active section detection on homepage
-      if (pathname === "/") {
-        const sections = navItems.map((item) => item.sectionId);
+      // Simple active section detection on home pages (e.g. /en or /uz)
+      const isHome = pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
+      if (isHome) {
+        const sections = ["about", "expertise", "tech-stack", "projects", "contact"];
         let current = "";
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
             const rect = el.getBoundingClientRect();
-            if (rect.top <= 140 && rect.bottom >= 140) {
+            if (rect.top <= 160 && rect.bottom >= 160) {
               current = section;
               break;
             }
           }
         }
         setActiveSection(current);
+      } else {
+        setActiveSection("");
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, [pathname, locale]);
 
-  // Close mobile menu on escape key
+  // Escape key handler for mobile menu
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileMenuOpen) {
@@ -75,57 +82,55 @@ export function Header() {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         scrolled
-          ? "bg-[#0B0F14]/90 backdrop-blur-md border-b border-[#26313D]/80 py-3.5 shadow-sm"
-          : "bg-transparent border-b border-transparent py-5"
+          ? "bg-[var(--bg-base)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] py-3 shadow-sm"
+          : "bg-transparent border-b border-transparent py-4 sm:py-5"
       }`}
     >
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           {/* Brand Wordmark */}
           <Wordmark />
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links — Unified without duplicate button */}
           <nav
-            className="hidden md:flex items-center gap-1 sm:gap-2 font-mono text-xs sm:text-sm"
+            className="hidden md:flex items-center gap-1 font-mono text-xs sm:text-sm"
             aria-label="Main Navigation"
           >
             {navItems.map((item) => {
-              const isActive =
-                pathname === "/" && activeSection === item.sectionId;
+              const isActive = activeSection === item.sectionId;
               return (
                 <Link
-                  key={item.label}
+                  key={item.sectionId}
                   href={item.href}
-                  className={`px-3 py-1.5 rounded-md transition-colors relative ${
+                  className={`px-3 py-1.5 rounded-md transition-colors ${
                     isActive
-                      ? "text-[#E6EDF3] bg-[#16202C] font-medium"
-                      : "text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#121922]"
+                      ? "text-[var(--text-primary)] bg-[var(--bg-surface)] font-semibold shadow-2xs border border-[var(--border-subtle)]"
+                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#79C0A5] rounded-full" />
-                  )}
                 </Link>
               );
             })}
-
-            <Link
-              href="/#contact"
-              className="ml-3 px-3.5 py-1.5 rounded-md border border-[#26313D] bg-[#121922] text-[#E6EDF3] hover:border-[#79B8FF]/60 hover:text-white transition-all text-xs font-semibold"
-            >
-              Get in Touch
-            </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center">
+          {/* Desktop Right Controls: Language & Theme Switcher */}
+          <div className="hidden md:flex items-center gap-2.5">
+            <LocaleSwitcher />
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Right Controls: Switchers + Menu Button */}
+          <div className="flex md:hidden items-center gap-2">
+            <LocaleSwitcher />
+            <ThemeToggle />
+
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#121922] rounded-md border border-[#26313D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF]"
+              className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
               aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             >
               {mobileMenuOpen ? (
                 <svg
@@ -133,13 +138,9 @@ export function Header() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth="2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
                 <svg
@@ -147,13 +148,9 @@ export function Header() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth="2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -161,41 +158,31 @@ export function Header() {
         </div>
       </Container>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-[61px] z-50 bg-[#0B0F14]/95 backdrop-blur-lg border-b border-[#26313D] md:hidden flex flex-col px-6 py-8 overflow-y-auto animate-fadeIn"
+          className="fixed inset-0 top-[61px] z-50 bg-[var(--bg-base)]/95 backdrop-blur-xl border-b border-[var(--border-subtle)] md:hidden flex flex-col px-6 py-8 overflow-y-auto animate-fadeIn"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
         >
-          <div className="flex flex-col gap-3 font-mono text-base">
+          <div className="flex flex-col gap-2 font-mono text-base">
             {navItems.map((item) => (
               <Link
-                key={item.label}
+                key={item.sectionId}
                 href={item.href}
                 onClick={handleNavClick}
-                className="px-4 py-3 rounded-md border border-[#26313D]/60 bg-[#121922] text-[#E6EDF3] hover:border-[#79C0A5]/40 transition-colors"
+                className="px-4 py-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--accent-primary)] transition-colors flex items-center justify-between"
               >
-                <div className="flex items-center justify-between">
-                  <span>{item.label}</span>
-                  <span className="text-xs text-[#79C0A5]">→</span>
-                </div>
+                <span>{item.label}</span>
+                <span className="text-xs text-[var(--accent-primary)]">→</span>
               </Link>
             ))}
-
-            <Link
-              href="/#contact"
-              onClick={handleNavClick}
-              className="mt-4 px-4 py-3 text-center rounded-md font-semibold bg-[#E6EDF3] text-[#0B0F14] hover:bg-white transition-colors"
-            >
-              Get in Touch
-            </Link>
           </div>
 
-          <div className="mt-auto pt-8 border-t border-[#26313D] text-xs font-mono text-[#8B949E]">
-            <p>Temurmalik Abdullayev · Full-Stack Developer</p>
-            <p className="mt-1 text-[#6E7681]">Uzbekistan · 3 years uptime</p>
+          <div className="mt-auto pt-8 border-t border-[var(--border-subtle)] text-xs font-mono text-[var(--text-secondary)]">
+            <p>Temurmalik Abdullayev · {t.hero.heading}</p>
+            <p className="mt-1 text-[var(--text-muted)]">O‘zbekiston · 3 years uptime</p>
           </div>
         </div>
       )}
