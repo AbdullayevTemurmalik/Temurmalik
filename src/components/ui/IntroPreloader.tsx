@@ -19,7 +19,7 @@ const GREETINGS: Greeting[] = [
   { text: "こんにちは", lang: "ja", duration: 100 },
   { text: "Hallo", lang: "de", duration: 95 },
   { text: "Ciao", lang: "it", duration: 95 },
-  { text: "안녕하세요", lang: "ko", duration: 95 },
+  { text: "Olá", lang: "pt", duration: 95 },
   { text: "Merhaba", lang: "tr", duration: 95 },
   { text: "Assalomu alaykum", lang: "uz", duration: 380 }
 ];

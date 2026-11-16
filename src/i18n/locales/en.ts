@@ -1,0 +1,240 @@
+import { Dictionary } from "../types";
+
+export const en: Dictionary = {
+  nav: {
+    about: "About",
+    expertise: "Expertise",
+    techStack: "Tech Stack",
+    projects: "Projects",
+    contact: "Contact",
+    themeDark: "Dark mode",
+    themeLight: "Light mode",
+    language: "Language",
+    openMenu: "Open menu",
+    closeMenu: "Close menu"
+  },
+  hero: {
+    eyebrow: "Hello, I'm Temurmalik.",
+    heading: "Full-Stack Developer.",
+    subheading: "Focused on Backend & AI Engineering.",
+    description:
+      "I'm Temurmalik Abdullayev, a 17-year-old developer from Uzbekistan. I build reliable backend systems, modern web applications, and AI-powered products.",
+    exploreBtn: "Explore Projects",
+    contactBtn: "Contact",
+    availableText: "Available for select engineering contracts",
+    metaTags: "Uzbekistan · Backend · AI · Web Engineering"
+  },
+  terminal: {
+    title: "temurmalik@portfolio: ~",
+    copy: "Copy",
+    copied: "Copied!",
+    tabs: {
+      whoami: "whoami",
+      uptime: "uptime",
+      profile: "profile.json",
+      projects: "projects/",
+      status: "status"
+    },
+    role: "Full-Stack Developer",
+    focusLabel: "Focus",
+    focusValue: "Backend & AI Engineering",
+    uptimeDesc: "3 years continuous uptime (developer experience)",
+    statusText: "Building reliable software & AI systems."
+  },
+  stats: {
+    experienceValue: "3+",
+    experienceLabel: "Years of Experience",
+    experienceMeta: "Continuous development & shipping",
+    projectsValue: "30+",
+    projectsLabel: "Projects Completed",
+    projectsMeta: "Full-stack apps, backends & bots",
+    clientsValue: "5+",
+    clientsLabel: "Real Clients",
+    clientsMeta: "Businesses & product founders"
+  },
+  about: {
+    label: "01 / About",
+    heading: "Engineering with purpose.",
+    subtitle:
+      "Focused on resilient backend systems, scalable REST APIs, and practical AI implementations.",
+    paragraphs: [
+      "I'm Temurmalik Abdullayev, a 17-year-old software developer from Uzbekistan. For the past three years, I have immersed myself in backend architectures, database modeling, and modern web application development.",
+      "Rather than chasing ephemeral front-end trends, my engineering mindset is grounded in fundamental server reliability: designing predictable API contracts, managing schema migrations with PostgreSQL and Prisma, implementing bulletproof validation with Zod, and securing session state.",
+      "When developing user-facing products, I pair robust Node.js and TypeScript backends with fast, accessible React and Next.js interfaces. My recent engineering work also centers on practical artificial intelligence: incorporating Google Gemini models into developer education platforms and Telegram automation tools where AI solves tangible user bottlenecks."
+    ],
+    specTitle: "Profile Spec",
+    specIndex: "v3.4",
+    specs: {
+      locationLabel: "Location",
+      locationValue: "Uzbekistan",
+      ageLabel: "Age",
+      ageValue: "17 years old",
+      expLabel: "Experience",
+      expValue: "3+ years continuous",
+      stacksLabel: "Primary Stacks",
+      stacksValue: "Node.js · TS · React · PostgreSQL",
+      specLabel: "Specialization",
+      specValue: "Backend & AI Engineering",
+      statusLabel: "Status",
+      statusValue: "Available for contracts"
+    }
+  },
+  expertise: {
+    label: "02 / Expertise",
+    heading: "Technical proficiencies.",
+    subtitle:
+      "Specialized capabilities refined across real application deployments, architectural challenges, and client deliverables.",
+    coreDomain: "Core Domain",
+    domains: [
+      {
+        id: "backend",
+        number: "01",
+        title: "Backend Engineering",
+        summary: "APIs, authentication, database modeling, and backend architecture.",
+        description:
+          "Designing robust server-side systems with predictable data pipelines, clean REST endpoints, structured validation, and relational database schemas that remain resilient under real traffic.",
+        capabilities: [
+          "Relational schema design, indexes & data migrations",
+          "Authentication patterns, JWT handling & session security",
+          "Input sanitization, defensive error handling & rate limiting",
+          "WebSocket streams & real-time bidirectional messaging"
+        ],
+        skills: ["Node.js", "Express.js", "TypeScript", "PostgreSQL", "Prisma ORM", "REST API", "JWT"]
+      },
+      {
+        id: "fullstack",
+        number: "02",
+        title: "Full-Stack Development",
+        summary: "Modern web apps, responsive interfaces, and end-to-end development.",
+        description:
+          "Building seamless digital products where the frontend matches backend semantics with zero friction. High-performance, accessible, and responsive across every device breakpoint.",
+        capabilities: [
+          "Component-driven architecture & strict TypeScript typings",
+          "Mobile-first responsive layouts with fluid typography",
+          "State management & clean client-server boundaries",
+          "Core Web Vitals optimization & zero-layout-shift design"
+        ],
+        skills: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS", "Redux", "HTML5/CSS3"]
+      },
+      {
+        id: "ai-integration",
+        number: "03",
+        title: "AI Integration",
+        summary: "AI-enabled applications, intelligent automation, and model integration.",
+        description:
+          "Integrating practical artificial intelligence models directly into usable products. Building prompt pipelines, multimodal vision analysis, structured responses, and responsive conversational bots.",
+        capabilities: [
+          "Image parsing for nutrition & macro estimation in bots",
+          "Contextual educational assistance & automated code hints",
+          "Strict schema enforcement on LLM structured JSON outputs",
+          "Low-latency streaming & error-tolerant fallback handling"
+        ],
+        skills: ["Gemini API", "Multimodal Vision", "Claude Code", "Cursor", "Antigravity", "Codex"]
+      },
+      {
+        id: "infrastructure",
+        number: "04",
+        title: "Deployment & Infrastructure",
+        summary: "Deployment workflows, server configuration, Git, CI/CD, and maintenance.",
+        description:
+          "Shipping software with disciplined reproducibility. Automated continuous delivery, environment variable management, server monitoring, and zero-downtime rollouts on modern cloud platforms.",
+        capabilities: [
+          "Continuous integration & automated deployment pipelines",
+          "Vercel Edge & Serverless function configurations",
+          "Railway container & PostgreSQL managed provisioning",
+          "Production debugging, error logging & uptime monitoring"
+        ],
+        skills: ["Linux", "Docker", "Git", "GitHub", "Vercel", "Railway", "Postman"]
+      }
+    ]
+  },
+  techStack: {
+    label: "Technical Foundation",
+    heading: "Tech Stack",
+    subtitle: "Technologies and tools I use to build reliable digital products.",
+    scopeTitle: "Architecture Scope",
+    scopeIndex: "Verified",
+    primaryRole: "Full-Stack Developer",
+    specialization: "Focused on Backend & AI Engineering",
+    uptimeLabel: "Terminal Uptime",
+    uptimeValue: "3+ years continuous"
+  },
+  projects: {
+    label: "03 / Selected Work",
+    heading: "Selected projects. Real products.",
+    subtitle:
+      "Three core production systems demonstrating backend engineering, full-stack architectures, and practical AI integrations.",
+    viewCaseStudy: "View Case Study",
+    liveProject: "Live Project",
+    sourceCode: "Source Repository",
+    backToProjects: "Back to all projects",
+    backHome: "Back to Home",
+    statusShipped: "Shipped",
+    statusActive: "Active",
+    allProjectsHeading: "Selected projects. Real products.",
+    allProjectsSubtitle:
+      "Deep dives into backend architecture, typed APIs, responsive web interfaces, and practical AI implementations.",
+    prevProject: "Previous Project",
+    nextProject: "Next Project",
+    specificationsTitle: "Specifications",
+    roleLabel: "My Role",
+    timelineLabel: "Timeline / Year",
+    categoryLabel: "Category",
+    liveEndpointLabel: "Live Endpoint",
+    techUsedLabel: "Technologies & Libraries",
+    visitLiveBtn: "Visit Live System",
+    overviewTitle: "Project Overview",
+    problemTitle: "Problem & Engineering Goals",
+    solutionTitle: "Solution & Implementation",
+    featuresTitle: "Verified Production Features",
+    decisionsTitle: "Key Technical Decisions"
+  },
+  approach: {
+    label: "04 / Approach",
+    heading: "Disciplined engineering rhythm.",
+    subtitle: "A methodical workflow from problem definition to hardened production deployment.",
+    phasePrefix: "Phase",
+    stageLabel: "Stage",
+    verifiedMethod: "Verified methodology",
+    steps: [
+      {
+        step: "01",
+        title: "Understand the problem",
+        description:
+          "Every project begins with a clear assessment of user requirements, data contracts, and core constraints. No speculative code or premature abstractions."
+      },
+      {
+        step: "02",
+        title: "Build a reliable solution",
+        description:
+          "Engineered with clean separation of concerns, strong typing, robust error boundaries, secure auth, and scalable database schemas."
+      },
+      {
+        step: "03",
+        title: "Test, deploy and refine",
+        description:
+          "Automated builds, rigorous manual QA, reproducible environments on Vercel/Railway, and disciplined post-launch monitoring."
+      }
+    ]
+  },
+  contact: {
+    label: "05 / Contact",
+    heading: "Let's build something great.",
+    subtitle:
+      "I'm open to discussing backend engineering contracts, full-stack product development, and practical AI integrations.",
+    utcNote: "Operating from Uzbekistan (UTC+5)",
+    remoteBadge: "● Responsive for remote collaboration worldwide"
+  },
+  footer: {
+    rights: "All rights reserved.",
+    designedBy: "Designed & engineered by Temurmalik."
+  },
+  notFound: {
+    code: "404: RESOURCE_NOT_FOUND",
+    title: "Route does not exist.",
+    description:
+      "The requested path could not be resolved by the server router. Please verify the URL or return to the main workstation.",
+    returnHome: "Return Home",
+    exploreProjects: "Explore Projects"
+  }
+};
