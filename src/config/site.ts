@@ -63,7 +63,7 @@ export const siteConfig: SiteConfig = {
   experienceYears: "3+",
   projectsCount: "30+",
   clientsCount: "5+",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://temurmalik.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://temurmalik.vercel.app",
   isAvailableForWork: true,
   availabilityText: "Available for select engineering contracts",
   heroFocusTags: ["Uzbekistan", "Backend", "AI", "Web Engineering"],

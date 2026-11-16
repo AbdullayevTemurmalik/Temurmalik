@@ -31,11 +31,12 @@ export function I18nProvider({
     setLocale(initialLocale);
   }
 
-  // Update external systems (cookies & document lang)
+  // Update external systems (cookies & document lang & dir for RTL)
   useEffect(() => {
     if (locale && isValidLocale(locale)) {
       document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; SameSite=Lax`;
       document.documentElement.lang = locale;
+      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
     }
   }, [locale]);
 
@@ -46,12 +47,12 @@ export function I18nProvider({
 
     if (pathname) {
       const segments = pathname.split("/");
-      if (segments[1] === "en" || segments[1] === "uz") {
+      if (isValidLocale(segments[1])) {
         segments[1] = targetLocale;
         const newPath = segments.join("/");
         router.push(newPath);
       } else {
-        router.push(`/${targetLocale}${pathname}`);
+        router.push(`/${targetLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`);
       }
     } else {
       router.push(`/${targetLocale}`);

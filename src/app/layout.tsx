@@ -89,7 +89,12 @@ export const metadata: Metadata = {
       { url: "/favicon.svg", type: "image/svg+xml" }
     ],
     apple: "/apple-touch-icon.png"
-  }
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      }
+    : undefined
 };
 
 export default function RootLayout({

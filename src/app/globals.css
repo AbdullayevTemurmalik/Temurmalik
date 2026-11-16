@@ -126,3 +126,41 @@ html.intro-seen #intro-preloader-root {
   transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+/* Custom Minimal Developer Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) var(--bg-base);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 4px;
+  border: 1px solid var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* RTL specific adjustments: terminal, code, numbers stay LTR */
+[dir="rtl"] .font-mono,
+[dir="rtl"] code,
+[dir="rtl"] pre,
+[dir="rtl"] .terminal-window,
+[dir="rtl"] a[href^="mailto:"],
+[dir="rtl"] a[href^="https://t.me"],
+[dir="rtl"] a[href^="https://github.com"] {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+

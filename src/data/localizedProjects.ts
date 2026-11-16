@@ -468,54 +468,54 @@ export const localizedProjects: LocalizedProject[] = [
           }
         ]
       },
-      pt: {
+      ko: {
         title: "RunCode Web",
-        tagline: "Plataforma moderna de aprendizagem de programação e desenvolvimento prático",
-        category: "Ferramentas para Desenvolvedores / Plataforma de Ensino",
+        tagline: "최신 프로그래밍 학습 및 실무 실습 플랫폼",
+        category: "개발자 도구 / 교육 플랫폼",
         description:
-          "Plataforma interativa de ensino de código desenvolvida com React, Tailwind CSS e backend Node.js/TypeScript com tutor de IA.",
+          "React, Tailwind CSS 및 Node.js/TypeScript AI 튜터 백엔드 기반의 현대적 프로그래밍 학습 플랫폼.",
         detailedDescription: [
-          "RunCode Web é uma plataforma educacional para desenvolvedores focada em aprendizagem prática e estruturada.",
-          "O frontend oferece uma interface focada em tema escuro com React e Tailwind CSS. O backend integra Node.js, Express, PostgreSQL com Prisma ORM, WebSockets e a API do Google Gemini."
+          "RunCode Web은 프로그래밍 핵심 개념을 구조화되고 실용적이며 몰입감 있게 학습할 수 있도록 설계된 인터랙티브 교육 플랫폼입니다.",
+          "프론트엔드는 집중도를 높이는 다크 테마 기반으로 React와 Tailwind CSS로 제작되었으며, 백엔드는 Node.js, Express, Prisma ORM과 PostgreSQL, 실시간 WebSockets, 그리고 코드 분석을 위한 Google Gemini API가 결합되어 있습니다."
         ],
-        role: "Desenvolvedor Full-Stack e Arquiteto de Backend",
+        role: "풀스택 개발자 & 백엔드 아키텍트",
         timeline: "2026",
-        statusText: "Lançado em 2026",
+        statusText: "2026년 배포 완료",
         verifiedHighlights: [
-          "Arquitetura full-stack modular com frontend React e backend TypeScript desacoplados",
-          "Modelagem de dados e migrações eficientes com Prisma ORM e PostgreSQL",
-          "Integração do Google Gemini API para suporte de codificação inteligente",
-          "Roteamento rápido no cliente com implantação na Vercel"
+          "독립적인 React 프론트엔드와 TypeScript 백엔드를 갖춘 모듈형 풀스택 아키텍처",
+          "Prisma ORM과 PostgreSQL을 활용한 관계형 데이터 모델링 및 마이그레이션",
+          "학습 질의응답 및 코드 분석을 위한 Google Gemini API 연동",
+          "Vercel에 배포된 초고속 클라이언트 라우팅 및 최적화 번들"
         ],
         problemAndGoal:
-          "Estudantes frequentemente sofrem com a barreira entre aprender teoria e praticar código. O objetivo do RunCode Web é reunir aulas práticas, editor e assistência de IA no mesmo ambiente.",
+          "초보 개발자들은 이론 습득과 실제 코드 작성 사이의 큰 장벽을 겪습니다. RunCode Web의 핵심 목표는 강의, 실습 편집기, AI 가이드를 단일 화면에 유기적으로 통합하는 것입니다.",
         solutionAndArchitecture: [
-          "Construção de uma SPA rápida e fluida com React e Tailwind CSS.",
-          "Criação de API em Node.js/TypeScript com validação robusta via Zod.",
-          "Esquemas Prisma ORM para gestão de aulas, exercícios e progresso.",
-          "Integração com Google Gemini para suporte contextual de código."
+          "React와 Tailwind CSS를 활용한 반응형 다크 모드 SPA 구축.",
+          "Zod 기반 엄격한 유효성 검증과 보안 세션을 갖춘 Node.js/TypeScript REST API 개발.",
+          "Prisma ORM을 통해 강의 커리큘럼, 학습 진행률, 퀴즈 결과를 체계적으로 관리.",
+          "Google Gemini를 연동하여 코드 오류 설명과 맞춤형 힌트 제공."
         ],
         verifiedFeatures: [
-          "Currículo interativo com módulos práticos de código",
-          "Interface focada em desenvolvedores com tema escuro",
-          "Professor de IA para respostas e dicas contextuais",
-          "Design com alto contraste e ótima acessibilidade"
+          "인터랙티브 프로그래밍 커리큘럼 및 실습 모듈",
+          "개발자 친화적인 코드 신택스 스타일 UI",
+          "실시간 질의응답을 지원하는 AI 튜터 백엔드",
+          "명확한 명도 대비를 갖춘 접근성 다크 디자인 시스템"
         ],
         technicalDecisions: [
           {
-            title: "Arquitetura Desacoplada",
+            title: "독립 모듈형 아키텍처",
             description:
-              "Frontend e backend independentes para atualizações contínuas e alto desempenho."
+              "프론트엔드와 백엔드 서비스를 분리하여 독립적인 배포 주기와 낮은 지연 시간을 확보."
           },
           {
-            title: "Prisma ORM e PostgreSQL",
+            title: "PostgreSQL & Prisma ORM",
             description:
-              "Segurança de tipos completa e persistência de dados confiável."
+              "엔드투엔드 타입 안정성과 안전한 관계형 데이터 정합성을 위해 Prisma 선택."
           },
           {
-            title: "Integração Direta com Gemini",
+            title: "Gemini AI 직접 연동",
             description:
-              "Uso do SDK oficial da Google para respostas rápidas sem intermediários."
+              "중간 병목 없이 실시간 응답을 제공하기 위해 공식 Google GenAI SDK 채택."
           }
         ]
       },
@@ -1064,49 +1064,49 @@ export const localizedProjects: LocalizedProject[] = [
           }
         ]
       },
-      pt: {
+      ko: {
         title: "Donik Coach AI",
-        tagline: "Mini App do Telegram e plataforma fitness com estimativa de calorias por foto",
-        category: "Mini App do Telegram / Fitness e IA",
+        tagline: "식사 사진 기반 칼로리 추정, 9가지 식단 및 헬스장 운동 루틴 텔레그램 플랫폼",
+        category: "텔레그램 미니 앱 / 피트니스 & AI",
         description:
-          "Plataforma inteligente de fitness e bot do Telegram com análise calórica por imagem, 9 dietas estruturadas e treinos de academia.",
+          "식사 사진을 통한 칼로리 및 영양소 자동 분석, 9가지 전문 식단 및 헬스장 운동 가이드를 제공하는 지능형 피트니스 플랫폼.",
         detailedDescription: [
-          "Donik Coach AI simplifica o controle alimentar e o treino diretamente no Telegram e na web móvel, eliminando o preenchimento manual.",
-          "Utiliza IA multimodal para avaliar fotos de pratos, sugerir 9 planos alimentares específicos e disponibilizar treinos de musculação organizados."
+          "Donik Coach AI는 번거로운 수동 식단 입력을 없애고 텔레그램과 모바일 웹에서 직접 영양 관리와 운동 플랜을 실행할 수 있도록 돕습니다.",
+          "멀티모달 AI를 활용하여 음식 사진 한 장으로 영양 성분을 분석하고, 목표별 9가지 식단 플랜과 전화번호 인증 기반의 안전한 웹 대시보드를 제공합니다."
         ],
-        role: "Desenvolvedor de Backend e Bot IA",
+        role: "백엔드 및 AI 봇 개발자",
         timeline: "2026",
-        statusText: "Ativo em 2026",
+        statusText: "2026년 운영 중",
         verifiedHighlights: [
-          "Ecossistema completo com bot do Telegram e painel web responsivo",
-          "Cálculo de calorias e macros através de fotos com IA de visão computacional",
-          "9 programas nutricionais profissionais para diferentes objetivos",
-          "Biblioteca de exercícios de musculação com instruções de execução"
+          "텔레그램 봇과 반응형 웹 대시보드가 결합된 피트니스 생태계",
+          "멀티모달 AI를 활용한 식사 사진 칼로리 및 탄단지 영양소 자동 추정",
+          "감량, 증량, 린매스업을 위한 9가지 전문 맞춤형 식단 라이브러리",
+          "부위별 운동 가이드와 올바른 자세 지침을 담은 운동 디렉토리"
         ],
         problemAndGoal:
-          "Registrar calorias manualmente é demorado e leva à desistência. O Donik Coach AI permite enviar uma foto do prato no Telegram para receber estimativas imediatas e orientações de treino.",
+          "매 끼니마다 무게를 재고 칼로리를 손으로 검색해 기록하는 방식은 80% 이상의 이용자가 중도 포기하게 만듭니다. Donik Coach AI는 사진 전송만으로 즉각적인 영양 인사이트를 제공합니다.",
         solutionAndArchitecture: [
-          "Configuração de webhooks do Telegram Bot API com resposta em tempo real.",
-          "Integração de modelos de visão de IA para identificação automática de alimentos.",
-          "Estruturação de 9 dietas personalizadas para ganho muscular ou perda de peso.",
-          "Painel web com autenticação segura por número de telefone."
+          "Telegram Bot API 웹훅을 통한 즉각적인 메시지 및 미디어 처리.",
+          "멀티모달 비전 모델을 연결하여 사진 속 식재료와 대략적인 양 자동 인식.",
+          "체계적인 9가지 식단 데이터를 구조화하여 목표별 맞춤 제공.",
+          "전화번호 인증을 거치는 안전한 웹 관리 패널 구축."
         ],
         verifiedFeatures: [
-          "Estimativa nutricional automatizada a partir de fotos",
-          "9 opções de dietas profissionais balanceadas",
-          "Diretório de exercícios de força para academia",
-          "Sincronização contínua entre Telegram e web"
+          "사진 한 장으로 칼로리와 영양 성분 즉시 계산",
+          "9가지 과학적 맞춤형 전문 식단 플랜",
+          "근육 부위별 헬스장 운동 동작 라이브러리",
+          "단일 데이터베이스를 통한 봇과 웹 대시보드 실시간 동기화"
         ],
         technicalDecisions: [
           {
-            title: "Foco no ecossistema Telegram",
+            title: "텔레그램 중심 클라이언트 설계",
             description:
-              "Acesso descomplicado na ferramenta de comunicação diária dos utilizadores."
+              "우즈베키스탄에서 가장 널리 쓰이는 메신저를 채택하여 사용자의 진입 장벽을 완전히 제거."
           },
           {
-            title: "Visão computacional de IA",
+            title: "멀티모달 시각 분석",
             description:
-              "Substituição do registo de texto por análise fotográfica instantânea."
+              "번거로운 텍스트 검색 대신 사진 촬영으로 식단을 기록하도록 개선하여 지속적인 기록률 향상."
           }
         ]
       },
@@ -1639,49 +1639,49 @@ export const localizedProjects: LocalizedProject[] = [
           }
         ]
       },
-      pt: {
+      ko: {
         title: "Al Harameen Uzbekistan",
-        tagline: "Site oficial e vitrine de produtos do distribuidor oficial Al Harameen no Uzbequistão",
-        category: "Comércio Eletrônico / Distribuidor Oficial",
+        tagline: "Al Harameen 우즈베키스탄 공식 디스트리뷰터 브랜드 및 제품 쇼케이스 웹사이트",
+        category: "이커머스 / 공식 디스트리뷰터",
         description:
-          "Site oficial da marca e catálogo de relógios islâmicos Al Harameen no Uzbequistão com certificado e 1 ano de garantia.",
+          "우즈베키스탄 내 Al Harameen 오리지널 스마트 이슬람 시계의 공식 브랜드 사이트, 공인 인증서 및 1년 무상 보증 쇼케이스.",
         detailedDescription: [
-          "Al Harameen Uzbekistan é a plataforma digital oficial do distribuidor autorizado de relógios islâmicos Al Harameen no Uzbequistão.",
-          "Apresenta especificações detalhadas, cálculo dos horários de oração Azan, bússola Qibla e garantia de 1 ano com entrega nacional."
+          "Al Harameen Uzbekistan은 우즈베키스탄 공식 유통사의 대표 디지털 채널로서 스마트 이슬람 손목시계 및 아잔 벽시계를 소개합니다.",
+          "정확한 아잔 기도 시간 계산, 키블라 나침반 기능, 공식 1년 보증서 및 전국 배송 시스템을 체계적으로 안내합니다."
         ],
-        role: "Desenvolvedor Frontend",
+        role: "프론트엔드 개발자",
         timeline: "2025",
-        statusText: "Lançado em 2025",
+        statusText: "2025년 배포 완료",
         verifiedHighlights: [
-          "Apresentação oficial da marca com certificado de distribuidor autorizado",
-          "Demonstração técnica de alerta Azan e direção da Qibla",
-          "Otimização completa de SEO com Schema.org JSON-LD e OpenGraph",
-          "Design responsivo e veloz, adaptado para acesso móvel"
+          "정품 Al Harameen 우즈베키스탄 공식 디스트리뷰터 인증서 및 브랜드 쇼케이스",
+          "아잔 알림음, 키블라 방위, 이슬람력 연동 기능의 정밀한 기술 사양 소개",
+          "Schema.org JSON-LD 매장 메타데이터와 OpenGraph를 통한 완전한 검색엔진 최적화",
+          "모바일 네트워크 환경에 최적화된 초경량 반응형 사용자 경험"
         ],
         problemAndGoal:
-          "Com muitas réplicas no mercado, era fundamental disponibilizar um site confiável que comprovasse autenticidade e oferecesse garantia de 1 ano.",
+          "시중의 모조품과 차별화하여 공식 디스트리뷰터의 정품 신뢰도를 입증하고 1년 보증을 바탕으로 직접 주문을 유치할 공신력 있는 웹사이트가 필요했습니다.",
         solutionAndArchitecture: [
-          "Criação de um site de alto rendimento com React e Tailwind CSS.",
-          "Aplicação de microdados estruturados para melhor classificação nos motores de busca.",
-          "Destaque para o certificado de distribuição e especificações genuínas.",
-          "Conexão direta com Telegram e Instagram para atendimento rápido."
+          "React와 Tailwind CSS 기반의 세련되고 로딩이 빠른 브랜드 쇼케이스 개발.",
+          "구글 검색 최상위 노출을 위한 Schema.org Store/Brand 구조화 데이터 마크업 구현.",
+          "정품 인증서와 1년 보증 혜택을 강조한 신뢰도 중심의 카탈로그 구성.",
+          "텔레그램과 인스타그램을 연동하여 원클릭 고객 상담 및 주문 유도."
         ],
         verifiedFeatures: [
-          "Catálogo de relógios de pulso e parede (Azan, Qibla e calendário islâmico)",
-          "Certificado oficial e garantia de 1 ano documentada",
-          "Navegação móvel leve e carregamento quase instantâneo",
-          "Processo de pedidos simplificado para todo o Uzbequistão"
+          "스마트 이슬람 손목시계 및 벽시계 전체 라인업 카탈로그",
+          "공식 인증서 및 1년 정품 보증 문서화",
+          "스마트폰 환경에서도 1초 미만으로 열리는 최적화된 정적 번들",
+          "우즈베키스탄 전역 대상의 간편 주문 프로세스"
         ],
         technicalDecisions: [
           {
-            title: "Entrega Estática de Alta Velocidade",
+            title: "정적 우선 고성능 전송",
             description:
-              "Garantia de carregamento sub-segundo em redes móveis."
+              "모바일 네트워크 속도가 느린 환경에서도 즉각 표시되도록 경량 정적 번들 구축."
           },
           {
-            title: "Dados Estruturados JSON-LD",
+            title: "구조화된 SEO 마크업",
             description:
-              "Reconhecimento como distribuidor oficial pelos motores de busca."
+              "검색엔진이 공인 디스트리뷰터로 정확히 인식하도록 Schema JSON-LD 깊이 있게 적용."
           }
         ]
       },

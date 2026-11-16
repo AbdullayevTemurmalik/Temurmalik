@@ -204,43 +204,92 @@ export function Header() {
         </div>
       </Container>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 top-[61px] z-50 bg-[var(--bg-base)]/95 backdrop-blur-xl border-b border-[var(--border-subtle)] md:hidden flex flex-col px-6 py-8 overflow-y-auto animate-fadeIn"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Navigation"
-        >
-          <div className="flex flex-col gap-2 font-mono text-base">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.sectionId;
-              return (
-                <Link
-                  key={item.sectionId}
-                  href={item.href}
-                  onClick={(e) => handleLinkClick(e, item.sectionId)}
-                  className={`px-4 py-3 rounded-lg border transition-colors flex items-center justify-between ${
-                    isActive
-                      ? "border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold"
-                      : "border-[var(--border-subtle)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-xs text-[var(--accent-primary)]">
-                    {isActive ? "●" : "→"}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+      {/* Mobile Slide-Over Backdrop */}
+      <div
+        className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-300 md:hidden ${
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
 
-          <div className="mt-auto pt-8 border-t border-[var(--border-subtle)] text-xs font-mono text-[var(--text-secondary)]">
-            <p>Temurmalik Abdullayev · {t.hero.heading}</p>
-            <p className="mt-1 text-[var(--text-muted)]">O‘zbekiston · 3 years uptime</p>
+      {/* Mobile Slide-Over Drawer from RIGHT */}
+      <div
+        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-transform duration-300 ease-out ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation"
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40">
+          <span className="font-mono text-xs text-[var(--accent-primary)] font-semibold tracking-wider uppercase flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" />
+            ~/navigation
+          </span>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(false)}
+            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors"
+            aria-label={t.nav.closeMenu}
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Drawer Navigation Links */}
+        <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-2 font-mono text-sm">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.sectionId;
+            return (
+              <Link
+                key={item.sectionId}
+                href={item.href}
+                onClick={(e) => handleLinkClick(e, item.sectionId)}
+                className={`px-4 py-3 rounded-lg border transition-all flex items-center justify-between ${
+                  isActive
+                    ? "border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold shadow-xs"
+                    : "border-[var(--border-subtle)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface)]"
+                }`}
+              >
+                <span>{item.label}</span>
+                <span className="text-xs text-[var(--accent-primary)] font-mono">
+                  {isActive ? "●" : "→"}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Drawer Footer with Quick Connect & Profile Identity */}
+        <div className="p-5 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 flex flex-col gap-3 font-mono text-xs">
+          <div className="flex items-center justify-between">
+            <span className="text-[var(--text-muted)]">Direct Contact:</span>
+            <a
+              href="https://t.me/TM_Backdev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent-primary)] hover:underline flex items-center gap-1 font-semibold"
+            >
+              <span>Telegram</span>
+              <span>↗</span>
+            </a>
+          </div>
+          <div className="text-[var(--text-muted)] text-[11px] leading-relaxed pt-2 border-t border-[var(--border-subtle)]">
+            <p className="font-semibold text-[var(--text-secondary)]">Temurmalik Abdullayev</p>
+            <p>Full-Stack Developer · Uzbekistan</p>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

@@ -111,7 +111,7 @@ export function LocaleSwitcher() {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(item.code)}
-                  className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors cursor-pointer text-left ${
+                  className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors cursor-pointer text-start ${
                     isSelected
                       ? "bg-[var(--accent-primary)]/15 text-[var(--text-primary)] font-semibold"
                       : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"

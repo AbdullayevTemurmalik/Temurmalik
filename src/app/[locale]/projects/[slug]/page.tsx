@@ -46,20 +46,29 @@ export async function generateMetadata({
   }
 
   const { content } = projectData;
+  const baseUrl = siteConfig.url;
   const title = `${content.title} — ${siteConfig.name}`;
   const description = `${content.tagline}. ${content.description}`;
+
+  const languageAlternates: Record<string, string> = {
+    "x-default": `${baseUrl}/en/projects/${slug}`
+  };
+  for (const loc of locales) {
+    languageAlternates[loc] = `${baseUrl}/${loc}/projects/${slug}`;
+  }
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/projects/${slug}`
+      canonical: `${baseUrl}/${locale}/projects/${slug}`,
+      languages: languageAlternates
     },
     openGraph: {
       title,
       description,
       type: "article",
-      url: `${siteConfig.url}/${locale}/projects/${slug}`,
+      url: `${baseUrl}/${locale}/projects/${slug}`,
       images: [
         {
           url: projectData.imageSrc,
@@ -93,5 +102,61 @@ export default async function LocalizedProjectDetailPage({
     notFound();
   }
 
-  return <ProjectDetailView project={project} />;
+  const projectData = getLocalizedProject(slug, locale as Locale);
+  const baseUrl = siteConfig.url;
+
+  // Structured Data (Breadcrumbs + SoftwareApplication / CreativeWork)
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${baseUrl}/${locale}`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${baseUrl}/${locale}#projects`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: projectData?.content.title || project.slug,
+        item: `${baseUrl}/${locale}/projects/${slug}`
+      }
+    ]
+  };
+
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: projectData?.content.title || project.slug,
+    description: projectData?.content.description,
+    applicationCategory: projectData?.content.category,
+    operatingSystem: "Web / Cross-platform",
+    author: {
+      "@type": "Person",
+      name: siteConfig.fullName,
+      url: siteConfig.url
+    },
+    url: project.liveUrl
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
+      <ProjectDetailView project={project} />
+    </>
+  );
 }

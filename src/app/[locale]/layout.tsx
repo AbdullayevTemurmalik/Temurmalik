@@ -35,6 +35,11 @@ export default async function LocaleLayout({
       enableSystem={false}
       disableTransitionOnChange
     >
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `try{document.documentElement.lang='${locale}';document.documentElement.dir='${locale === "ar" ? "rtl" : "ltr"}';}catch(e){}`
+        }}
+      />
       <I18nProvider initialLocale={locale as Locale}>
         <IntroPreloader />
         <Header />
