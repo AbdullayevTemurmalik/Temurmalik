@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { IntroPreloader } from "@/components/ui/IntroPreloader";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -41,12 +42,14 @@ export default async function LocaleLayout({
         }}
       />
       <I18nProvider initialLocale={locale as Locale}>
-        <IntroPreloader />
-        <Header />
-        <main id="main-content" className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <Footer />
+        <SmoothScrollProvider>
+          <IntroPreloader />
+          <Header />
+          <main id="main-content" className="flex-1 flex flex-col">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScrollProvider>
       </I18nProvider>
     </ThemeProvider>
   );

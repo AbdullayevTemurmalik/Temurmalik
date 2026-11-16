@@ -37,7 +37,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     background-color: var(--bg-base);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
