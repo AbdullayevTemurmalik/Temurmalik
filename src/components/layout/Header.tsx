@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -17,6 +17,15 @@ export function Header() {
   const pathname = usePathname();
   const { t, locale } = useTranslation();
 
+  const activeSectionRef = useRef<string>("");
+  const isProgrammaticScrollRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Sync ref with state so scroll event listener has freshest value without re-binding
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
+
   const navItems = [
     { label: t.nav.about, href: `/${locale}#about`, sectionId: "about" },
     { label: t.nav.expertise, href: `/${locale}#expertise`, sectionId: "expertise" },
@@ -29,16 +38,42 @@ export function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Reset active indicator when scrolled back to the top of the page
+      // If scrolled back to top of the page, clear indicator
       if (window.scrollY < 80) {
-        setActiveSection("");
+        if (activeSectionRef.current !== "") {
+          setActiveSection("");
+        }
+        return;
       }
+
+      // If programmatically gliding towards the clicked target, don't clear indicator early
+      if (isProgrammaticScrollRef.current) return;
+
+      // When an active section was clicked: if user scrolls away from that section, turn indicator OFF!
+      const currentActive = activeSectionRef.current;
+      if (currentActive) {
+        const el = document.getElementById(currentActive);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Active area bounds: if scrolled past the section (top or bottom), it turns OFF
+          const isOutOfView =
+            rect.bottom < 70 || rect.top > window.innerHeight * 0.7;
+          if (isOutOfView) {
+            setActiveSection("");
+          }
+        } else {
+          setActiveSection("");
+        }
+      }
+      // CRITICAL: When no section is active, DO NOT auto-activate other sections on scroll!
+      // They stay cleanly off so manual scrolling never flickers or auto-lights indicators.
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
     };
   }, []);
 
@@ -66,7 +101,15 @@ export function Header() {
   // Uses 2x slower cinematic smooth scroll (~1250ms)
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     setActiveSection(sectionId);
+    activeSectionRef.current = sectionId;
+    isProgrammaticScrollRef.current = true;
     setMobileMenuOpen(false);
+
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    // Allow the 1250ms smooth scroll to complete before scroll-away checking is active
+    scrollTimeoutRef.current = setTimeout(() => {
+      isProgrammaticScrollRef.current = false;
+    }, 1350);
 
     const isHome =
       pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
@@ -83,6 +126,13 @@ export function Header() {
     }
   };
 
+  const handleResetActive = () => {
+    setActiveSection("");
+    activeSectionRef.current = "";
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    isProgrammaticScrollRef.current = false;
+  };
+
   return (
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-200 ${
@@ -94,7 +144,7 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between gap-4">
           {/* Brand Wordmark — Clicking smoothly navigates to top and resets active state */}
-          <Wordmark onClick={() => setActiveSection("")} />
+          <Wordmark onClick={handleResetActive} />
 
           {/* Desktop Navigation Links — Pure, clean typography */}
           <nav
