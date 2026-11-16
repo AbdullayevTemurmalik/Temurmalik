@@ -35,9 +35,9 @@ export function SmoothScrollProvider({
     const animate = () => {
       const diff = targetYRef.current - currentYRef.current;
 
-      if (Math.abs(diff) > 0.4) {
-        // Ultra-calm, velvety deceleration (0.046) for luxury editorial scroll
-        currentYRef.current += diff * 0.046;
+      if (Math.abs(diff) > 0.3) {
+        // Ultra-calm, velvety fluid deceleration (0.035) for cinematic editorial scroll
+        currentYRef.current += diff * 0.035;
         window.scrollTo(0, currentYRef.current);
         rafId = requestAnimationFrame(animate);
       } else {
@@ -84,7 +84,7 @@ export function SmoothScrollProvider({
       );
 
       // Calibrated luxury slower wheel speed for an ultra-controlled, calm downward pace
-      const speedMultiplier = 0.20;
+      const speedMultiplier = 0.14;
       const delta = e.deltaY * speedMultiplier;
 
       targetYRef.current = Math.max(0, Math.min(maxScroll, targetYRef.current + delta));
