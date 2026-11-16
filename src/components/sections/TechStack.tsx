@@ -12,7 +12,7 @@ export function TechStack() {
   const { ref, inView } = useInView<HTMLDivElement>({
     threshold: 0.08,
     rootMargin: "20px 0px -30px 0px",
-    triggerOnce: false
+    triggerOnce: true
   });
 
   return (

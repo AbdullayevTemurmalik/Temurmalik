@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 
 /**
  * Luxury Inertia Smooth Scroll Provider.
- * Dampens mouse wheel & touchpad scroll to an ultra-calm, velvet pace (speedMultiplier: 0.26, lerp: 0.052).
- * Respects prefers-reduced-motion and gracefully synchronizes with programmatic scrolls.
+ * Calibrated smooth pace (speedMultiplier: 0.22, lerp: 0.052).
+ * Strictly yields to native scrollbar dragging, touch, and dropdown/modal scrolling.
  */
 export function SmoothScrollProvider({
   children
@@ -13,6 +13,7 @@ export function SmoothScrollProvider({
   children: React.ReactNode;
 }) {
   const isRunningRef = useRef(false);
+  const isRafScrollingRef = useRef(false);
   const targetYRef = useRef(0);
   const currentYRef = useRef(0);
 
@@ -35,21 +36,30 @@ export function SmoothScrollProvider({
     const animate = () => {
       const diff = targetYRef.current - currentYRef.current;
 
-      if (Math.abs(diff) > 0.3) {
-        // Ultra-calm, velvety fluid deceleration (0.035) for cinematic editorial scroll
-        currentYRef.current += diff * 0.035;
+      if (Math.abs(diff) > 0.4) {
+        // Calibrated velvety deceleration (0.052) for fluid, responsive editorial glide
+        currentYRef.current += diff * 0.052;
+        isRafScrollingRef.current = true;
         window.scrollTo(0, currentYRef.current);
+        // Reset flag on next frame
+        requestAnimationFrame(() => {
+          isRafScrollingRef.current = false;
+        });
         rafId = requestAnimationFrame(animate);
       } else {
         currentYRef.current = targetYRef.current;
+        isRafScrollingRef.current = true;
         window.scrollTo(0, currentYRef.current);
+        requestAnimationFrame(() => {
+          isRafScrollingRef.current = false;
+        });
         isRunningRef.current = false;
         rafId = null;
       }
     };
 
     const handleWheel = (e: WheelEvent) => {
-      // Don't intercept if body scroll is locked (e.g. intro preloader or mobile menu open)
+      // Don't intercept if body scroll is locked (e.g. mobile drawer open)
       if (
         document.body.style.overflow === "hidden" ||
         document.body.classList.contains("overflow-hidden")
@@ -62,15 +72,34 @@ export function SmoothScrollProvider({
         return;
       }
 
-      // Don't intercept inside scrollable code blocks, textareas, horizontal scrollers, or inner scroll containers
+      // NEVER intercept inside dropdowns, dialogs, code blocks, textareas, or scrollable containers
       const target = e.target as HTMLElement | null;
       if (
-        target?.closest("pre") ||
-        target?.closest("textarea") ||
         target?.closest("[data-lenis-prevent]") ||
-        target?.closest(".overflow-x-auto")
+        target?.closest("[data-scroll-prevent]") ||
+        target?.closest("[role='listbox']") ||
+        target?.closest("[role='dialog']") ||
+        target?.closest(".overflow-y-auto") ||
+        target?.closest(".overflow-y-scroll") ||
+        target?.closest(".overflow-x-auto") ||
+        target?.closest("pre") ||
+        target?.closest("textarea")
       ) {
         return;
+      }
+
+      // Check if any ancestor is scrollable and can consume the wheel event
+      let el: HTMLElement | null = target;
+      while (el && el !== document.body && el !== document.documentElement) {
+        const style = window.getComputedStyle(el);
+        const overflowY = style.overflowY;
+        if (
+          (overflowY === "auto" || overflowY === "scroll") &&
+          el.scrollHeight > el.clientHeight
+        ) {
+          return;
+        }
+        el = el.parentElement;
       }
 
       // Only intercept cancelable wheel events
@@ -83,8 +112,8 @@ export function SmoothScrollProvider({
         document.documentElement.scrollHeight - window.innerHeight
       );
 
-      // Calibrated luxury slower wheel speed for an ultra-controlled, calm downward pace
-      const speedMultiplier = 0.14;
+      // Calibrated responsive wheel pace (0.22) — comfortable, not sluggish
+      const speedMultiplier = 0.22;
       const delta = e.deltaY * speedMultiplier;
 
       targetYRef.current = Math.max(0, Math.min(maxScroll, targetYRef.current + delta));
@@ -95,9 +124,29 @@ export function SmoothScrollProvider({
       }
     };
 
-    // Keep target in sync if user uses keyboard, scrollbar, or native anchors
+    // User scrolled via native scrollbar, keyboard arrows, touch, or anchor links
     const handleScrollSync = () => {
-      if (!isRunningRef.current) {
+      if (!isRafScrollingRef.current) {
+        // Stop any running inertia immediately to prevent fighting native scrollbar
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        isRunningRef.current = false;
+        currentYRef.current = window.pageYOffset;
+        targetYRef.current = window.pageYOffset;
+      }
+    };
+
+    // Cancel inertia when user clicks native scrollbar track/thumb
+    const handleMouseDown = (e: MouseEvent) => {
+      // If clicking near right edge (native scrollbar track is ~16-20px wide)
+      if (e.clientX >= window.innerWidth - 20) {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        isRunningRef.current = false;
         currentYRef.current = window.pageYOffset;
         targetYRef.current = window.pageYOffset;
       }
@@ -121,11 +170,15 @@ export function SmoothScrollProvider({
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("scroll", handleScrollSync, { passive: true });
+    window.addEventListener("mousedown", handleMouseDown, { passive: true });
+    window.addEventListener("touchstart", handleScrollSync, { passive: true });
     window.addEventListener("programmatic-scroll", handleProgrammaticScroll);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("scroll", handleScrollSync);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("touchstart", handleScrollSync);
       window.removeEventListener("programmatic-scroll", handleProgrammaticScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };

@@ -19,7 +19,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
   const {
     threshold = 0.08,
     rootMargin = "20px 0px -30px 0px",
-    triggerOnce = false
+    triggerOnce = true
   } = options;
 
   const ref = useRef<T | null>(null);
@@ -100,7 +100,7 @@ export function ScrollReveal({
   duration = 1350,
   threshold = 0.08,
   rootMargin = "20px 0px -30px 0px",
-  triggerOnce = false,
+  triggerOnce = true,
   as: Component = "div"
 }: ScrollRevealProps) {
   const { ref, inView } = useInView<HTMLElement>({

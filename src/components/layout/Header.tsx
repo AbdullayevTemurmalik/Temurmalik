@@ -7,7 +7,6 @@ import { Wordmark } from "@/components/ui/Wordmark";
 import { Container } from "@/components/ui/Container";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { SearchIcon } from "@/components/ui/Icons";
 import { useTranslation } from "@/i18n/context";
 import { smoothScrollTo } from "@/lib/smoothScroll";
 
@@ -184,43 +183,14 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop Right Controls: Command Menu + Language & Theme Switcher */}
+          {/* Desktop Right Controls: Language & Theme Switcher */}
           <div className="hidden md:flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={() => {
-                window.dispatchEvent(
-                  new KeyboardEvent("keydown", { key: "k", metaKey: true })
-                );
-              }}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] rounded-md transition-colors cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
-              title="Quick Search & Commands (Cmd+K)"
-              aria-label="Open Command Menu"
-            >
-              <SearchIcon className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
-              <span className="hidden xl:inline text-[11px] text-[var(--text-muted)]">Search</span>
-              <kbd className="text-[10px] bg-[var(--bg-base)] border border-[var(--border-subtle)] px-1 py-0.5 rounded text-[var(--text-muted)]">
-                ⌘K
-              </kbd>
-            </button>
             <LocaleSwitcher />
             <ThemeToggle />
           </div>
 
-          {/* Mobile Right Controls: Search + Switchers + Menu Button */}
+          {/* Mobile Right Controls: Switchers + Menu Button */}
           <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                window.dispatchEvent(
-                  new KeyboardEvent("keydown", { key: "k", metaKey: true })
-                );
-              }}
-              className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
-              aria-label="Search and Commands"
-            >
-              <SearchIcon className="w-4 h-4 text-[var(--accent-primary)]" />
-            </button>
             <LocaleSwitcher />
             <ThemeToggle />
 

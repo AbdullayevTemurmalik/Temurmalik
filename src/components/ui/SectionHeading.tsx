@@ -21,7 +21,7 @@ export function SectionHeading({
   const { ref, inView } = useInView<HTMLDivElement>({
     threshold: 0.08,
     rootMargin: "20px 0px -30px 0px",
-    triggerOnce: false
+    triggerOnce: true
   });
 
   return (
@@ -29,10 +29,10 @@ export function SectionHeading({
       ref={ref}
       id={id}
       style={{
-        transitionDuration: "1350ms",
+        transitionDuration: "500ms",
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
       }}
-      className={`mb-10 sm:mb-14 transition-all will-change-[transform,opacity] ${
+      className={`mb-10 sm:mb-14 transition-all ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
     >

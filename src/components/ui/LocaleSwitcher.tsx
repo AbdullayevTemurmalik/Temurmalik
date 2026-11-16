@@ -93,8 +93,11 @@ export function LocaleSwitcher() {
       {isOpen && (
         <div
           role="listbox"
+          data-lenis-prevent
+          data-scroll-prevent
+          onWheel={(e) => e.stopPropagation()}
           aria-label="Select language"
-          className="absolute right-0 mt-2 w-52 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)]/98 backdrop-blur-xl shadow-2xl py-1.5 z-50 animate-fadeIn max-h-80 overflow-y-auto divide-y divide-[var(--border-subtle)]/40 scrollbar-thin"
+          className="absolute right-0 mt-2 w-52 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)]/98 backdrop-blur-xl shadow-2xl py-1.5 z-50 animate-fadeIn max-h-80 overflow-y-auto divide-y divide-[var(--border-subtle)]/40 overscroll-contain scrollbar-thin"
         >
           <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-semibold flex items-center justify-between select-none">
             <span>Select Language</span>

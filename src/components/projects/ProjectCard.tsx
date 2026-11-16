@@ -19,11 +19,11 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   const { t, locale: currentLocale } = useTranslation();
   const content = project.translations[currentLocale] || project.translations.en;
-  // triggerOnce: false allows silky re-reveal when scrolling back up and down
+  // triggerOnce: true ensures cards stay stably rendered once visible without layout lag
   const { ref, inView } = useInView<HTMLElement>({
-    threshold: 0.08,
-    rootMargin: "20px 0px -40px 0px",
-    triggerOnce: false
+    threshold: 0.05,
+    rootMargin: "50px 0px -20px 0px",
+    triggerOnce: true
   });
 
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
@@ -44,11 +44,11 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        transitionDuration: "1350ms",
+        transitionDuration: "600ms",
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
       }}
-      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs will-change-[transform,opacity] ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
       aria-labelledby={`project-title-${project.id}`}
     >
@@ -66,11 +66,10 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           reverse ? "lg:grid-flow-dense" : ""
         }`}
       >
-        {/* Visual / Screenshot Column — 2x Slower Cinema Entrance */}
+        {/* Visual / Screenshot Column */}
         <div
           style={{
-            transitionDuration: "1350ms",
-            transitionDelay: "150ms",
+            transitionDuration: "500ms",
             transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
           }}
           className={`lg:col-span-7 transition-all ${
@@ -78,7 +77,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           } ${
             inView
               ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-6 scale-[0.98]"
+              : "opacity-0 translate-y-4 scale-[0.99]"
           }`}
         >
           <Link
@@ -99,7 +98,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           </Link>
         </div>
 
-        {/* Content Column — Pastdagi ma'lumotlar 2x sekin chiroyli kaskad bilan */}
+        {/* Content Column */}
         <div
           className={`lg:col-span-5 flex flex-col justify-between space-y-5 ${
             reverse ? "lg:col-start-1" : ""
@@ -108,12 +107,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Header Metadata */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "300ms",
+              transitionDuration: "500ms",
+              transitionDelay: "60ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
             className={`space-y-2 transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             <div className="flex items-center justify-between text-xs font-mono">
@@ -142,29 +141,29 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
             </p>
           </div>
 
-          {/* Description — Emerges smoothly */}
+          {/* Description */}
           <p
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "450ms",
+              transitionDuration: "500ms",
+              transitionDelay: "120ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
             className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             {content.description}
           </p>
 
-          {/* Tech Badges — Cascade entrance */}
+          {/* Tech Badges */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "600ms",
+              transitionDuration: "500ms",
+              transitionDelay: "180ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
             className={`flex flex-wrap gap-1.5 pt-1 transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             {project.technologies.slice(0, 5).map((tech) => (
@@ -180,12 +179,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Separate Actions: Internal Case Study vs External Live Link */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "750ms",
+              transitionDuration: "500ms",
+              transitionDelay: "240ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
             className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             <Link

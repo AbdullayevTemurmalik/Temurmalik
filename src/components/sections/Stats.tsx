@@ -77,7 +77,7 @@ export function Stats() {
   const { ref, inView } = useInView<HTMLElement>({
     threshold: 0.1,
     rootMargin: "20px 0px -30px 0px",
-    triggerOnce: false
+    triggerOnce: true
   });
 
   const stats = [
