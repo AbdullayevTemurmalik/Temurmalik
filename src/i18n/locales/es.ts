@@ -45,10 +45,10 @@ export const es: Dictionary = {
     "experienceValue": "3+",
     "experienceLabel": "Años de Experiencia",
     "experienceMeta": "Desarrollo continuo y despliegues",
-    "projectsValue": "30+",
+    "projectsValue": "100+",
     "projectsLabel": "Proyectos Realizados",
     "projectsMeta": "Aplicaciones web, backends y bots",
-    "clientsValue": "5+",
+    "clientsValue": "10+",
     "clientsLabel": "Clientes Reales",
     "clientsMeta": "Empresas y fundadores de productos"
   },

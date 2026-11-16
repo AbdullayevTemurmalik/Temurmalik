@@ -17,8 +17,8 @@ export interface SiteConfig {
   age: number;
   location: string;
   experienceYears: string; // "3 years" / "3+"
-  projectsCount: string;   // "30+"
-  clientsCount: string;    // "5+"
+  projectsCount: string;   // "100+"
+  clientsCount: string;    // "10+"
   url: string;
   isAvailableForWork: boolean;
   availabilityText: string;
@@ -61,8 +61,8 @@ export const siteConfig: SiteConfig = {
   age: 17,
   location: "Uzbekistan",
   experienceYears: "3+",
-  projectsCount: "30+",
-  clientsCount: "5+",
+  projectsCount: "100+",
+  clientsCount: "10+",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://temurmalik.vercel.app",
   isAvailableForWork: true,
   availabilityText: "Available for select engineering contracts",

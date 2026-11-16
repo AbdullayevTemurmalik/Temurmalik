@@ -45,10 +45,10 @@ export const tr: Dictionary = {
     "experienceValue": "3+",
     "experienceLabel": "Yıllık Deneyim",
     "experienceMeta": "Kesintisiz geliştirme ve dağıtım",
-    "projectsValue": "30+",
+    "projectsValue": "100+",
     "projectsLabel": "Tamamlanan Proje",
     "projectsMeta": "Web uygulamaları, backend ve botlar",
-    "clientsValue": "5+",
+    "clientsValue": "10+",
     "clientsLabel": "Gerçek Müşteri",
     "clientsMeta": "Şirketler ve ürün kurucuları"
   },

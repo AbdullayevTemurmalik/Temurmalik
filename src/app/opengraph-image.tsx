@@ -110,7 +110,7 @@ export default async function Image() {
             fontFamily: "monospace"
           }}
         >
-          <div>3+ Years Experience · 30+ Projects · 5+ Real Clients</div>
+          <div>3+ Years Experience · 100+ Projects · 10+ Real Clients</div>
           <div style={{ color: "#79C0A5" }}>github.com/AbdullayevTemurmalik</div>
         </div>
       </div>

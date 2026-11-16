@@ -45,10 +45,10 @@ export const zh: Dictionary = {
     "experienceValue": "3+",
     "experienceLabel": "开发年限",
     "experienceMeta": "持续实战构建与生产交付",
-    "projectsValue": "30+",
+    "projectsValue": "100+",
     "projectsLabel": "已完成项目",
     "projectsMeta": "全栈应用、后端服务与智能机器人",
-    "clientsValue": "5+",
+    "clientsValue": "10+",
     "clientsLabel": "商业客户",
     "clientsMeta": "企业团队与初创产品创始人"
   },

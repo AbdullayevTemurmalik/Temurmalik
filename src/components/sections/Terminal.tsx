@@ -59,8 +59,8 @@ $ cat profile.json
 {
   "age": 17,
   "location": "${siteConfig.location}",
-  "projects": "30+",
-  "clients": "5+",
+  "projects": "100+",
+  "clients": "10+",
   "focus": ["Backend", "AI", "Full-Stack"]
 }
 
@@ -185,8 +185,8 @@ ${t.terminal.statusText}`;
 {`{
   "age": 17,
   "location": "Uzbekistan",
-  "projects": "30+",
-  "clients": "5+",
+  "projects": "100+",
+  "clients": "10+",
   "focus": ["Backend", "AI", "Full-Stack"]
 }`}
             </pre>

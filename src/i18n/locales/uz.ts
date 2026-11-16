@@ -45,10 +45,10 @@ export const uz: Dictionary = {
     "experienceValue": "3+",
     "experienceLabel": "Yillik Tajriba",
     "experienceMeta": "Uzluksiz amaliyot va yetkazib berish",
-    "projectsValue": "30+",
+    "projectsValue": "100+",
     "projectsLabel": "Yakunlangan Loyihalar",
     "projectsMeta": "Veb ilovalar, backendlar va botlar",
-    "clientsValue": "5+",
+    "clientsValue": "10+",
     "clientsLabel": "Real Mijozlar",
     "clientsMeta": "Bizneslar va startap asoschilari"
   },
