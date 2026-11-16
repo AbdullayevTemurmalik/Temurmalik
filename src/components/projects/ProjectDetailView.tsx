@@ -32,7 +32,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const nextContent = nextProject.translations[locale] || nextProject.translations.en;
 
   return (
-    <article className="py-12 sm:py-16">
+    <article className="pt-[15px] md:pt-[20px] lg:pt-[40px] pb-16 sm:pb-24">
       <Container>
         {/* Breadcrumb Navigation */}
         <nav

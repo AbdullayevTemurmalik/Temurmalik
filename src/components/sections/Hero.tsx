@@ -11,7 +11,7 @@ export function Hero() {
   const { t, locale } = useTranslation();
 
   return (
-    <section className="relative pt-12 pb-20 sm:pt-16 sm:pb-28 overflow-hidden">
+    <section className="relative pt-[15px] md:pt-[20px] lg:pt-[40px] pb-16 sm:pb-24 overflow-hidden">
       {/* Background Subtle Tech Pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-[var(--accent-primary)]/5 rounded-full blur-3xl pointer-events-none" />

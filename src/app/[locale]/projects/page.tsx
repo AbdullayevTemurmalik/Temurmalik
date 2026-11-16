@@ -62,7 +62,7 @@ export default async function LocalizedProjectsPage({
   const t = dictionaries[typedLocale];
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="pt-[15px] md:pt-[20px] lg:pt-[40px] pb-16 sm:pb-24">
       <Container>
         {/* Breadcrumb */}
         <nav
