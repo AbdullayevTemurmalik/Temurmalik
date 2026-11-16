@@ -22,6 +22,9 @@ export function Contact() {
     triggerOnce: false
   });
 
+  const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+
   const contactMethods = [
     {
       key: "telegram",
@@ -93,18 +96,34 @@ export function Contact() {
                   target={method.isExternal ? "_blank" : undefined}
                   rel={method.isExternal ? "noopener noreferrer" : undefined}
                   aria-label={method.ariaLabel}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                  }}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
                   style={{
                     transitionDuration: "1350ms",
                     transitionDelay: `${idx * 140}ms`,
                     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
                   }}
-                  className={`group flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs will-change-[transform,opacity] ${
+                  className={`group relative overflow-hidden flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs will-change-[transform,opacity] ${
                     inView
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-6"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  {/* Interactive Cursor Spotlight Glow */}
+                  <div
+                    className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
+                    style={{
+                      opacity: hoveredIdx === idx ? 1 : 0,
+                      background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, rgba(120, 199, 173, 0.08), transparent 80%)`
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative z-10 flex items-center gap-3">
                     <span className="p-2 rounded-md bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">
                       <Icon className="w-4 h-4" />
                     </span>
@@ -118,7 +137,7 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <ArrowUpRight className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--accent-primary)] transition-colors shrink-0" />
+                  <ArrowUpRight className="relative z-10 w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--accent-primary)] transition-colors shrink-0" />
                 </a>
               );
             })}

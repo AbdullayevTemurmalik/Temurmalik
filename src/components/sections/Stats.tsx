@@ -1,9 +1,76 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/i18n/context";
 import { useInView } from "@/components/ui/ScrollReveal";
+
+interface AnimatedNumberProps {
+  value: string;
+  inView: boolean;
+  duration?: number;
+}
+
+function AnimatedNumber({ value, inView, duration = 1200 }: AnimatedNumberProps) {
+  const match = value.match(/^(\d+)(.*)$/);
+  const target = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] : "";
+
+  const [displayCount, setDisplayCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) {
+      const raf = requestAnimationFrame(() => setDisplayCount(0));
+      return () => cancelAnimationFrame(raf);
+    }
+
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      const raf = requestAnimationFrame(() => setDisplayCount(target));
+      return () => cancelAnimationFrame(raf);
+    }
+
+    let startTime: number | null = null;
+    let rafId: number;
+
+    const animate = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // easeOutExpo for a swift, natural numeric roll
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(ease * target);
+
+      setDisplayCount(current);
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(animate);
+      } else {
+        setDisplayCount(target);
+      }
+    };
+
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
+  }, [inView, target, duration]);
+
+  if (!match) {
+    return <span>{value}</span>;
+  }
+
+  return (
+    <span>
+      {displayCount}
+      {suffix}
+    </span>
+  );
+}
 
 export function Stats() {
   const { t } = useTranslation();
@@ -54,9 +121,9 @@ export function Stats() {
             >
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-                  {stat.value}
+                  <AnimatedNumber value={stat.value} inView={inView} />
                 </span>
-                <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)]" />
+                <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" />
               </div>
               <p className="mt-2 text-sm sm:text-base font-medium text-[var(--text-primary)]">
                 {stat.label}

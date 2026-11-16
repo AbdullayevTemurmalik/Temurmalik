@@ -26,9 +26,23 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
     triggerOnce: false
   });
 
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
   return (
     <article
       ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         transitionDuration: "1350ms",
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
@@ -38,6 +52,15 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
       }`}
       aria-labelledby={`project-title-${project.id}`}
     >
+      {/* Subtle dynamic mouse spotlight glow */}
+      <div
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 ease-out z-0"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, rgba(120, 199, 173, 0.075), transparent 75%)`
+        }}
+        aria-hidden="true"
+      />
       <div
         className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
           reverse ? "lg:grid-flow-dense" : ""
