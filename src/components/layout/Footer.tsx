@@ -1,58 +1,35 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { siteConfig } from "@/config/site";
-import { GitHubIcon, TelegramIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
+import {
+  GitHubIcon,
+  TelegramIcon,
+  InstagramIcon,
+  MailIcon
+} from "@/components/ui/Icons";
 import { useTranslation } from "@/i18n/context";
 
 export function Footer() {
   const currentYear = 2026;
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <footer className="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-base)] pt-12 pb-16 text-[var(--text-secondary)]">
+    <footer className="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-base)] py-10 sm:py-12 text-[var(--text-secondary)]">
       <Container>
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-[var(--border-subtle)]">
-          <div className="space-y-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs">
+          {/* Brand & Copyright Notice */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-baseline gap-3 text-center sm:text-left">
             <Wordmark />
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] font-mono max-w-sm">
-              {t.hero.heading} · {t.hero.subheading}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-xs sm:text-sm">
-            <Link href={`/${locale}#about`} className="hover:text-[var(--text-primary)] transition-colors">
-              {t.nav.about}
-            </Link>
-            <Link href={`/${locale}#expertise`} className="hover:text-[var(--text-primary)] transition-colors">
-              {t.nav.expertise}
-            </Link>
-            <Link href={`/${locale}#tech-stack`} className="hover:text-[var(--text-primary)] transition-colors">
-              {t.nav.techStack}
-            </Link>
-            <Link href={`/${locale}#projects`} className="hover:text-[var(--text-primary)] transition-colors">
-              {t.nav.projects}
-            </Link>
-            <Link href={`/${locale}#contact`} className="hover:text-[var(--text-primary)] transition-colors">
-              {t.nav.contact}
-            </Link>
-          </div>
-        </div>
-
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono">
-          <div className="space-y-1">
-            <p className="text-[var(--text-primary)]">
+            <span className="hidden sm:inline text-[var(--border-subtle)]">|</span>
+            <p className="text-[var(--text-secondary)]">
               © {currentYear} {siteConfig.fullName}. {t.footer.rights}
             </p>
-            <p className="text-[var(--text-muted)]">
-              {t.footer.designedBy}
-            </p>
           </div>
 
-          {/* Social Links — All 4 verified channels */}
+          {/* Social Links — All 4 verified authentic channels */}
           <div className="flex items-center gap-3">
             {/* Telegram - Primary */}
             <a

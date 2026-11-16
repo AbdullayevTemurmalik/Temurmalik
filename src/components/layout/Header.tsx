@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -16,9 +16,6 @@ export function Header() {
   const pathname = usePathname();
   const { t, locale } = useTranslation();
 
-  const isManualScrollRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
   const navItems = [
     { label: t.nav.about, href: `/${locale}#about`, sectionId: "about" },
     { label: t.nav.expertise, href: `/${locale}#expertise`, sectionId: "expertise" },
@@ -31,48 +28,18 @@ export function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Don't override active section while smooth-scrolling programmatically from a click
-      if (isManualScrollRef.current) return;
-
-      const isHome = pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
-      if (!isHome) {
+      // Reset active indicator when scrolled back to the top of the page
+      if (window.scrollY < 80) {
         setActiveSection("");
-        return;
       }
-
-      // Check if user has scrolled near bottom of page (guarantee Contact is active)
-      const isBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
-      if (isBottom) {
-        setActiveSection("contact");
-        return;
-      }
-
-      const sections = ["about", "expertise", "tech-stack", "projects", "contact"];
-      const headerFocalPoint = 130;
-      let current = "";
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= headerFocalPoint && rect.bottom > headerFocalPoint) {
-            current = section;
-            break;
-          }
-        }
-      }
-
-      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
     };
-  }, [pathname, locale]);
+  }, []);
 
   // Escape key handler for mobile menu
   useEffect(() => {
@@ -94,14 +61,16 @@ export function Header() {
     }
   }, [mobileMenuOpen]);
 
+  // Active state is explicitly triggered ONLY when the user clicks a nav link
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    const isHome = pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
+    setActiveSection(sectionId);
+    setMobileMenuOpen(false);
+
+    const isHome =
+      pathname === `/${locale}` || pathname === "/" || pathname === `/${locale}/`;
+
     if (isHome) {
       e.preventDefault();
-      setActiveSection(sectionId);
-      isManualScrollRef.current = true;
-      setMobileMenuOpen(false);
-
       const el = document.getElementById(sectionId);
       if (el) {
         const yOffset = -70; // offset for sticky header
@@ -109,13 +78,6 @@ export function Header() {
         window.scrollTo({ top: y, behavior: "smooth" });
         window.history.pushState(null, "", `#${sectionId}`);
       }
-
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => {
-        isManualScrollRef.current = false;
-      }, 850);
-    } else {
-      setMobileMenuOpen(false);
     }
   };
 
@@ -129,10 +91,10 @@ export function Header() {
     >
       <Container>
         <div className="flex items-center justify-between gap-4">
-          {/* Brand Wordmark */}
-          <Wordmark />
+          {/* Brand Wordmark — Clicking smoothly navigates to top and resets active state */}
+          <Wordmark onClick={() => setActiveSection("")} />
 
-          {/* Desktop Navigation Links — Pure, clean typography without noisy hover boxes */}
+          {/* Desktop Navigation Links — Pure, clean typography */}
           <nav
             className="hidden md:flex items-center gap-1 font-mono text-xs sm:text-sm"
             aria-label="Main Navigation"
@@ -151,7 +113,7 @@ export function Header() {
                   }`}
                 >
                   {item.label}
-                  {/* Subtle 2px terminal accent line indicator that ONLY renders on the active link */}
+                  {/* Subtle 2px terminal accent line indicator that ONLY renders when clicked */}
                   {isActive && (
                     <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-all duration-200" />
                   )}
