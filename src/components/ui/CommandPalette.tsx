@@ -133,6 +133,17 @@ export function CommandPalette() {
       }
     },
     {
+      id: "proj-jobify",
+      title: "Jobify",
+      subtitle: "Full-Stack recruitment platform & verified talent marketplace",
+      category: "Projects",
+      icon: TerminalIcon,
+      action: () => {
+        setIsOpen(false);
+        router.push(`/${locale}/projects/jobify`);
+      }
+    },
+    {
       id: "proj-donik",
       title: "Donik Coach AI",
       subtitle: "Multi-model AI coaching system & Telegram bot",

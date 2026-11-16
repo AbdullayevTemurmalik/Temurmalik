@@ -42,7 +42,6 @@ export const localizedProjects: LocalizedProject[] = [
     slug: "runcode-web",
     year: "2026",
     liveUrl: "https://runcode-web.vercel.app/",
-    repoUrl: "https://github.com/AbdullayevTemurmalik/Runcode-Web",
     technologies: [
       "React",
       "TypeScript",
@@ -675,8 +674,645 @@ export const localizedProjects: LocalizedProject[] = [
     }
   },
   {
-    id: "donik-coach-ai",
+    id: "jobify",
     number: "02",
+    slug: "jobify",
+    year: "2025",
+    liveUrl: "https://jobify.uz/",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "REST API",
+      "JWT Authentication"
+    ],
+    accentColor: "#38BDF8",
+    imageSrc: "/images/projects/jobify.jpg",
+    imageAlt: "Jobify modern job search and talent recruitment platform interface preview",
+    status: "Shipped",
+    translations: {
+      en: {
+        title: "Jobify",
+        tagline: "Find aspiring talents and great employers",
+        category: "Full-Stack / Recruitment Platform",
+        description:
+          "A modern recruitment ecosystem engineered to connect verified talents with forward-thinking employers, featuring intuitive candidate profiling, skill-based filtering, and streamlined recruiter pipelines.",
+        detailedDescription: [
+          "Jobify is a full-stack talent acquisition and career discovery platform designed to simplify hiring workflows in Uzbekistan and beyond.",
+          "Built around the vision that finding the best candidate should be frictionless, Jobify connects aspiring talents directly with reputable companies. The platform provides comprehensive candidate profile management, categorized vacancy discovery, real-time application pipelines, and responsive recruiter tooling."
+        ],
+        role: "Full-Stack Developer & Backend Architect",
+        timeline: "2025",
+        statusText: "Shipped in 2025",
+        verifiedHighlights: [
+          "Full-featured recruitment marketplace linking ambitious talent and employers",
+          "Interactive profile builder with verified skills tagging and CV showcase",
+          "Dedicated recruiter dashboard for applicant screening and job listings",
+          "Optimized PostgreSQL schema using Prisma ORM for high-concurrency relational data"
+        ],
+        problemAndGoal:
+          "Finding the best candidate is always hard. Traditional job boards are often cluttered, slow, and lack direct connection between recruiters and aspiring talents. Jobify bridges this gap with an intuitive, transparent platform where companies discover verified talent and professionals land the right opportunities fast.",
+        solutionAndArchitecture: [
+          "Constructed a high-speed, modern responsive user interface optimized for all screen sizes.",
+          "Architected a scalable REST API backend with relational PostgreSQL database modeling for users, vacancies, applications, and skill taxonomies.",
+          "Implemented secure JWT authentication and role-based permissions (Candidate vs Recruiter).",
+          "Engineered robust filtering and search queries for quick matching across industries and skill sets."
+        ],
+        verifiedFeatures: [
+          "Curated talent pool and verified employer directory",
+          "Real-time vacancy search with skill-based filters",
+          "Direct recruiter contact and application tracking system",
+          "Fully responsive mobile and desktop user experience"
+        ],
+        technicalDecisions: [
+          {
+            title: "Relational Modeling for Recruitment",
+            description:
+              "Leveraged PostgreSQL and Prisma ORM to efficiently model complex relationships between job categories, candidate skill tags, and multi-stage application statuses."
+          },
+          {
+            title: "Role-Based Access Control",
+            description:
+              "Engineered distinct permission layers for candidates seeking opportunities and recruiters posting verified jobs, secured with JWT and session validation."
+          },
+          {
+            title: "Performance & SEO Optimization",
+            description:
+              "Applied clean architecture and database indexing to ensure sub-second search response times and rich discoverability for active job listings."
+          }
+        ]
+      },
+      uz: {
+        title: "Jobify",
+        tagline: "Iqtidorli mutaxassislar va nufuzli ish beruvchilarni birlashtiruvchi platforma",
+        category: "Full-Stack / Ish qidirish va Rekruting",
+        description:
+          "Nomzodlar uchun tezkor rezyume joylash va ish topish, ish beruvchilar uchun esa eng sara iqtidorlarni saralab olish imkonini beruvchi to'liq funksional rekruting platformasi.",
+        detailedDescription: [
+          "Jobify — O'zbekistonda zamonaviy ish qidirish va xodimlarni saralab olish (recruitment) jarayonini soddalashtirish uchun yaratilgan keng qamrovli platforma.",
+          "Platforma 'Find aspiring talents and great employers' falsafasi asosida ish beruvchilar va izlanuvchan mutaxassislar o'rtasida to'g'ridan-to'g'ri aloqa ko'prigini o'rnatadi. Tizimda vakansiyalar katalogi, nomzodlar profili, malaka bo'yicha tezkor qidiruv hamda rekruterlar uchun qulay boshqaruv paneli ishlab chiqilgan."
+        ],
+        role: "Full-Stack Dasturchi & Backend Arxitektor",
+        timeline: "2025",
+        statusText: "Ishga tushirilgan (2025)",
+        verifiedHighlights: [
+          "Ish beruvchilar va iqtidorli mutaxassislar uchun to'liq funksional rekruting tizimi",
+          "Ko'nikmalar (skills) va toifalar bo'yicha tezkor saralash filtrlari",
+          "Rekruterlar va nomzodlar uchun alohida ruxsat tizimiga ega kabinetlar",
+          "PostgreSQL va Prisma ORM yordamida optimallashgan relyatsion ma'lumotlar bazasi"
+        ],
+        problemAndGoal:
+          "Munosib nomzod topish doimo murakkab jarayon bo'lib kelgan. Eskirgan e'lonlar doskalari va noqulay filtrlar sababli rekruterlar vaqt yo'qotadi, nomzodlar esa javobsiz qoladi. Jobify'ning maqsadi — har ikki tomon uchun toza, tezkor va shaffof qidiruv ekotizimini taqdim etishdir.",
+        solutionAndArchitecture: [
+          "Foydalanuvchilar uchun qulay, zamonaviy va mobil qurilmalarga to'liq moslashgan veb-interfeys ishlab chiqildi.",
+          "Nomzodlar, kompaniyalar, vakansiyalar va arizalar relyatsion munosabatlarini boshqarish uchun Node.js va PostgreSQL backend arxitekturasi barpo etildi.",
+          "Xavfsiz JWT autentifikatsiyasi va rollarga asoslangan ruxsat tizimi (Nomzod vs Ish beruvchi) joriy qilindi.",
+          "Katta hajmdagi vakansiyalar orasidan qulay filtrlash va tezkor saralash mexanizmlari tatbiq etildi."
+        ],
+        verifiedFeatures: [
+          "Vakansiyalarni sohalar va ko'nikmalar bo'yicha interaktiv qidirish",
+          "Nomzodlar portfoliosi va rezyumesini qulay taqdim etish",
+          "Ish beruvchilar uchun ariza va rezyumelarni saralash boshqaruv paneli",
+          "Mobil va kompyuterlar uchun optimallashgan yuqori tezlikdagi dizayn"
+        ],
+        technicalDecisions: [
+          {
+            title: "Relyatsion ma'lumotlar modeli",
+            description:
+              "Nomzod ko'nikmalari, kompaniya ma'lumotlari va arizalar tarixini yaxlit saqlash uchun PostgreSQL va Prisma ORM dan foydalanildi."
+          },
+          {
+            title: "Xavfsiz rollar boshqaruvi",
+            description:
+              "Nomzod va rekruter profillari uchun alohida huquqlar va xavfsiz JWT sessiya boshqaruvi yo'lga qo'yildi."
+          },
+          {
+            title: "Qidiruv va tezlik optimallashuvi",
+            description:
+              "Vakansiyalarni yuklash va saralash tezligini oshirish uchun indeksatsiyalangan so'rovlar va kesh strategiyalari qo'llanildi."
+          }
+        ]
+      },
+      ru: {
+        title: "Jobify",
+        tagline: "Поиск перспективных талантов и надежных работодателей",
+        category: "Full-Stack / Платформа найма и подбора персонала",
+        description:
+          "Современная экосистема для поиска работы и подбора персонала, связывающая квалифицированных кандидатов с ведущими работодателями.",
+        detailedDescription: [
+          "Jobify — это полнофункциональная веб-платформа для поиска работы и найма специалистов, оптимизирующая процессы рекрутинга в Узбекистане и за его пределами.",
+          "Платформа воплощает принцип прямого взаимодействия между работодателями и соискателями. Включает структурированный каталог вакансий, интерактивные профили талантов, поиск по навыкам и удобный кабинет рекрутера."
+        ],
+        role: "Full-Stack разработчик и бэкенд-архитектор",
+        timeline: "2025",
+        statusText: "Запущено в 2025",
+        verifiedHighlights: [
+          "Полноценный маркетплейс вакансий и квалифицированных специалистов",
+          "Интерактивный конструктор резюме с подтвержденными тегами навыков",
+          "Панель управления рекрутера для публикации вакансий и отбора откликов",
+          "Оптимизированная база данных PostgreSQL и Prisma ORM"
+        ],
+        problemAndGoal:
+          "Поиск идеального кандидата всегда сопряжен с трудностями и потерями времени. Цель Jobify — предоставить удобный, быстрый и прозрачный инструмент, где компании находят нужных специалистов, а соискатели успешно развивают карьеру.",
+        solutionAndArchitecture: [
+          "Создан отзывчивый современный веб-интерфейс, оптимизированный для мобильных и десктопных устройств.",
+          "Спроектирован масштабируемый REST API бэкенд на Node.js с реляционной структурой PostgreSQL для кандидатов, вакансий и откликов.",
+          "Реализована безопасная JWT-аутентификация и разграничение прав доступа (Соискатель / Работодатель).",
+          "Внедрены высокоскоростные алгоритмы фильтрации по навыкам, отраслям и условиям работы."
+        ],
+        verifiedFeatures: [
+          "Каталог проверенных работодателей и специалистов",
+          "Быстрый поиск вакансий с гибкими фильтрами по стеку технологий",
+          "Удобная подача откликов и отслеживание статуса рассмотрения",
+          "Высокая производительность и адаптивный дизайн"
+        ],
+        technicalDecisions: [
+          {
+            title: "Реляционное моделирование базы данных",
+            description:
+              "Использованы PostgreSQL и Prisma ORM для надежной связи между профилями, навыками и статусами рассмотрения резюме."
+          },
+          {
+            title: "Ролевая модель доступа",
+            description:
+              "Разграничены права для кандидатов и рекрутеров с безопасным управлением JWT-токенами и сессиями."
+          },
+          {
+            title: "Оптимизация производительности поиска",
+            description:
+              "Использованы индексированные запросы для мгновенной фильтрации вакансий при высоких нагрузках."
+          }
+        ]
+      },
+      zh: {
+        title: "Jobify",
+        tagline: "发掘优秀人才，连接优质雇主",
+        category: "全栈开发 / 招聘求职平台",
+        description:
+          "连接求职者与顶尖雇主的现代全栈招聘平台，具备候选人档案展示、技能精准检索与高效招聘流。",
+        detailedDescription: [
+          "Jobify 是专为简化招聘流程打造的全栈人才求职与企业招聘平台。",
+          "秉承'发掘优秀人才，连接优质雇主'的理念，Jobify 打破传统繁杂流程，提供清晰的职位分类目录、求职者资料库及招聘者筛选看板。"
+        ],
+        role: "全栈工程师与后端架构师",
+        timeline: "2025",
+        statusText: "已上线 (2025)",
+        verifiedHighlights: [
+          "连接优秀人才与企业的全功能招聘撮合平台",
+          "支持技能标签与简历展示的个人档案系统",
+          "企业招聘看板，支持职位发布与候选人高效筛选",
+          "基于 PostgreSQL 与 Prisma ORM 的高并发关系型数据库设计"
+        ],
+        problemAndGoal:
+          "寻找理想的候选人往往充满挑战。Jobify 旨在打造简洁、透明且高效的求职招聘平台，让企业快速发现人才，让候选人快速获得机遇。",
+        solutionAndArchitecture: [
+          "构建现代响应式前端界面，适配各类移动端与桌面端屏幕。",
+          "基于 Node.js 与 PostgreSQL 构建高可用 REST API，管理用户、职位及应聘记录。",
+          "基于 JWT 实现安全的身份验证与求职者/招聘者角色分权控制。",
+          "优化数据库索引，实现毫秒级职位与技能组合搜索。"
+        ],
+        verifiedFeatures: [
+          "精选人才库与经过验证的企业职位列表",
+          "多维度职位过滤与技能标签检索系统",
+          "直接沟通与应聘进度追踪机制",
+          "全端适配的高性能交互体验"
+        ],
+        technicalDecisions: [
+          {
+            title: "关系型数据建模",
+            description:
+              "利用 PostgreSQL 和 Prisma ORM 高效处理职位、求职者技能及申请状态的复杂关联。"
+          },
+          {
+            title: "基于角色的权限控制",
+            description:
+              "通过 JWT 令牌与安全会话隔离求职者与招聘方的权限。"
+          },
+          {
+            title: "高性能检索与索引优化",
+            description:
+              "针对多条件组合检索设计针对性索引，确保持续毫秒级响应。"
+          }
+        ]
+      },
+      es: {
+        title: "Jobify",
+        tagline: "Encuentra talentos prometedores y excelentes empleadores",
+        category: "Full-Stack / Plataforma de Reclutamiento",
+        description:
+          "Un ecosistema moderno de búsqueda de empleo y contratación que conecta profesionales cualificados con empresas líderes.",
+        detailedDescription: [
+          "Jobify es una plataforma integral de adquisición de talento y búsqueda de empleo diseñada para optimizar los procesos de contratación.",
+          "Conectando directamente a postulantes y empresas, Jobify ofrece herramientas ágiles para publicar vacantes, explorar talentos verificados y gestionar candidaturas."
+        ],
+        role: "Desarrollador Full-Stack y Arquitecto Backend",
+        timeline: "2025",
+        statusText: "Lanzado en 2025",
+        verifiedHighlights: [
+          "Plataforma completa de reclutamiento que conecta empresas con talentos destacados",
+          "Generador interactivo de perfiles con etiquetas de habilidades y currículum",
+          "Panel de control para reclutadores con filtrado rápido de solicitudes",
+          "Base de datos relacional optimizada con PostgreSQL y Prisma ORM"
+        ],
+        problemAndGoal:
+          "Encontrar al mejor candidato siempre es difícil. El objetivo de Jobify es ofrecer una plataforma ágil, limpia y transparente donde las empresas descubran talento verificado y los profesionales impulsen su carrera.",
+        solutionAndArchitecture: [
+          "Desarrollo de una interfaz web reactiva y moderna optimizada para dispositivos móviles.",
+          "Arquitectura de API REST escalable en Node.js y PostgreSQL para la gestión integral de ofertas y postulantes.",
+          "Autenticación segura con JWT y control de acceso basado en roles (Candidato vs Reclutador).",
+          "Filtros de búsqueda avanzados para emparejar habilidades con oportunidades laborales."
+        ],
+        verifiedFeatures: [
+          "Directorio de empresas verificadas y candidatos activos",
+          "Búsqueda de empleo en tiempo real con filtros por habilidades",
+          "Gestión de postulaciones y seguimiento de procesos de selección",
+          "Diseño responsivo de alto rendimiento para móviles y escritorio"
+        ],
+        technicalDecisions: [
+          {
+            title: "Modelado relacional con Prisma",
+            description:
+              "Implementación de PostgreSQL para estructurar perfiles, categorías laborales y flujos de contratación."
+          },
+          {
+            title: "Control de acceso seguro",
+            description:
+              "Gestión de sesiones y permisos independientes para reclutadores y candidatos mediante JWT."
+          },
+          {
+            title: "Optimización de búsquedas",
+            description:
+              "Consultas indexadas para garantizar tiempos de respuesta rápidos en catálogos de empleo."
+          }
+        ]
+      },
+      fr: {
+        title: "Jobify",
+        tagline: "Trouvez des talents prometteurs et d'excellents employeurs",
+        category: "Full-Stack / Plateforme de Recrutement",
+        description:
+          "Un écosystème moderne de recrutement reliant les talents qualifiés aux entreprises innovantes avec gestion dynamique des profils et filtres par compétences.",
+        detailedDescription: [
+          "Jobify est une plateforme complète de recherche d'emploi et de recrutement conçue pour simplifier les processus d'embauche.",
+          "Créée pour fluidifier la rencontre entre candidats ambitieux et recruteurs, la solution propose des outils avancés de gestion de profils, un catalogue d'offres structuré et un suivi des candidatures."
+        ],
+        role: "Développeur Full-Stack & Architecte Backend",
+        timeline: "2025",
+        statusText: "Déployé en 2025",
+        verifiedHighlights: [
+          "Plateforme de mise en relation directe entre talents et recruteurs",
+          "Profils interactifs avec mise en valeur des compétences et CV",
+          "Espace recruteur dédié pour publier des offres et trier les candidatures",
+          "Schéma relationnel robuste sous PostgreSQL avec Prisma ORM"
+        ],
+        problemAndGoal:
+          "Trouver le bon candidat reste un défi permanent. Jobify offre un environnement clair, rapide et sans friction pour permettre aux candidats d'accélérer leur carrière et aux entreprises de recruter efficacement.",
+        solutionAndArchitecture: [
+          "Conception d'une interface responsive et moderne pour ordinateurs et mobiles.",
+          "Mise en place d'une API REST performante sous Node.js connectée à PostgreSQL.",
+          "Authentification JWT sécurisée et séparation stricte des rôles (Candidat vs Recruteur).",
+          "Moteur de recherche et filtres par compétences optimisés pour des résultats instantanés."
+        ],
+        verifiedFeatures: [
+          "Vivier de talents qualifiés et répertoire d'entreprises partenaires",
+          "Recherche d'offres d'emploi en temps réel par compétences",
+          "Système de suivi et de gestion des candidatures",
+          "Expérience utilisateur fluide et performante sur tous supports"
+        ],
+        technicalDecisions: [
+          {
+            title: "Modélisation relationnelle avec Prisma",
+            description:
+              "Architecture de données structurée sous PostgreSQL pour lier offres, compétences et candidatures."
+          },
+          {
+            title: "Gestion des accès et sécurité",
+            description:
+              "Protection des routes et gestion des rôles utilisateurs via JWT et cookies sécurisés."
+          },
+          {
+            title: "Performance et indexation",
+            description:
+              "Optimisation des requêtes de recherche pour des temps de réponse sous la seconde."
+          }
+        ]
+      },
+      ja: {
+        title: "Jobify",
+        tagline: "優秀な人材と優良企業をつなぐプラットフォーム",
+        category: "フルスタック開発 / 採用・求人プラットフォーム",
+        description:
+          "求職者と成長企業を直接つなぎ、スキル検索や応募管理をスムーズにする最新のフルスタック求人プラットフォーム。",
+        detailedDescription: [
+          "Jobify は、求職活動と人材採用プロセスを直感的に変革するために開発された包括的な Web プラットフォームです。",
+          "「優秀な人材と優良企業をつなぐ」という理念に基づき、候補者プロフィール作成、職種別求人検索、採用担当者向け選考管理機能を提供します。"
+        ],
+        role: "フルスタックエンジニア & バックエンド設計",
+        timeline: "2025",
+        statusText: "リリース完了 (2025)",
+        verifiedHighlights: [
+          "優秀な求職者と企業を直接結ぶフル機能マッチングプラットフォーム",
+          "スキルタグや経歴をわかりやすく可視化する候補者プロフィール",
+          "求人掲載と応募者選考を効率化する採用企業向けダッシュボード",
+          "PostgreSQL と Prisma ORM による堅牢なリレーショナルデータベース設計"
+        ],
+        problemAndGoal:
+          "理想の候補者を見つけることは常に困難です。Jobify は無駄を排除した透明性の高い仕組みを提供し、企業と求職者双方の迅速な出会いを実現します。",
+        solutionAndArchitecture: [
+          "モバイルとデスクトップに最適化された高速でモダンな UI を構築。",
+          "Node.js と PostgreSQL によるスケーラブルな REST API バックエンドを設計。",
+          "JWT を用いた安全な認証とロール別アクセス制御（求職者 / 採用担当者）を実装。",
+          "職種やスキル条件による高速なフィルタリング・検索機能を開発。"
+        ],
+        verifiedFeatures: [
+          "厳選された人材プールと信頼できる求人一覧",
+          "リアルタイムな条件絞り込みとスキル検索",
+          "応募ステータス管理とダイレクトな選考フロー",
+          "レスポンシブで使いやすいモダンなデザイン"
+        ],
+        technicalDecisions: [
+          {
+            title: "Prisma によるリレーショナル設計",
+            description:
+              "職種、スキルタグ、応募進捗などの複雑な関連データを PostgreSQL で高信頼にモデリング。"
+          },
+          {
+            title: "ロールベースの認可制御",
+            description:
+              "求職者と採用担当者のアクセス権限を JWT により厳格に分離・保護。"
+          },
+          {
+            title: "高速検索とインデックス設計",
+            description:
+              "複合条件での検索クエリを最適化し、低遅延なレスポンスを確保。"
+          }
+        ]
+      },
+      de: {
+        title: "Jobify",
+        tagline: "Finde aufstrebende Talente und herausragende Arbeitgeber",
+        category: "Full-Stack / Recruiting- und Jobplattform",
+        description:
+          "Ein modernes Recruiting-Ökosystem, das qualifizierte Talente mit zukunftsorientierten Arbeitgebern durch intelligente Filter verbindet.",
+        detailedDescription: [
+          "Jobify ist eine Full-Stack-Plattform für Personalbeschaffung und Karriereentwicklung, die den Einstellungsprozess vereinfacht.",
+          "Die Plattform verbindet Talente direkt mit Unternehmen und bietet detaillierte Bewerberprofile, kategorisierte Stellenangebote und strukturierte Workflows für Personalverantwortliche."
+        ],
+        role: "Full-Stack-Entwickler & Backend-Architekt",
+        timeline: "2025",
+        statusText: "Veröffentlicht 2025",
+        verifiedHighlights: [
+          "Vollwertiger Marktplatz für Bewerber und renommierte Unternehmen",
+          "Interaktiver Profil-Editor mit Kompetenz-Tags und Lebenslaufansicht",
+          "Recruiter-Dashboard zur Verwaltung von Ausschreibungen und Bewerbungen",
+          "Optimierte relationale PostgreSQL-Datenbank mit Prisma ORM"
+        ],
+        problemAndGoal:
+          "Die besten Kandidaten zu finden ist eine Herausforderung. Jobify schafft eine klare, schnelle und transparente Plattform, auf der Unternehmen passende Talente entdecken und Bewerber ihre Karriere voranbringen.",
+        solutionAndArchitecture: [
+          "Entwicklung einer modernen, responsiven Benutzeroberfläche für alle Bildschirmgrößen.",
+          "Aufbau eines skalierbaren Node.js REST API-Backends mit PostgreSQL-Datenbank.",
+          "Sichere JWT-Authentifizierung und rollenbasierte Zugriffskontrolle (Bewerber vs. Recruiter).",
+          "Leistungsstarke Such- und Filterfunktionen nach Fachgebieten und Qualifikationen."
+        ],
+        verifiedFeatures: [
+          "Verifizierte Arbeitgeber und geprüfter Talentpool",
+          "Echtzeit-Stellensuche mit skillbasierten Filtern",
+          "Bewerbungsverfolgung und direkte Kontaktaufnahme",
+          "Hochperformantes, adaptives Design für Mobilgeräte und Desktop"
+        ],
+        technicalDecisions: [
+          {
+            title: "Relationale Modellierung mit Prisma",
+            description:
+              "Effiziente Strukturierung von Stellenangeboten, Skills und Bewerbungsstatus in PostgreSQL."
+          },
+          {
+            title: "Rollenbasierte Sicherheitsarchitektur",
+            description:
+              "Getrennte Berechtigungsebenen für Kandidaten und Recruiter mit JWT-Absicherung."
+          },
+          {
+            title: "Indexierte Datenabfragen",
+            description:
+              "Optimierte Indizes für blitzschnelle Suchergebnisse auch bei wachsendem Datenbestand."
+          }
+        ]
+      },
+      it: {
+        title: "Jobify",
+        tagline: "Trova talenti promettenti e ottimi datori di lavoro",
+        category: "Full-Stack / Piattaforma di Ricerca Lavoro e Recruiting",
+        description:
+          "Un ecosistema moderno di recruiting che connette candidati qualificati e aziende leader con profili dettagliati e filtri intelligenti per competenze.",
+        detailedDescription: [
+          "Jobify è una piattaforma full-stack dedicata all'acquisizione di talenti e alla ricerca di lavoro, pensata per semplificare i processi di selezione.",
+          "Mettendo in contatto diretto candidati e aziende, Jobify offre un catalogo strutturato di posizioni aperte, profili interattivi e strumenti completi per i recruiter."
+        ],
+        role: "Sviluppatore Full-Stack e Architetto Backend",
+        timeline: "2025",
+        statusText: "Rilasciato nel 2025",
+        verifiedHighlights: [
+          "Piattaforma di incontro tra talenti e aziende verificate",
+          "Creazione interattiva del profilo con tag delle competenze e CV",
+          "Dashboard per recruiter con gestione e revisione delle candidature",
+          "Database relazionale PostgreSQL ottimizzato con Prisma ORM"
+        ],
+        problemAndGoal:
+          "Trovare il candidato ideale è sempre difficile. L'obiettivo di Jobify è offrire uno strumento intuitivo, veloce e trasparente per valorizzare i talenti e facilitare le assunzioni.",
+        solutionAndArchitecture: [
+          "Progettazione di un'interfaccia utente moderna e pienamente responsive.",
+          "Sviluppo di API REST scalabili in Node.js collegate a PostgreSQL.",
+          "Autenticazione sicura tramite JWT e controllo degli accessi basato sui ruoli.",
+          "Filtri di ricerca ottimizzati per competenze e categorie professionali."
+        ],
+        verifiedFeatures: [
+          "Elenco di aziende verificate e pool di talenti qualificati",
+          "Ricerca offerte in tempo reale con filtri per competenze",
+          "Monitoraggio dello stato delle candidature e contatto diretto",
+          "Design ad alte prestazioni per smartphone e desktop"
+        ],
+        technicalDecisions: [
+          {
+            title: "Modellazione dati con Prisma",
+            description:
+              "Strutturazione affidabile delle relazioni tra annunci, competenze e candidature in PostgreSQL."
+          },
+          {
+            title: "Gestione ruoli e autorizzazioni",
+            description:
+              "Separazione rigorosa delle funzionalità per candidati e datori di lavoro protetta da JWT."
+          },
+          {
+            title: "Ottimizzazione delle query",
+            description:
+              "Indici mirati sul database per garantire tempi di risposta immediati durante la ricerca."
+          }
+        ]
+      },
+      ko: {
+        title: "Jobify",
+        tagline: "유망한 인재와 최고의 기업을 연결하는 채용 플랫폼",
+        category: "풀스택 개발 / 채용 및 구직 플랫폼",
+        description:
+          "검증된 인재와 성장하는 기업을 직접 연결하고 역량 기반 검색 및 채용 관리를 지원하는 최신 풀스택 구직 플랫폼.",
+        detailedDescription: [
+          "Jobify는 채용 및 구직 절차를 간소화하고 투명성을 높이기 위해 구축된 풀스택 플랫폼입니다.",
+          "최고의 후보자를 찾는 과정을 빠르고 직관적으로 만들기 위해 구직자 프로필 생성, 직무별 채용 공고 검색, 리크루터 전용 지원자 관리 기능을 제공합니다."
+        ],
+        role: "풀스택 개발자 및 백엔드 설계",
+        timeline: "2025",
+        statusText: "2025년 출시",
+        verifiedHighlights: [
+          "유망한 인재와 신뢰할 수 있는 기업을 연결하는 원스톱 채용 플랫폼",
+          "스킬 태그 및 이력서 등록을 지원하는 인터랙티브 프로필 시스템",
+          "공고 등록 및 지원자 선별을 위한 전용 리크루터 대시보드",
+          "PostgreSQL 및 Prisma ORM 기반의 고성능 관계형 데이터베이스"
+        ],
+        problemAndGoal:
+          "적합한 인재를 찾는 것은 늘 어려운 과제입니다. Jobify는 직관적이고 빠른 플랫폼을 제공하여 기업이 인재를 쉽게 발굴하고 전문가가 경력을 성장시킬 수 있도록 돕습니다.",
+        solutionAndArchitecture: [
+          "모바일과 데스크톱 환경에 완벽히 최적화된 반응형 웹 인터페이스 구현.",
+          "Node.js 및 PostgreSQL 기반의 확장 가능한 REST API 백엔드 설계.",
+          "JWT 기반 보안 인증 및 구직자/채용담당자 역할별 권한 분리.",
+          "기술 스택 및 직무 조건에 따른 고속 필터링 시스템 구축."
+        ],
+        verifiedFeatures: [
+          "검증된 기업 목록 및 우수 인재 풀 제공",
+          "스킬 기반 실시간 채용 공고 검색 및 필터링",
+          "지원 현황 추적 및 채용담당자 직접 소통 체계",
+          "모든 기기에서 쾌적한 고성능 반응형 디자인"
+        ],
+        technicalDecisions: [
+          {
+            title: "Prisma 기반 관계형 모델링",
+            description:
+              "채용 공고, 보유 기술, 지원 상태 간의 복잡한 관계를 PostgreSQL로 정밀하게 설계."
+          },
+          {
+            title: "역할 기반 권한 제어",
+            description:
+              "JWT와 안전한 세션 관리를 통해 구직자와 기업 계정의 접근 권한을 철저히 분리."
+          },
+          {
+            title: "검색 성능 최적화",
+            description:
+              "복합 조건 검색 쿼리에 인덱스를 적용하여 대량 데이터에서도 빠른 응답 속도 유지."
+          }
+        ]
+      },
+      tr: {
+        title: "Jobify",
+        tagline: "Yetenekli adaylar ile lider işverenleri buluşturan platform",
+        category: "Full-Stack / İşe Alım ve Kariyer Platformu",
+        description:
+          "Nitelikli adayları vizyoner şirketlerle buluşturan, yetenek bazlı filtreleme ve hızlı başvuru takibi sunan modern kariyer ekosistemi.",
+        detailedDescription: [
+          "Jobify, işe alım ve kariyer keşfi süreçlerini hızlandırmak ve basitleştirmek için geliştirilmiş uçtan uca bir platformdur.",
+          "Doğru adayı bulmanın zorluğunu ortadan kaldırmayı hedefleyen Jobify; detaylı aday profilleri, kategorize edilmiş ilanlar ve işveren yönetim panelleri sunar."
+        ],
+        role: "Full-Stack Geliştirici & Backend Mimarı",
+        timeline: "2025",
+        statusText: "2025'te Yayınlandı",
+        verifiedHighlights: [
+          "Adaylar ve güvenilir şirketleri buluşturan kapsamlı işe alım platformu",
+          "Yetenek etiketleri ve özgeçmiş sunumu sağlayan profil oluşturucu",
+          "İlan yayınlama ve başvuru değerlendirme için özel işveren paneli",
+          "PostgreSQL ve Prisma ORM ile optimize edilmiş ilişkisel veritabanı"
+        ],
+        problemAndGoal:
+          "En doğru adayı bulmak her zaman zordur. Jobify'ın amacı, adayların kariyerlerine yön verebileceği, işverenlerin ise aradıkları yeteneğe saniyeler içinde ulaşabileceği şeffaf ve hızlı bir köprü kurmaktır.",
+        solutionAndArchitecture: [
+          "Tüm cihazlara uyumlu, modern ve yüksek performanslı kullanıcı arayüzü.",
+          "Kullanıcı, ilan ve başvuru ilişkilerini yöneten Node.js ve PostgreSQL tabanlı REST API.",
+          "JWT ile güvenli kimlik doğrulama ve rol tabanlı yetkilendirme (Aday vs İşveren).",
+          "Sektör ve yetenek kriterlerine göre hızlı filtreleme ve arama mekanizması."
+        ],
+        verifiedFeatures: [
+          "Onaylı şirketler dizini ve zengin yetenek havuzu",
+          "Yetenek ve uzmanlık bazlı gerçek zamanlı ilan filtreleme",
+          "Başvuru durumu takibi ve doğrudan iletişim kanalları",
+          "Mobil ve masaüstü için optimize edilmiş akıcı kullanıcı deneyimi"
+        ],
+        technicalDecisions: [
+          {
+            title: "İlişkisel Veri Modellemesi",
+            description:
+              "İlanlar, yetenek etiketleri ve başvuru durumları PostgreSQL ve Prisma ile modellendi."
+          },
+          {
+            title: "Rol Tabanlı Erişim Denetimi",
+            description:
+              "Aday ve işveren yetkileri JWT token ve oturum doğrulamalarıyla güvenliğe alındı."
+          },
+          {
+            title: "Arama Performansı Optimizasyonu",
+            description:
+              "Kombine arama sorgularında anlık yanıtlar sağlamak için veritabanı indeksleri uygulandı."
+          }
+        ]
+      },
+      ar: {
+        title: "Jobify",
+        tagline: "اكتشف المواهب الواعدة وتواصل مع أفضل أصحاب العمل",
+        category: "تطوير شامل / منصة التوظيف والبحث عن عمل",
+        description:
+          "منظومة توظيف متكاملة تربط الكفاءات المتميزة بالشركات الرائدة مع تصفية ذكية للمهارات وإدارة متطورة للمرشحين.",
+        detailedDescription: [
+          "منصة Jobify هي بيئة عمل رقمية مصممة لتسهيل عمليات التوظيف والبحث عن الفرص المهنية في أوزبكستان والمنطقة.",
+          "انطلاقاً من مبدأ أن العثور على المرشح المثالي يجب أن يكون سلساً، توفر المنصة إدارة ملفات الكفاءات، وفهرساً شاملاً للوظائف، وأدوات متقدمة لمسؤولي التوظيف."
+        ],
+        role: "مطور برمجيات شامل ومهندس الواجهات الخلفية",
+        timeline: "2025",
+        statusText: "تم الإطلاق في 2025",
+        verifiedHighlights: [
+          "منصة شاملة للتوفيق بين الكفاءات الواعدة والشركات المعتمدة",
+          "منشئ ملفات تفاعلي يدعم وسم المهارات المعتمدة وعرض السيرة الذاتية",
+          "لوحة تحكم خاصة لأصحاب العمل لإدارة الوظائف وفرز المتقدمين",
+          "قاعدة بيانات علائقية متقدمة باستخدام PostgreSQL و Prisma ORM"
+        ],
+        problemAndGoal:
+          "يعد العثور على أفضل مرشح تحدياً مستمراً. تهدف Jobify إلى توفير منصة شفافة وسريعة تمكن الشركات من اكتشاف الكفاءات وتمكن الباحثين عن عمل من بناء مستقبلهم المهني.",
+        solutionAndArchitecture: [
+          "تطوير واجهة مستخدم تفاعلية وسريعة متوافقة بالكامل مع الهواتف والأجهزة المكتبية.",
+          "بناء واجهة برمجية REST API قابلة للتوسع باستخدام Node.js و PostgreSQL لإدارة الوظائف والطلبات.",
+          "تطبيق نظام مصادقة آمن باستخدام JWT مع إدارة أذونات المستخدمين (باحث عن عمل مقابل صاحب عمل).",
+          "تطوير محرك تصفية متقدم للبحث الفوري وفق المهارات ومجالات العمل."
+        ],
+        verifiedFeatures: [
+          "دليل الشركات المعتمدة وقاعدة بيانات متكاملة للكفاءات",
+          "بحث فوري عن الوظائف مع تصفية ذكية للمهارات",
+          "متابعة دورية لحالات التقديم وتواصل مباشر مع مسؤولي التوظيف",
+          "تجربة استخدام عالية الأداء ومتجاوبة لجميع الأجهزة"
+        ],
+        technicalDecisions: [
+          {
+            title: "نمذجة البيانات العلائقية",
+            description:
+              "استخدام PostgreSQL و Prisma ORM لربط بيانات الوظائف والمهارات وحالات المتقدمين بدقة وكفاءة."
+          },
+          {
+            title: "إدارة الصلاحيات القائمة على الأدوار",
+            description:
+              "فصل مستويات الوصول بين الباحثين عن عمل والشركات مع تأمين الجلسات عبر JWT."
+          },
+          {
+            title: "تحسين سرعة الاستعلام والبحث",
+            description:
+              "تطبيق فهارس متقدمة على قاعدة البيانات لضمان استجابة فورية لعمليات البحث المعقدة."
+          }
+        ]
+      }
+    }
+  },
+  {
+    id: "donik-coach-ai",
+    number: "03",
     slug: "donik-coach-ai",
     year: "2026",
     liveUrl: "https://t.me/donikcoach_bot",
@@ -1253,7 +1889,7 @@ export const localizedProjects: LocalizedProject[] = [
   },
   {
     id: "al-harameen",
-    number: "03",
+    number: "04",
     slug: "al-harameen",
     year: "2025",
     liveUrl: "https://www.alharameenuz.uz/",

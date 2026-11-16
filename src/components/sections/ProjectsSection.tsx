@@ -15,17 +15,17 @@ export function ProjectsSection() {
 
   const filteredProjects = localizedProjects.filter((p) => {
     if (activeFilter === "all") return true;
-    if (activeFilter === "fullstack") return p.id === "runcode-web";
+    if (activeFilter === "fullstack") return p.id === "runcode-web" || p.id === "jobify";
     if (activeFilter === "ai") return p.id === "donik-coach-ai";
-    if (activeFilter === "backend") return p.id === "al-harameen";
+    if (activeFilter === "backend") return p.id === "jobify" || p.id === "al-harameen";
     return true;
   });
 
   const filters: Array<{ id: ProjectFilter; label: string; count: number }> = [
     { id: "all", label: "All Engineering", count: localizedProjects.length },
-    { id: "fullstack", label: "Full-Stack", count: 1 },
+    { id: "fullstack", label: "Full-Stack", count: 2 },
     { id: "ai", label: "AI & Bots", count: 1 },
-    { id: "backend", label: "Backend Architecture", count: 1 }
+    { id: "backend", label: "Backend Architecture", count: 2 }
   ];
 
   return (

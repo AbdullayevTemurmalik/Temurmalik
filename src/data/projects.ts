@@ -43,7 +43,6 @@ export const projects: Project[] = [
       "The frontend delivers a distraction-free, dark-first learning interface built with Vite and Tailwind CSS. The companion backend integrates Node.js, Express, Prisma ORM with PostgreSQL, WebSockets for real-time interactions, and Google Gemini API integration for automated programming assistance."
     ],
     liveUrl: "https://runcode-web.vercel.app/",
-    repoUrl: "https://github.com/AbdullayevTemurmalik/Runcode-Web",
     technologies: [
       "React",
       "TypeScript",
@@ -102,8 +101,79 @@ export const projects: Project[] = [
     imageSrc: "/images/projects/runcode-web.svg"
   },
   {
-    id: "donik-coach-ai",
+    id: "jobify",
     number: "02",
+    slug: "jobify",
+    title: "Jobify",
+    tagline: "Find aspiring talents and great employers",
+    category: "Full-Stack / Recruitment Platform",
+    description:
+      "A modern job search and talent recruitment ecosystem connecting verified job seekers with top-tier employers, featuring dynamic candidate profiles, intelligent skill filtering, and seamless recruiter workflows.",
+    detailedDescription: [
+      "Jobify is a full-stack recruitment platform engineered to streamline hiring pipelines in Uzbekistan and beyond. It eliminates friction by offering dedicated recruiter screening tools and direct talent matching.",
+      "The platform bridges the gap between ambitious job seekers and forward-thinking companies. Built with high performance and accessibility in mind, it provides candidate profile management, categorized vacancy discovery, real-time application tracking, and an intuitive user interface."
+    ],
+    liveUrl: "https://jobify.uz/",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "REST API",
+      "JWT Authentication"
+    ],
+    role: "Full-Stack Developer & Backend Architect",
+    timeline: "2024 — Present",
+    featured: true,
+    status: "Shipped",
+    verifiedHighlights: [
+      "End-to-end recruitment marketplace connecting talent and companies",
+      "Interactive candidate profile builder with skills tagging and CV showcase",
+      "Recruiter dashboard for reviewing applicants and posting vacancies",
+      "Optimized database schema using PostgreSQL and Prisma ORM for relational queries"
+    ],
+    problemAndGoal:
+      "Finding the best candidate is always hard. Traditional job search boards are often cluttered, slow, and lack direct connection between recruiters and aspiring talents. The goal of Jobify is to provide a clean, modern platform where candidates launch their careers and recruiters easily discover and filter verified talent.",
+    solutionAndArchitecture: [
+      "Constructed a fast, responsive user interface with modern component architecture and clean design.",
+      "Architected a scalable REST API backend with relational PostgreSQL database modeling for users, vacancies, applications, and skill taxonomies.",
+      "Implemented secure JWT authentication and role-based permissions (Job Seeker vs Recruiter).",
+      "Engineered high-performance filtering for quick searching across industries, job types, and salary expectations."
+    ],
+    verifiedFeatures: [
+      "Curated talent pool and verified employer directory",
+      "Real-time vacancy search with skill-based filters",
+      "Direct recruiter contact and application tracking system",
+      "Fully responsive mobile and desktop user experience"
+    ],
+    technicalDecisions: [
+      {
+        title: "Relational Modeling for Recruitment",
+        description:
+          "Leveraged PostgreSQL and Prisma ORM to efficiently model complex relationships between job categories, candidate skill tags, and multi-stage application statuses."
+      },
+      {
+        title: "Role-Based Access Control",
+        description:
+          "Engineered distinct permission layers for candidates seeking opportunities and recruiters posting verified jobs, secured with JWT and session validation."
+      },
+      {
+        title: "Performance & SEO Optimization",
+        description:
+          "Applied static generation and edge-ready caching to ensure fast loading times and discoverability on search engines for active job listings."
+      }
+    ],
+    accentColor: "#38BDF8",
+    imageAlt: "Jobify recruitment platform interface preview",
+    imageSrc: "/images/projects/jobify.jpg"
+  },
+  {
+    id: "donik-coach-ai",
+    number: "03",
     slug: "donik-coach-ai",
     title: "Donik Coach AI",
     tagline: "Telegram-based fitness assistant & AI nutrition tracker",
@@ -165,7 +235,7 @@ export const projects: Project[] = [
   },
   {
     id: "al-harameen",
-    number: "03",
+    number: "04",
     slug: "al-harameen",
     title: "Al Harameen Uzbekistan",
     tagline: "Official distributor digital brand & product showcase",

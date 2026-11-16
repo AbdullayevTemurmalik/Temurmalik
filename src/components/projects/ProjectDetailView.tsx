@@ -6,7 +6,7 @@ import Image from "next/image";
 import { LocalizedProject, localizedProjects } from "@/data/localizedProjects";
 import { Container } from "@/components/ui/Container";
 import { TechBadge } from "@/components/ui/TechBadge";
-import { ArrowUpRight, ArrowLeft, ArrowRight, GitHubIcon } from "@/components/ui/Icons";
+import { ArrowUpRight, ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 import { useTranslation } from "@/i18n/context";
 
 interface ProjectDetailViewProps {
@@ -93,18 +93,6 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
               >
                 <span>Telegram Bot</span>
                 <ArrowUpRight className="w-4 h-4 text-[var(--accent-secondary)]" />
-              </a>
-            )}
-
-            {project.repoUrl && (
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-colors"
-              >
-                <GitHubIcon className="w-4 h-4" />
-                <span>{t.projects.sourceCode}</span>
               </a>
             )}
 

@@ -66,6 +66,7 @@ $ cat profile.json
 
 $ ls projects/
 runcode-web/
+jobify/
 donik-coach-ai/
 al-harameen/
 
@@ -124,7 +125,7 @@ ${t.terminal.statusText}`;
       </div>
 
       {/* Terminal Body with Fixed Stable Height (Zero Layout Shift at all steps) */}
-      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-y-auto overflow-x-auto h-[570px] sm:h-[530px] flex flex-col justify-start">
+      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-y-auto overflow-x-auto h-[580px] sm:h-[530px] flex flex-col justify-start">
         {/* Command 1: whoami (Visible at step >= 1) */}
         {visibleSteps >= 1 && (
           <div
@@ -204,8 +205,9 @@ ${t.terminal.statusText}`;
               <span className="text-[var(--accent-primary)] font-semibold">$</span>
               <span className="text-[var(--accent-secondary)]">ls projects/</span>
             </div>
-            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] flex flex-wrap gap-x-3 gap-y-1 sm:grid sm:grid-cols-3 sm:gap-1 text-xs">
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] flex flex-wrap gap-x-3 gap-y-1 sm:grid sm:grid-cols-4 sm:gap-1 text-xs">
               <span className="text-[var(--accent-primary)]">runcode-web/</span>
+              <span className="text-[#38BDF8]">jobify/</span>
               <span className="text-[var(--accent-secondary)]">donik-coach-ai/</span>
               <span className="text-[var(--accent-highlight)]">al-harameen/</span>
             </div>

@@ -1,0 +1,82 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#0B0F19" />
+  
+  <!-- Subtle Grid -->
+  <defs>
+    <pattern id="jobifyGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.8" opacity="0.4" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="750" fill="url(#jobifyGrid)" />
+
+  <!-- Top App Navigation -->
+  <rect x="40" y="30" width="1120" height="60" rx="12" fill="#131B2E" stroke="#1E293B" stroke-width="1.5" />
+  <circle cx="72" cy="60" r="6" fill="#EF4444" opacity="0.8" />
+  <circle cx="94" cy="60" r="6" fill="#F59E0B" opacity="0.8" />
+  <circle cx="116" cy="60" r="6" fill="#10B981" opacity="0.8" />
+
+  <!-- Logo & Nav Links -->
+  <text x="150" y="66" fill="#38BDF8" font-family="sans-serif" font-size="18" font-weight="bold">Jobify.uz</text>
+  <text x="280" y="65" fill="#94A3B8" font-family="sans-serif" font-size="13">Talents</text>
+  <text x="360" y="65" fill="#94A3B8" font-family="sans-serif" font-size="13">Jobs</text>
+  <text x="430" y="65" fill="#94A3B8" font-family="sans-serif" font-size="13">Employers</text>
+
+  <rect x="940" y="46" width="90" height="28" rx="6" fill="transparent" stroke="#38BDF8" stroke-width="1" />
+  <text x="965" y="65" fill="#38BDF8" font-family="sans-serif" font-size="12" font-weight="600">Sign In</text>
+
+  <rect x="1045" y="46" width="95" height="28" rx="6" fill="#0284C7" />
+  <text x="1068" y="65" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="600">Join Now</text>
+
+  <!-- Hero Main Card -->
+  <rect x="40" y="110" width="1120" height="380" rx="14" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" />
+  
+  <text x="90" y="190" fill="#F8FAFC" font-family="sans-serif" font-size="36" font-weight="bold">Find aspiring talents</text>
+  <text x="90" y="235" fill="#38BDF8" font-family="sans-serif" font-size="36" font-weight="bold">&amp; great employers</text>
+  
+  <text x="90" y="280" fill="#94A3B8" font-family="sans-serif" font-size="16">Finding the best candidate is always hard. Tell us what you are</text>
+  <text x="90" y="306" fill="#94A3B8" font-family="sans-serif" font-size="16">looking for and choose one from among the best.</text>
+
+  <!-- Search Bar in Hero -->
+  <rect x="90" y="340" width="560" height="54" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1" />
+  <text x="115" y="373" fill="#64748B" font-family="sans-serif" font-size="14">Search role (e.g. Full-Stack Engineer, Product Designer)...</text>
+  <rect x="530" y="347" width="110" height="40" rx="8" fill="#38BDF8" />
+  <text x="560" y="372" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="bold">Find Job</text>
+
+  <!-- Right Hero Illustration Placeholder / Talent Card -->
+  <rect x="730" y="145" width="380" height="300" rx="12" fill="#131D33" stroke="#1E293B" stroke-width="1.5" />
+  <circle cx="920" cy="220" r="44" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="2" />
+  <circle cx="920" cy="210" r="16" fill="#38BDF8" />
+  <path d="M 896 245 C 896 230 944 230 944 245 Z" fill="#38BDF8" />
+
+  <text x="920" y="290" text-anchor="middle" fill="#F8FAFC" font-family="sans-serif" font-size="16" font-weight="bold">Professional Recruiter</text>
+  <text x="920" y="315" text-anchor="middle" fill="#94A3B8" font-family="sans-serif" font-size="13">Matching verified skills with verified companies</text>
+
+  <rect x="760" y="345" width="320" height="36" rx="8" fill="#1E293B" />
+  <text x="920" y="368" text-anchor="middle" fill="#38BDF8" font-family="monospace" font-size="12">Verified Talent Pool · Fast Screening</text>
+
+  <!-- Bottom 4 Feature Pillars -->
+  <rect x="40" y="510" width="265" height="200" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+  <text x="65" y="550" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold">Professional recruiter</text>
+  <text x="65" y="580" fill="#94A3B8" font-family="sans-serif" font-size="12">Finding the best candidate</text>
+  <text x="65" y="600" fill="#94A3B8" font-family="sans-serif" font-size="12">is always hard with classic</text>
+  <text x="65" y="620" fill="#94A3B8" font-family="sans-serif" font-size="12">filtering channels.</text>
+
+  <rect x="325" y="510" width="265" height="200" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+  <text x="350" y="550" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold">Find right job fast</text>
+  <text x="350" y="580" fill="#94A3B8" font-family="sans-serif" font-size="12">Launch your career on Jobify</text>
+  <text x="350" y="600" fill="#94A3B8" font-family="sans-serif" font-size="12">with direct candidate to</text>
+  <text x="350" y="620" fill="#94A3B8" font-family="sans-serif" font-size="12">employer connection.</text>
+
+  <rect x="610" y="510" width="265" height="200" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+  <text x="635" y="550" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold">Skills matching</text>
+  <text x="635" y="580" fill="#94A3B8" font-family="sans-serif" font-size="12">As a pro recruiter, match</text>
+  <text x="635" y="600" fill="#94A3B8" font-family="sans-serif" font-size="12">various skills with dynamic</text>
+  <text x="635" y="620" fill="#94A3B8" font-family="sans-serif" font-size="12">candidate profiles.</text>
+
+  <rect x="895" y="510" width="265" height="200" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1" />
+  <text x="920" y="550" fill="#38BDF8" font-family="sans-serif" font-size="15" font-weight="bold">Zero noise search</text>
+  <text x="920" y="580" fill="#94A3B8" font-family="sans-serif" font-size="12">Landing a good gig without</text>
+  <text x="920" y="600" fill="#94A3B8" font-family="sans-serif" font-size="12">repetitive applications or</text>
+  <text x="920" y="620" fill="#94A3B8" font-family="sans-serif" font-size="12">unresponsive pipelines.</text>
+</svg>
