@@ -3,19 +3,19 @@
 @layer base {
   :root,
   html.dark {
-    --bg-base: #0B0F14;
-    --bg-surface: #111820;
-    --bg-surface-hover: #16222E;
-    --bg-subtle: #1B2633;
-    --border-subtle: #27313B;
-    --border-hover: #3A4754;
-    --text-primary: #EDF2F7;
-    --text-secondary: #9BA7B4;
-    --text-muted: #687684;
+    --bg-base: #050507;
+    --bg-surface: #0C0C0E;
+    --bg-surface-hover: #131418;
+    --bg-subtle: #17181D;
+    --border-subtle: #1E1F24;
+    --border-hover: #2E3038;
+    --text-primary: #F2F4F7;
+    --text-secondary: #9CA3AF;
+    --text-muted: #636773;
     --accent-primary: #78C7AD;
-    --accent-secondary: #79B8FF;
+    --accent-secondary: #60A5FA;
     --accent-highlight: #E3B341;
-    --grid-line: rgba(39, 49, 59, 0.45);
+    --grid-line: rgba(255, 255, 255, 0.035);
     color-scheme: dark;
   }
 
@@ -161,6 +161,52 @@ html {
 [dir="rtl"] a[href^="https://github.com"] {
   direction: ltr !important;
   text-align: left !important;
+}
+
+/* GPU-Accelerated Ticker Marquee Keyframes */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 26s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 26s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 

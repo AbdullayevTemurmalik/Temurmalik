@@ -10,6 +10,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { Approach } from "@/components/sections/Approach";
 import { Contact } from "@/components/sections/Contact";
+import { TechMarquee } from "@/components/ui/TechMarquee";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -159,8 +160,29 @@ export default async function LocalizedHomePage({ params }: HomePageProps) {
     <>
       <Hero />
       <Stats />
+      <TechMarquee
+        items={[
+          "Backend Developer",
+          "Full-Stack Developer",
+          "Frontend Developer",
+          "AI Engineer",
+          "Software Engineer"
+        ]}
+        direction="left"
+      />
       <About />
       <Expertise />
+      <TechMarquee
+        items={[
+          "Node.js",
+          "React.js",
+          "Next.js",
+          "Vue.js",
+          "Python",
+          "JavaScript"
+        ]}
+        direction="right"
+      />
       <TechStack />
       <ProjectsSection />
       <Approach />

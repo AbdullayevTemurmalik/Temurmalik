@@ -1,13 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
 import { useTranslation } from "@/i18n/context";
 
 export function Terminal() {
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<"whoami" | "uptime" | "profile" | "projects" | "status">("whoami");
+  const [activeTab, setActiveTab] = useState<
+    "whoami" | "uptime" | "profile" | "projects" | "status"
+  >("whoami");
+  // Steps 1 to 5 reveal sequentially every 2.2 seconds
+  const [visibleSteps, setVisibleSteps] = useState<number>(1);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Respect reduced motion
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      const raf = requestAnimationFrame(() => setVisibleSteps(5));
+      return () => cancelAnimationFrame(raf);
+    }
+
+    // Sequentially reveal 1 command every 2.2 seconds
+    let current = 1;
+    const interval = setInterval(() => {
+      current += 1;
+      setVisibleSteps(current);
+      if (current >= 5) {
+        clearInterval(interval);
+      }
+    }, 2200);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const handleTabClick = (
+    tab: "whoami" | "uptime" | "profile" | "projects" | "status"
+  ) => {
+    setActiveTab(tab);
+    // If user clicks a tab, instantly reveal all steps
+    setVisibleSteps(5);
+  };
 
   const fullTerminalText = `temurmalik@portfolio: ~
 $ whoami
@@ -38,6 +75,7 @@ ${t.terminal.statusText}`;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(fullTerminalText);
     setCopied(true);
+    setVisibleSteps(5);
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -73,7 +111,7 @@ ${t.terminal.statusText}`;
           <button
             key={tab}
             type="button"
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleTabClick(tab)}
             className={`px-2 py-0.5 rounded transition-colors ${
               activeTab === tab
                 ? "bg-[var(--accent-primary)]/15 text-[var(--accent-primary)] font-semibold border border-[var(--accent-primary)]/30"
@@ -85,48 +123,65 @@ ${t.terminal.statusText}`;
         ))}
       </div>
 
-      {/* Terminal Body */}
-      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-x-auto">
-        {/* Command 1: whoami */}
-        <div className={activeTab !== "whoami" ? "opacity-75" : ""}>
-          <div className="flex items-center gap-2 text-[var(--text-primary)]">
-            <span className="text-[var(--accent-primary)] font-semibold">$</span>
-            <span className="text-[var(--accent-secondary)]">whoami</span>
+      {/* Terminal Body with Sequential Step-by-Step Reveal */}
+      <div className="p-4 sm:p-5 text-[var(--text-secondary)] space-y-4 overflow-x-auto min-h-[340px]">
+        {/* Command 1: whoami (Visible at step >= 1) */}
+        {visibleSteps >= 1 && (
+          <div
+            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              activeTab !== "whoami" ? "opacity-75" : ""
+            }`}
+          >
+            <div className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-primary)] font-semibold">$</span>
+              <span className="text-[var(--accent-secondary)]">whoami</span>
+            </div>
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-primary)]">
+              <p className="font-semibold text-[var(--text-primary)]">{siteConfig.fullName}</p>
+              <p className="text-[var(--text-secondary)]">{t.terminal.role}</p>
+              <p className="text-[var(--accent-primary)] text-xs">
+                {t.terminal.focusLabel}: {t.terminal.focusValue}
+              </p>
+            </div>
           </div>
-          <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-primary)]">
-            <p className="font-semibold text-[var(--text-primary)]">{siteConfig.fullName}</p>
-            <p className="text-[var(--text-secondary)]">{t.terminal.role}</p>
-            <p className="text-[var(--accent-primary)] text-xs">
-              {t.terminal.focusLabel}: {t.terminal.focusValue}
-            </p>
-          </div>
-        </div>
+        )}
 
-        {/* Command 2: uptime */}
-        <div className={activeTab !== "uptime" ? "opacity-75" : ""}>
-          <div className="flex items-center gap-2 text-[var(--text-primary)]">
-            <span className="text-[var(--accent-primary)] font-semibold">$</span>
-            <span className="text-[var(--accent-secondary)]">uptime</span>
+        {/* Command 2: uptime (Visible at step >= 2) */}
+        {visibleSteps >= 2 && (
+          <div
+            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              activeTab !== "uptime" ? "opacity-75" : ""
+            }`}
+          >
+            <div className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-primary)] font-semibold">$</span>
+              <span className="text-[var(--accent-secondary)]">uptime</span>
+            </div>
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-primary)]">
+              <p>
+                <span className="text-[var(--accent-primary)] font-semibold">
+                  3 {t.terminal.yearsUnit}
+                </span>{" "}
+                <span className="text-[var(--text-muted)] text-xs">
+                  ({t.terminal.uptimeDesc})
+                </span>
+              </p>
+            </div>
           </div>
-          <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-primary)]">
-            <p>
-              <span className="text-[var(--accent-primary)] font-semibold">
-                3 {t.terminal.yearsUnit}
-              </span>{" "}
-              <span className="text-[var(--text-muted)] text-xs">
-                ({t.terminal.uptimeDesc})
-              </span>
-            </p>
-          </div>
-        </div>
+        )}
 
-        {/* Command 3: cat profile.json */}
-        <div className={activeTab !== "profile" ? "opacity-75" : ""}>
-          <div className="flex items-center gap-2 text-[var(--text-primary)]">
-            <span className="text-[var(--accent-primary)] font-semibold">$</span>
-            <span className="text-[var(--accent-secondary)]">cat profile.json</span>
-          </div>
-          <pre className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-secondary)] text-xs font-mono">
+        {/* Command 3: cat profile.json (Visible at step >= 3) */}
+        {visibleSteps >= 3 && (
+          <div
+            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              activeTab !== "profile" ? "opacity-75" : ""
+            }`}
+          >
+            <div className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-primary)] font-semibold">$</span>
+              <span className="text-[var(--accent-secondary)]">cat profile.json</span>
+            </div>
+            <pre className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-[var(--text-secondary)] text-xs font-mono">
 {`{
   "age": 17,
   "location": "Uzbekistan",
@@ -135,41 +190,59 @@ ${t.terminal.statusText}`;
   "clients": "5+",
   "focus": ["Backend", "AI", "Full-Stack"]
 }`}
-          </pre>
-        </div>
+            </pre>
+          </div>
+        )}
 
-        {/* Command 4: ls projects/ */}
-        <div className={activeTab !== "projects" ? "opacity-75" : ""}>
-          <div className="flex items-center gap-2 text-[var(--text-primary)]">
-            <span className="text-[var(--accent-primary)] font-semibold">$</span>
-            <span className="text-[var(--accent-secondary)]">ls projects/</span>
+        {/* Command 4: ls projects/ (Visible at step >= 4) */}
+        {visibleSteps >= 4 && (
+          <div
+            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              activeTab !== "projects" ? "opacity-75" : ""
+            }`}
+          >
+            <div className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-primary)] font-semibold">$</span>
+              <span className="text-[var(--accent-secondary)]">ls projects/</span>
+            </div>
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-3 gap-1 text-xs">
+              <span className="text-[var(--accent-primary)]">runcode-web/</span>
+              <span className="text-[var(--accent-secondary)]">donik-coach-ai/</span>
+              <span className="text-[var(--accent-highlight)]">al-harameen/</span>
+            </div>
           </div>
-          <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-3 gap-1 text-xs">
-            <span className="text-[var(--accent-primary)]">runcode-web/</span>
-            <span className="text-[var(--accent-secondary)]">donik-coach-ai/</span>
-            <span className="text-[var(--accent-highlight)]">al-harameen/</span>
-          </div>
-        </div>
+        )}
 
-        {/* Command 5: status */}
-        <div className={activeTab !== "status" ? "opacity-75" : ""}>
-          <div className="flex items-center gap-2 text-[var(--text-primary)]">
-            <span className="text-[var(--accent-primary)] font-semibold">$</span>
-            <span className="text-[var(--accent-secondary)]">status</span>
+        {/* Command 5: status (Visible at step >= 5) */}
+        {visibleSteps >= 5 && (
+          <div
+            className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              activeTab !== "status" ? "opacity-75" : ""
+            }`}
+          >
+            <div className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-primary)] font-semibold">$</span>
+              <span className="text-[var(--accent-secondary)]">status</span>
+            </div>
+            <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-primary)] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-primary)]" />
+              </span>
+              <span>{t.terminal.statusText}</span>
+            </div>
           </div>
-          <div className="mt-1 pl-3 border-l border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-primary)] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-primary)]" />
-            </span>
-            <span>{t.terminal.statusText}</span>
-          </div>
-        </div>
+        )}
 
-        {/* Active blinking terminal prompt */}
+        {/* Active blinking terminal prompt (stays at current loading position or bottom) */}
         <div className="pt-2 flex items-center gap-2 text-[var(--text-secondary)]">
           <span className="text-[var(--accent-primary)] font-semibold">$</span>
           <span className="inline-block w-2 h-4 bg-[var(--accent-primary)] animate-cursor-blink" />
+          {visibleSteps < 5 && (
+            <span className="text-[10px] text-[var(--text-muted)] animate-pulse">
+              executing...
+            </span>
+          )}
         </div>
       </div>
     </div>
