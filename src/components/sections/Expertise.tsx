@@ -11,7 +11,7 @@ export function Expertise() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
     threshold: 0.08,
-    rootMargin: "20px 0px -30px 0px",
+    rootMargin: "0px 0px -65px 0px",
     triggerOnce: true
   });
 
@@ -42,14 +42,14 @@ export function Expertise() {
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
               style={{
-                transitionDuration: "500ms",
-                transitionDelay: `${idx * 70}ms`,
-                transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+                transitionDuration: "950ms",
+                transitionDelay: `${idx * 130}ms`,
+                transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
               }}
-              className={`group relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] shadow-xs ${
+              className={`group relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 transition-[transform,opacity,border-color,background-color] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] shadow-xs ${
                 inView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-9 scale-[0.97]"
               }`}
             >
               {/* Interactive Cursor Spotlight Glow */}

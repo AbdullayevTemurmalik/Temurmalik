@@ -10,8 +10,8 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function TechStack() {
   const { t, locale } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.08,
-    rootMargin: "20px 0px -30px 0px",
+    threshold: 0.06,
+    rootMargin: "0px 0px -65px 0px",
     triggerOnce: true
   });
 
@@ -28,12 +28,12 @@ export function TechStack() {
           {/* Left Column: Section Narrative & Technical Focus */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "50ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "80ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-4 lg:sticky lg:top-24 space-y-6 transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            className={`lg:col-span-4 lg:sticky lg:top-24 space-y-6 transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-9"
             }`}
           >
             <div className="flex items-center gap-2">
@@ -95,15 +95,15 @@ export function TechStack() {
           {/* Right Column: 6 Categories (Frontend, Backend, Database, DevOps, Tools, AI Integration) */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "100ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "1000ms",
+              transitionDelay: "180ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)]/60 overflow-hidden shadow-sm transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)]/60 overflow-hidden shadow-sm transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-9"
             }`}
           >
-            {techStackCategories.map((category) => {
+            {techStackCategories.map((category, idx) => {
               const categoryName = category.names[locale] || category.names.en;
               const shortLabel =
                 category.shortLabels[locale] || category.shortLabels.en;
@@ -113,7 +113,14 @@ export function TechStack() {
               return (
                 <div
                   key={category.id}
-                  className="p-6 sm:p-7 space-y-3.5 transition-colors hover:bg-[var(--bg-surface-hover)]"
+                  style={{
+                    transitionDuration: "800ms",
+                    transitionDelay: `${200 + idx * 85}ms`,
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
+                  }}
+                  className={`p-6 sm:p-7 space-y-3.5 transition-[transform,opacity,background-color] hover:bg-[var(--bg-surface-hover)] ${
+                    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+                  }`}
                 >
                   {/* Category Header */}
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">

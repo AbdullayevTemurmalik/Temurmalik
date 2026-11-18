@@ -75,8 +75,8 @@ function AnimatedNumber({ value, inView, duration = 1200 }: AnimatedNumberProps)
 export function Stats() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLElement>({
-    threshold: 0.1,
-    rootMargin: "20px 0px -30px 0px",
+    threshold: 0.12,
+    rootMargin: "0px 0px -60px 0px",
     triggerOnce: true
   });
 
@@ -109,14 +109,14 @@ export function Stats() {
             <div
               key={stat.label}
               style={{
-                transitionDuration: "500ms",
-                transitionDelay: `${idx * 80}ms`,
-                transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+                transitionDuration: "950ms",
+                transitionDelay: `${idx * 150}ms`,
+                transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
               }}
-              className={`flex flex-col transition-all ${
+              className={`flex flex-col transition-[transform,opacity] ${
                 inView
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-8"
               } ${idx === 0 ? "" : "pt-6 md:pt-0 md:pl-8 lg:pl-10"}`}
             >
               <div className="flex items-baseline gap-2">

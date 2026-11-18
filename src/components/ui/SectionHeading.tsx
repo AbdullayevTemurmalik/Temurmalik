@@ -19,8 +19,8 @@ export function SectionHeading({
   id
 }: SectionHeadingProps) {
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.08,
-    rootMargin: "20px 0px -30px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -65px 0px",
     triggerOnce: true
   });
 
@@ -29,11 +29,11 @@ export function SectionHeading({
       ref={ref}
       id={id}
       style={{
-        transitionDuration: "500ms",
-        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+        transitionDuration: "950ms",
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
       }}
-      className={`mb-10 sm:mb-14 transition-all ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      className={`mb-10 sm:mb-14 transition-[transform,opacity] ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       } ${className}`}
     >
       <div className="flex items-center gap-2 mb-3">

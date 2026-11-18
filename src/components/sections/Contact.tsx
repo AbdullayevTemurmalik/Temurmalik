@@ -17,8 +17,8 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function Contact() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.08,
-    rootMargin: "20px 0px -30px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -65px 0px",
     triggerOnce: true
   });
 
@@ -103,14 +103,14 @@ export function Contact() {
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                   style={{
-                    transitionDuration: "500ms",
-                    transitionDelay: `${idx * 60}ms`,
-                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+                    transitionDuration: "900ms",
+                    transitionDelay: `${idx * 115}ms`,
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
                   }}
-                  className={`group relative overflow-hidden flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs ${
+                  className={`group relative overflow-hidden flex items-center justify-between p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] transition-[transform,opacity,border-color,background-color] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-xs ${
                     inView
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-8 scale-[0.97]"
                   }`}
                 >
                   {/* Interactive Cursor Spotlight Glow */}

@@ -9,8 +9,8 @@ import { useInView } from "@/components/ui/ScrollReveal";
 export function About() {
   const { t } = useTranslation();
   const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.08,
-    rootMargin: "20px 0px -30px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -65px 0px",
     triggerOnce: true
   });
 
@@ -30,14 +30,14 @@ export function About() {
           {/* Main Story & Philosophy */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "60ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "100ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-7 space-y-5 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed transition-all ${
+            className={`lg:col-span-7 space-y-5 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed transition-[transform,opacity] ${
               inView
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+                : "opacity-0 translate-y-9"
             }`}
           >
             {t.about.paragraphs.map((p, idx) => (
@@ -48,14 +48,14 @@ export function About() {
           {/* Quick Technical Specs / Profile Summary Card */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "120ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "1050ms",
+              transitionDelay: "240ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs sm:text-sm shadow-xs transition-all ${
+            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs sm:text-sm shadow-xs transition-[transform,opacity] ${
               inView
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-9 scale-[0.97]"
             }`}
           >
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border-subtle)] text-[var(--text-primary)]">

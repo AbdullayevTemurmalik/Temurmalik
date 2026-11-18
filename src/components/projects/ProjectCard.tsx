@@ -19,10 +19,10 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   const { t, locale: currentLocale } = useTranslation();
   const content = project.translations[currentLocale] || project.translations.en;
-  // triggerOnce: true ensures cards stay stably rendered once visible without layout lag
+  // Trigger smoothly right as each card enters the lower viewport; stay solid once revealed
   const { ref, inView } = useInView<HTMLElement>({
-    threshold: 0.05,
-    rootMargin: "50px 0px -20px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -70px 0px",
     triggerOnce: true
   });
 
@@ -44,11 +44,11 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        transitionDuration: "600ms",
-        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+        transitionDuration: "1000ms",
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
       }}
-      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-[transform,opacity,border-color,background-color] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       aria-labelledby={`project-title-${project.id}`}
     >
@@ -69,15 +69,16 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
         {/* Visual / Screenshot Column */}
         <div
           style={{
-            transitionDuration: "500ms",
-            transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+            transitionDuration: "1050ms",
+            transitionDelay: "120ms",
+            transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
           }}
-          className={`lg:col-span-7 transition-all ${
+          className={`lg:col-span-7 transition-[transform,opacity] ${
             reverse ? "lg:col-start-6" : ""
           } ${
             inView
               ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-4 scale-[0.99]"
+              : "opacity-0 translate-y-7 scale-[0.96]"
           }`}
         >
           <Link
@@ -107,12 +108,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Header Metadata */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "60ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "220ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`space-y-2 transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            className={`space-y-2 transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             <div className="flex items-center justify-between text-xs font-mono">
@@ -144,12 +145,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Description */}
           <p
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "120ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "320ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            className={`text-sm text-[var(--text-secondary)] leading-relaxed transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             {content.description}
@@ -158,12 +159,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Tech Badges */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "180ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "420ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`flex flex-wrap gap-1.5 pt-1 transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            className={`flex flex-wrap gap-1.5 pt-1 transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             {project.technologies.slice(0, 5).map((tech) => (
@@ -179,12 +180,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           {/* Separate Actions: Internal Case Study vs External Live Link */}
           <div
             style={{
-              transitionDuration: "500ms",
-              transitionDelay: "240ms",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+              transitionDuration: "950ms",
+              transitionDelay: "520ms",
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-all ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            className={`flex flex-wrap items-center gap-3 pt-3 border-t border-[var(--border-subtle)] font-mono text-xs transition-[transform,opacity] ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             <Link

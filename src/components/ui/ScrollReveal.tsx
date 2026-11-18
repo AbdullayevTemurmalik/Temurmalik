@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useTransition } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export interface UseInViewOptions {
   threshold?: number;
@@ -9,22 +9,20 @@ export interface UseInViewOptions {
 }
 
 /**
- * High-performance, lightweight hook using native IntersectionObserver.
- * GPU-accelerated with full prefers-reduced-motion support.
- * Continuous reveal (triggerOnce: false) ensures scrolling up and down keeps animations alive.
+ * Lightweight, mobile-friendly IntersectionObserver hook.
+ * Triggers silky GPU-composited scroll reveals right as content enters the viewport.
  */
 export function useInView<T extends HTMLElement = HTMLDivElement>(
   options: UseInViewOptions = {}
 ) {
   const {
     threshold = 0.08,
-    rootMargin = "20px 0px -30px 0px",
+    rootMargin = "0px 0px -65px 0px",
     triggerOnce = true
   } = options;
 
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
-  const [, startTransition] = useTransition();
 
   useEffect(() => {
     const element = ref.current;
@@ -35,36 +33,24 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      const timer = requestAnimationFrame(() => {
-        startTransition(() => {
-          setInView(true);
-        });
-      });
+      const timer = requestAnimationFrame(() => setInView(true));
       return () => cancelAnimationFrame(timer);
     }
 
     if (!("IntersectionObserver" in window)) {
-      const timer = requestAnimationFrame(() => {
-        startTransition(() => {
-          setInView(true);
-        });
-      });
+      const timer = requestAnimationFrame(() => setInView(true));
       return () => cancelAnimationFrame(timer);
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          startTransition(() => {
-            setInView(true);
-          });
+          setInView(true);
           if (triggerOnce) {
             observer.unobserve(element);
           }
         } else if (!triggerOnce) {
-          startTransition(() => {
-            setInView(false);
-          });
+          setInView(false);
         }
       },
       { threshold, rootMargin }
@@ -85,7 +71,7 @@ export interface ScrollRevealProps {
   className?: string;
   animation?: "fade-up" | "fade-in" | "fade-down" | "scale-up";
   delay?: number; // ms
-  duration?: number; // ms — 2x slower cinematic pace
+  duration?: number; // ms
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
@@ -97,9 +83,9 @@ export function ScrollReveal({
   className = "",
   animation = "fade-up",
   delay = 0,
-  duration = 500,
+  duration = 1000,
   threshold = 0.08,
-  rootMargin = "20px 0px -30px 0px",
+  rootMargin = "0px 0px -65px 0px",
   triggerOnce = true,
   as: Component = "div"
 }: ScrollRevealProps) {
@@ -120,12 +106,12 @@ export function ScrollReveal({
       case "scale-up":
         return inView
           ? "opacity-100 scale-100 translate-y-0"
-          : "opacity-0 scale-[0.97] translate-y-4";
+          : "opacity-0 scale-[0.96] translate-y-6";
       case "fade-up":
       default:
         return inView
           ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8";
+          : "opacity-0 translate-y-9";
     }
   };
 
@@ -135,9 +121,9 @@ export function ScrollReveal({
       style={{
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
-        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
       }}
-      className={`transition-all ${getAnimationStyles()} ${className}`}
+      className={`transition-[transform,opacity] ${getAnimationStyles()} ${className}`}
     >
       {children}
     </Component>
