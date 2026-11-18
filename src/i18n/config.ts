@@ -8,7 +8,6 @@ export const locales = [
   "ja",
   "de",
   "it",
-  "ko",
   "tr",
   "ar"
 ] as const;
@@ -33,7 +32,6 @@ export const localeDetails: LocaleMeta[] = [
   { code: "ja", label: "Japanese", nativeName: "日本語" },
   { code: "de", label: "German", nativeName: "Deutsch" },
   { code: "it", label: "Italian", nativeName: "Italiano" },
-  { code: "ko", label: "Korean", nativeName: "한국어" },
   { code: "tr", label: "Turkish", nativeName: "Türkçe" },
   { code: "ar", label: "Arabic", nativeName: "العربية", dir: "rtl" }
 ];

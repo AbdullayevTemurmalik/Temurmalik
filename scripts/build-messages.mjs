@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 
-const locales = ["en", "uz", "ru", "zh", "es", "fr", "ja", "de", "it", "ko", "tr", "ar"];
+const locales = ["en", "uz", "ru", "zh", "es", "fr", "ja", "de", "it", "tr", "ar"];
 
 const extras = {
   en: {

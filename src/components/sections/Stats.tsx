@@ -109,11 +109,11 @@ export function Stats() {
             <div
               key={stat.label}
               style={{
-                transitionDuration: "1350ms",
-                transitionDelay: `${idx * 160}ms`,
+                transitionDuration: "500ms",
+                transitionDelay: `${idx * 80}ms`,
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
               }}
-              className={`flex flex-col transition-all will-change-[transform,opacity] ${
+              className={`flex flex-col transition-all ${
                 inView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"

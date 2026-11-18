@@ -10,7 +10,6 @@ import fr from "../../messages/fr.json";
 import ja from "../../messages/ja.json";
 import de from "../../messages/de.json";
 import it from "../../messages/it.json";
-import ko from "../../messages/ko.json";
 import tr from "../../messages/tr.json";
 import ar from "../../messages/ar.json";
 
@@ -26,7 +25,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
   ja: ja as unknown as Dictionary,
   de: de as unknown as Dictionary,
   it: it as unknown as Dictionary,
-  ko: ko as unknown as Dictionary,
   tr: tr as unknown as Dictionary,
   ar: ar as unknown as Dictionary
 };

@@ -30,14 +30,14 @@ export function About() {
           {/* Main Story & Philosophy */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "150ms",
+              transitionDuration: "500ms",
+              transitionDelay: "60ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
-            className={`lg:col-span-7 space-y-5 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed transition-all will-change-[transform,opacity] ${
+            className={`lg:col-span-7 space-y-5 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed transition-all ${
               inView
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
+                : "opacity-0 translate-y-4"
             }`}
           >
             {t.about.paragraphs.map((p, idx) => (
@@ -48,14 +48,14 @@ export function About() {
           {/* Quick Technical Specs / Profile Summary Card */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "300ms",
+              transitionDuration: "500ms",
+              transitionDelay: "120ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
-            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs sm:text-sm shadow-xs transition-all will-change-[transform,opacity] ${
+            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs sm:text-sm shadow-xs transition-all ${
               inView
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
+                : "opacity-0 translate-y-4"
             }`}
           >
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border-subtle)] text-[var(--text-primary)]">

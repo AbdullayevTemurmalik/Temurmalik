@@ -97,7 +97,7 @@ export function ScrollReveal({
   className = "",
   animation = "fade-up",
   delay = 0,
-  duration = 1350,
+  duration = 500,
   threshold = 0.08,
   rootMargin = "20px 0px -30px 0px",
   triggerOnce = true,
@@ -137,7 +137,7 @@ export function ScrollReveal({
         transitionDelay: `${delay}ms`,
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
       }}
-      className={`transition-all will-change-[transform,opacity] ${getAnimationStyles()} ${className}`}
+      className={`transition-all ${getAnimationStyles()} ${className}`}
     >
       {children}
     </Component>

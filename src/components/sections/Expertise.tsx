@@ -42,14 +42,14 @@ export function Expertise() {
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
               style={{
-                transitionDuration: "1350ms",
-                transitionDelay: `${idx * 160}ms`,
+                transitionDuration: "500ms",
+                transitionDelay: `${idx * 70}ms`,
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
               }}
-              className={`group relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] shadow-xs will-change-[transform,opacity] ${
+              className={`group relative overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] shadow-xs ${
                 inView
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               {/* Interactive Cursor Spotlight Glow */}

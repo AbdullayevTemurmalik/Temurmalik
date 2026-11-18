@@ -56,6 +56,7 @@ export function smoothScrollTo(
     function cleanup() {
       window.removeEventListener("wheel", cancelScroll);
       window.removeEventListener("touchmove", cancelScroll);
+      window.removeEventListener("pointerdown", handlePointerInterrupt);
       window.removeEventListener("keydown", handleKeyInterrupt);
     }
 
@@ -66,6 +67,12 @@ export function smoothScrollTo(
       }
       cleanup();
       resolve();
+    }
+
+    function handlePointerInterrupt(e: PointerEvent) {
+      if (e.clientX >= window.innerWidth - 24) {
+        cancelScroll();
+      }
     }
 
     function handleKeyInterrupt(e: KeyboardEvent) {
@@ -80,6 +87,7 @@ export function smoothScrollTo(
 
     window.addEventListener("wheel", cancelScroll, { passive: true });
     window.addEventListener("touchmove", cancelScroll, { passive: true });
+    window.addEventListener("pointerdown", handlePointerInterrupt, { passive: true });
     window.addEventListener("keydown", handleKeyInterrupt, { passive: true });
 
     function step(currentTime: number) {

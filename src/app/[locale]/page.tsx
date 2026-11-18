@@ -77,12 +77,6 @@ const localizedMeta: Record<Locale, { title: string; description: string; ogLoca
       "Temurmalik Abdullayev è uno sviluppatore Full-Stack dell'Uzbekistan focalizzato su ingegneria backend e integrazione di IA. Scopri RunCode Web, Donik Coach AI e Al Harameen.",
     ogLocale: "it_IT"
   },
-  ko: {
-    title: "Temurmalik Abdullayev | 풀스택, 백엔드 및 AI 개발자",
-    description:
-      "우즈베키스탄 출신의 풀스택 엔지니어 테무르말릭 압둘라예프. 안정적인 백엔드 아키텍처와 실용적인 AI 모델 연동을 구축합니다. RunCode Web, Donik Coach AI 등 확인하기.",
-    ogLocale: "ko_KR"
-  },
   tr: {
     title: "Temurmalik Abdullayev | Full-Stack, Arka Uç ve Yapay Zeka Geliştiricisi",
     description:

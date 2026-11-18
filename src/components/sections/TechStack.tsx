@@ -28,12 +28,12 @@ export function TechStack() {
           {/* Left Column: Section Narrative & Technical Focus */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "100ms",
+              transitionDuration: "500ms",
+              transitionDelay: "50ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
-            className={`lg:col-span-4 lg:sticky lg:top-24 space-y-6 transition-all will-change-[transform,opacity] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            className={`lg:col-span-4 lg:sticky lg:top-24 space-y-6 transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <div className="flex items-center gap-2">
@@ -95,12 +95,12 @@ export function TechStack() {
           {/* Right Column: 6 Categories (Frontend, Backend, Database, DevOps, Tools, AI Integration) */}
           <div
             style={{
-              transitionDuration: "1350ms",
-              transitionDelay: "200ms",
+              transitionDuration: "500ms",
+              transitionDelay: "100ms",
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
             }}
-            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)]/60 overflow-hidden shadow-sm transition-all will-change-[transform,opacity] ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)]/60 overflow-hidden shadow-sm transition-all ${
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             {techStackCategories.map((category) => {

@@ -22,7 +22,7 @@ function assert(condition, message) {
 // 1. Validate Locales Configuration
 const configPath = path.join(rootDir, "src/i18n/config.ts");
 const configContent = fs.readFileSync(configPath, "utf8");
-const expectedLocales = ["en", "uz", "ru", "zh", "es", "fr", "ja", "de", "it", "ko", "tr", "ar"];
+const expectedLocales = ["en", "uz", "ru", "zh", "es", "fr", "ja", "de", "it", "tr", "ar"];
 
 for (const loc of expectedLocales) {
   assert(configContent.includes(`"${loc}"`), `Locale '${loc}' declared in src/i18n/config.ts`);

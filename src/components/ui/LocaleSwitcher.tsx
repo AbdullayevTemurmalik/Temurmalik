@@ -101,7 +101,7 @@ export function LocaleSwitcher() {
         >
           <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-semibold flex items-center justify-between select-none">
             <span>Select Language</span>
-            <span className="text-[var(--accent-primary)]">12 Locales</span>
+            <span className="text-[var(--accent-primary)]">{localeDetails.length} Locales</span>
           </div>
 
           <div className="py-1">

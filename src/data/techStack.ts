@@ -21,7 +21,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "フロントエンド",
       de: "Frontend",
       it: "Frontend",
-      ko: "프론트엔드",
       tr: "Ön Yüz (Frontend)",
       ar: "الواجهة الأمامية"
     },
@@ -35,7 +34,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "UI & クライアント設計",
       de: "UI & Client-Architektur",
       it: "UI & Architettura Client",
-      ko: "UI & 클라이언트 아키텍처",
       tr: "Arayüz ve İstemci Mimarisi",
       ar: "واجهة المستخدم وبنية العميل"
     },
@@ -49,7 +47,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "コンポーネント指向Webアプリ、レスポンシブデザインと状態管理",
       de: "Komponentenbasierte moderne Webanwendungen, responsives Styling & reaktives State-Management",
       it: "Applicazioni web a componenti, design reattivo e gestione dello stato",
-      ko: "컴포넌트 기반 최신 웹 애플리케이션, 반응형 스타일링 및 상태 관리",
       tr: "Bileşen tabanlı modern web uygulamaları, duyarlı tasarım ve reaktif durum yönetimi",
       ar: "تطبيقات ويب عصرية قائمة على المكونات، تصميم متجاوب وإدارة حالة تفاعلية"
     },
@@ -78,7 +75,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "バックエンド",
       de: "Backend",
       it: "Backend",
-      ko: "백엔드",
       tr: "Arka Yüz (Backend)",
       ar: "الواجهة الخلفية"
     },
@@ -92,7 +88,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "サーバー & マイクロサービス",
       de: "Server & Microservices",
       it: "Server & Microservizi",
-      ko: "서버 & 마이크로서비스",
       tr: "Sunucu ve Mikroservisler",
       ar: "الخوادم والخدمات المصغرة"
     },
@@ -106,7 +101,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "明確なAPI設計、安全な認証認可、リアルタイム通信プロトコル",
       de: "Berechenbare API-Verträge, sichere Authentifizierung & Echtzeit-Messaging",
       it: "Contratti API affidabili, autenticazione sicura e protocolli real-time",
-      ko: "예측 가능한 API 규격, 안전한 인증 체계 및 실시간 통신 프로토콜",
       tr: "Öngörülebilir API sözleşmeleri, güvenli kimlik doğrulama ve gerçek zamanlı mesajlaşma",
       ar: "عقود برمجية متوقعة، مصادقة آمنة وبروتوكولات مراسلة فورية"
     },
@@ -130,7 +124,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "データベース",
       de: "Datenbanken",
       it: "Database",
-      ko: "데이터베이스",
       tr: "Veri Tabanı",
       ar: "قواعد البيانات"
     },
@@ -144,7 +137,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "RDBMS & ドキュメントDB",
       de: "Relationale & Dokumenten-Stores",
       it: "Store Relazionali & Documentali",
-      ko: "관계형 및 문서형 DB",
       tr: "İlişkisel ve Doküman Tabanlı",
       ar: "مخازن علائقية ومستندية"
     },
@@ -158,7 +150,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "データスキーマ設計、永続化レイヤー、マイグレーションと管理",
       de: "Datenschemata, Persistenzebenen, Migrationen & Datenbankverwaltung",
       it: "Schemi di dati, livelli di persistenza, migrazioni e amministrazione",
-      ko: "데이터 스키마 설계, 지속성 계층, 무손실 마이그레이션 및 관리",
       tr: "Veri şemaları, kalıcılık katmanları, geçişler ve veri tabanı yönetimi",
       ar: "مخططات البيانات، طبقات الاستدامة، الترحيل وإدارة الخوادم"
     },
@@ -180,7 +171,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "DevOps & クラウドデプロイ",
       de: "DevOps & Deployment",
       it: "DevOps & Rilascio",
-      ko: "DevOps & 클라우드 배포",
       tr: "DevOps ve Dağıtım",
       ar: "DevOps والنشر السحابي"
     },
@@ -194,7 +184,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "クラウドインフラ",
       de: "Cloud-Infrastruktur",
       it: "Infrastruttura Cloud",
-      ko: "클라우드 인프라",
       tr: "Bulut Altyapısı",
       ar: "البنية التحتية السحابية"
     },
@@ -208,7 +197,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "コンテナ化、自動デプロイ、ホスティング環境、バージョン管理",
       de: "Containerisierung, automatisierte Deployments, Hosting & Versionskontrolle",
       it: "Containerizzazione, deployment automatico, hosting e controllo versioni",
-      ko: "컨테이너화, CI/CD 자동화 배포, 호스팅 및 버전 관리",
       tr: "Konteynerleştirme, otomatik dağıtım, barındırma ve sürüm kontrolü",
       ar: "الحاويات، النشر المؤتمت، الاستضافة وإدارة الإصدارات"
     },
@@ -233,7 +221,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "開発ツール",
       de: "Entwicklungswerkzeuge",
       it: "Strumenti di Sviluppo",
-      ko: "개발 도구",
       tr: "Geliştirme Araçları",
       ar: "أدوات التطوير"
     },
@@ -247,7 +234,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "開発ワークフロー",
       de: "Entwicklungs-Workflow",
       it: "Workflow di Sviluppo",
-      ko: "엔지니어링 워크플로우",
       tr: "Geliştirici İş Akışı",
       ar: "سير العمل الهندسي"
     },
@@ -261,7 +247,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "APIテスト、コーディング環境、デバッグ、デザイン協調",
       de: "API-Testing, Code-Erstellung, Debugging & Design-Kollaboration",
       it: "Test API, stesura del codice, debug e collaborazione sul design",
-      ko: "API 테스팅, 코드 작성 환경, 디버깅 및 디자인 협업",
       tr: "API testi, kod yazımı, hata ayıklama ve tasarım iş birliği",
       ar: "اختبار API، تحرير الكود، تصحيح الأخطاء والتصميم"
     },
@@ -283,7 +268,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "AIモデル統合 & インテリジェントシステム",
       de: "KI-Integration & Intelligente Systeme",
       it: "Integrazione AI & Sistemi Intelligenti",
-      ko: "AI 통합 & 지능형 시스템",
       tr: "Yapay Zekâ ve Ajan Sistemleri",
       ar: "تكامل الذكاء الاصطناعي والأنظمة الذكية"
     },
@@ -297,7 +281,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "AIエージェント工学 & 実装",
       de: "Agentic Engineering & Modelle",
       it: "Ingegneria di Agenti & Modelli",
-      ko: "AI 에이전트 엔지니어링",
       tr: "Ajan Mühendisliği ve Modelleme",
       ar: "هندسة الوكلاء الأذكياء والنماذج"
     },
@@ -311,7 +294,6 @@ export const techStackCategories: TechStackCategory[] = [
       ja: "実用モデル統合、マルチモーダル画像解析、自律型AI開発ツール群",
       de: "Praktische Modellintegration, multimodale Bilderkennung & moderne KI-Entwicklertools",
       it: "Integrazione pratica di modelli, visione multimodale e strumenti avanzati di sviluppo AI",
-      ko: "실용적 모델 통합, 멀티모달 비전 및 차세대 AI 개발자 도구",
       tr: "Pratik model entegrasyonu, çok modlu görsel algılama ve otonom AI araçları",
       ar: "تكامل النماذج العملي، الرؤية متعددة الوسائط وأدوات تطوير الذكاء الاصطناعي"
     },

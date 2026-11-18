@@ -1,21 +1,41 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 /**
- * Luxury Inertia Smooth Scroll Provider.
- * Calibrated smooth pace (speedMultiplier: 0.22, lerp: 0.052).
- * Strictly yields to native scrollbar dragging, touch, and dropdown/modal scrolling.
+ * Rock-solid Inertia Smooth Scroll Provider.
+ * - Frame-rate independent exponential smoothing (60Hz / 120Hz / 144Hz / 240Hz).
+ * - Zero race conditions with native scrollbar dragging, keyboard scrolling, or touch.
+ * - Respects browser zoom (Ctrl+Wheel), horizontal swipes, and inner scrollable dropdowns/containers.
+ * - Auto-resets cleanly on route changes.
  */
 export function SmoothScrollProvider({
   children
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   const isRunningRef = useRef(false);
-  const isRafScrollingRef = useRef(false);
   const targetYRef = useRef(0);
   const currentYRef = useRef(0);
+  const lastWrittenYRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const rafIdRef = useRef<number | null>(null);
+
+  // Reset scroll state cleanly on route navigation
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    isRunningRef.current = false;
+    const y = window.scrollY;
+    currentYRef.current = y;
+    targetYRef.current = y;
+    lastWrittenYRef.current = Math.round(y);
+  }, [pathname]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -28,38 +48,52 @@ export function SmoothScrollProvider({
       return;
     }
 
-    currentYRef.current = window.pageYOffset;
-    targetYRef.current = window.pageYOffset;
+    const syncFromWindow = () => {
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      isRunningRef.current = false;
+      const y = window.scrollY;
+      currentYRef.current = y;
+      targetYRef.current = y;
+      lastWrittenYRef.current = Math.round(y);
+    };
 
-    let rafId: number | null = null;
+    syncFromWindow();
 
-    const animate = () => {
+    const animate = (now: number) => {
+      const dt = Math.min(Math.max((now - lastTimeRef.current) / 1000, 0.001), 0.05);
+      lastTimeRef.current = now;
+
       const diff = targetYRef.current - currentYRef.current;
 
-      if (Math.abs(diff) > 0.4) {
-        // Calibrated velvety deceleration (0.052) for fluid, responsive editorial glide
-        currentYRef.current += diff * 0.052;
-        isRafScrollingRef.current = true;
-        window.scrollTo(0, currentYRef.current);
-        // Reset flag on next frame
-        requestAnimationFrame(() => {
-          isRafScrollingRef.current = false;
-        });
-        rafId = requestAnimationFrame(animate);
+      if (Math.abs(diff) > 0.5) {
+        // Frame-rate independent velvety exponential smoothing (6.0 rad/s)
+        const factor = 1 - Math.exp(-6.0 * dt);
+        currentYRef.current += diff * factor;
+
+        const roundedY = Math.round(currentYRef.current);
+        lastWrittenYRef.current = roundedY;
+        window.scrollTo({ top: roundedY, behavior: "instant" as ScrollBehavior });
+
+        rafIdRef.current = requestAnimationFrame(animate);
       } else {
         currentYRef.current = targetYRef.current;
-        isRafScrollingRef.current = true;
-        window.scrollTo(0, currentYRef.current);
-        requestAnimationFrame(() => {
-          isRafScrollingRef.current = false;
-        });
+        const roundedY = Math.round(targetYRef.current);
+        lastWrittenYRef.current = roundedY;
+        window.scrollTo({ top: roundedY, behavior: "instant" as ScrollBehavior });
+
         isRunningRef.current = false;
-        rafId = null;
+        rafIdRef.current = null;
       }
     };
 
     const handleWheel = (e: WheelEvent) => {
-      // Don't intercept if body scroll is locked (e.g. mobile drawer open)
+      // Never intercept browser zoom (Ctrl/Meta + wheel)
+      if (e.ctrlKey || e.metaKey) return;
+
+      // Never intercept if body scroll is locked (preloader / mobile drawer)
       if (
         document.body.style.overflow === "hidden" ||
         document.body.classList.contains("overflow-hidden")
@@ -67,120 +101,149 @@ export function SmoothScrollProvider({
         return;
       }
 
-      // If the wheel event is predominantly horizontal (e.g. trackpad side-swipe), let native handle it
+      // Let horizontal trackpad swipes pass through natively
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
         return;
       }
 
-      // NEVER intercept inside dropdowns, dialogs, code blocks, textareas, or scrollable containers
       const target = e.target as HTMLElement | null;
+
+      // Never intercept inside explicitly protected dropdowns, dialogs, or form inputs
       if (
         target?.closest("[data-lenis-prevent]") ||
         target?.closest("[data-scroll-prevent]") ||
         target?.closest("[role='listbox']") ||
         target?.closest("[role='dialog']") ||
-        target?.closest(".overflow-y-auto") ||
-        target?.closest(".overflow-y-scroll") ||
-        target?.closest(".overflow-x-auto") ||
-        target?.closest("pre") ||
-        target?.closest("textarea")
+        target?.closest("textarea") ||
+        target?.closest("select")
       ) {
         return;
       }
 
-      // Check if any ancestor is scrollable and can consume the wheel event
+      // Check if any ancestor actually has vertical overflow that can scroll in this direction
       let el: HTMLElement | null = target;
       while (el && el !== document.body && el !== document.documentElement) {
         const style = window.getComputedStyle(el);
         const overflowY = style.overflowY;
         if (
           (overflowY === "auto" || overflowY === "scroll") &&
-          el.scrollHeight > el.clientHeight
+          el.scrollHeight > el.clientHeight + 2
         ) {
-          return;
+          const canScrollDown =
+            e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight - 1;
+          const canScrollUp = e.deltaY < 0 && el.scrollTop > 1;
+          if (canScrollDown || canScrollUp) {
+            return;
+          }
         }
         el = el.parentElement;
       }
 
-      // Only intercept cancelable wheel events
       if (!e.cancelable) return;
-
       e.preventDefault();
+
+      // Normalize wheel delta across Chrome, Firefox (line mode), and Safari
+      let normalizedDelta = e.deltaY;
+      if (e.deltaMode === 1) {
+        normalizedDelta *= 32;
+      } else if (e.deltaMode === 2) {
+        normalizedDelta *= window.innerHeight;
+      }
 
       const maxScroll = Math.max(
         0,
         document.documentElement.scrollHeight - window.innerHeight
       );
 
-      // Calibrated responsive wheel pace (0.22) — comfortable, not sluggish
-      const speedMultiplier = 0.22;
-      const delta = e.deltaY * speedMultiplier;
+      // Re-sync from real scroll position whenever starting a new wheel gesture
+      if (!isRunningRef.current) {
+        const y = window.scrollY;
+        currentYRef.current = y;
+        targetYRef.current = y;
+        lastWrittenYRef.current = Math.round(y);
+      }
 
-      targetYRef.current = Math.max(0, Math.min(maxScroll, targetYRef.current + delta));
+      // Calibrated responsive luxury scroll pace (0.26x)
+      const speedMultiplier = 0.26;
+      const delta = normalizedDelta * speedMultiplier;
+
+      targetYRef.current = Math.max(
+        0,
+        Math.min(maxScroll, targetYRef.current + delta)
+      );
 
       if (!isRunningRef.current) {
         isRunningRef.current = true;
-        rafId = requestAnimationFrame(animate);
+        lastTimeRef.current = performance.now();
+        rafIdRef.current = requestAnimationFrame(animate);
       }
     };
 
-    // User scrolled via native scrollbar, keyboard arrows, touch, or anchor links
+    // Detect genuine native scroll (scrollbar drag, keyboard, touch, anchor jump)
     const handleScrollSync = () => {
-      if (!isRafScrollingRef.current) {
-        // Stop any running inertia immediately to prevent fighting native scrollbar
-        if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
+      if (isRunningRef.current) {
+        // Only treat as native interruption if browser scrollY diverged from our last written Y
+        if (Math.abs(window.scrollY - lastWrittenYRef.current) > 3) {
+          syncFromWindow();
         }
-        isRunningRef.current = false;
-        currentYRef.current = window.pageYOffset;
-        targetYRef.current = window.pageYOffset;
+      } else {
+        const y = window.scrollY;
+        currentYRef.current = y;
+        targetYRef.current = y;
+        lastWrittenYRef.current = Math.round(y);
       }
     };
 
-    // Cancel inertia when user clicks native scrollbar track/thumb
-    const handleMouseDown = (e: MouseEvent) => {
-      // If clicking near right edge (native scrollbar track is ~16-20px wide)
-      if (e.clientX >= window.innerWidth - 20) {
-        if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
-        }
-        isRunningRef.current = false;
-        currentYRef.current = window.pageYOffset;
-        targetYRef.current = window.pageYOffset;
+    // Immediately yield when user clicks near the right scrollbar edge
+    const handlePointerDown = (e: PointerEvent) => {
+      if (e.clientX >= window.innerWidth - 24) {
+        syncFromWindow();
       }
     };
 
-    // Pause inertia immediately when a programmatic smooth scroll begins
+    // Immediately yield when user presses navigation keys
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(
+          e.key
+        )
+      ) {
+        syncFromWindow();
+      }
+    };
+
+    // Pause inertia when programmatic smooth scroll (nav links / logo) runs
     const handleProgrammaticScroll = (e: Event) => {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
       }
       isRunningRef.current = false;
       const customEvent = e as CustomEvent<{ targetY?: number }>;
       const target =
         typeof customEvent.detail?.targetY === "number"
           ? customEvent.detail.targetY
-          : window.pageYOffset;
+          : window.scrollY;
       currentYRef.current = target;
       targetYRef.current = target;
+      lastWrittenYRef.current = Math.round(target);
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("scroll", handleScrollSync, { passive: true });
-    window.addEventListener("mousedown", handleMouseDown, { passive: true });
-    window.addEventListener("touchstart", handleScrollSync, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    window.addEventListener("touchstart", syncFromWindow, { passive: true });
+    window.addEventListener("keydown", handleKeyDown, { passive: true });
     window.addEventListener("programmatic-scroll", handleProgrammaticScroll);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("scroll", handleScrollSync);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("touchstart", handleScrollSync);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("touchstart", syncFromWindow);
+      window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("programmatic-scroll", handleProgrammaticScroll);
-      if (rafId) cancelAnimationFrame(rafId);
+      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
     };
   }, []);
 

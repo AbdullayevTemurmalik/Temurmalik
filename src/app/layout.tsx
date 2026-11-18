@@ -170,9 +170,6 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        {/* Tactile Hardware Noise Overlay */}
-        <div className="noise-overlay" aria-hidden="true" />
-
         {children}
       </body>
     </html>
