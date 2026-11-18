@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B0F14" }
+    { media: "(prefers-color-scheme: dark)", color: "#050507" }
   ],
   width: "device-width",
   initialScale: 1

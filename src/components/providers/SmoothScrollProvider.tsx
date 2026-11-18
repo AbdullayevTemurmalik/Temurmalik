@@ -74,15 +74,15 @@ export function SmoothScrollProvider({
         currentYRef.current += diff * factor;
 
         const roundedY = Math.round(currentYRef.current);
-        lastWrittenYRef.current = roundedY;
         window.scrollTo({ top: roundedY, behavior: "instant" as ScrollBehavior });
+        lastWrittenYRef.current = window.scrollY;
 
         rafIdRef.current = requestAnimationFrame(animate);
       } else {
         currentYRef.current = targetYRef.current;
         const roundedY = Math.round(targetYRef.current);
-        lastWrittenYRef.current = roundedY;
         window.scrollTo({ top: roundedY, behavior: "instant" as ScrollBehavior });
+        lastWrittenYRef.current = window.scrollY;
 
         isRunningRef.current = false;
         rafIdRef.current = null;

@@ -26,37 +26,37 @@ const localizedMeta: Record<Locale, { title: string; description: string; ogLoca
   en: {
     title: "Temurmalik Abdullayev | Full-Stack, Backend & AI Developer",
     description:
-      "Temurmalik Abdullayev is a Full-Stack Developer from Uzbekistan focused on Backend & AI Engineering. Explore RunCode Web, Donik Coach AI, Al Harameen and more.",
+      "Temurmalik Abdullayev is a Full-Stack Developer from Uzbekistan focused on Backend & AI Engineering. Explore RunCode Web, Jobify, Donik Coach AI, Al Harameen and more.",
     ogLocale: "en_US"
   },
   uz: {
     title: "Temurmalik Abdullayev | Full-Stack va Backend Dasturchi",
     description:
-      "Temurmalik Abdullayev — O‘zbekistondagi Full-Stack dasturchi. Backend tizimlari, AI integratsiyalari va zamonaviy veb-ilovalar yaratadi. Real loyihalarini ko‘ring.",
+      "Temurmalik Abdullayev — O‘zbekistondagi Full-Stack dasturchi. Backend tizimlari, AI integratsiyalari va zamonaviy veb-ilovalar yaratadi. RunCode Web, Jobify, Donik Coach AI va Al Harameen loyihalarini ko‘ring.",
     ogLocale: "uz_UZ"
   },
   ru: {
     title: "Темурмалик Абдуллаев | Full-Stack, Backend и AI разработчик",
     description:
-      "Темурмалик Абдуллаев — разработчик из Узбекистана, специализирующийся на бэкенде, веб-платформах и AI-интеграциях. Изучите проекты RunCode Web, Donik Coach AI, Al Harameen.",
+      "Темурмалик Абдуллаев — разработчик из Узбекистана, специализирующийся на бэкенде, веб-платформах и AI-интеграциях. Изучите проекты RunCode Web, Jobify, Donik Coach AI и Al Harameen.",
     ogLocale: "ru_RU"
   },
   zh: {
     title: "Temurmalik Abdullayev | 全栈、后端与人工智能工程师",
     description:
-      "Temurmalik Abdullayev 来自乌兹别克斯坦的全栈开发者，专注高可用后端架构与人工智能工程落地。查看 RunCode Web、Donik Coach AI 等实战项目。",
+      "Temurmalik Abdullayev 来自乌兹别克斯坦的全栈开发者，专注高可用后端架构与人工智能工程落地。查看 RunCode Web、Jobify、Donik Coach AI 等实战项目。",
     ogLocale: "zh_CN"
   },
   es: {
     title: "Temurmalik Abdullayev | Desarrollador Full-Stack, Backend e IA",
     description:
-      "Temurmalik Abdullayev es un desarrollador Full-Stack de Uzbekistán especializado en backend e integraciones de IA. Conoce RunCode Web, Donik Coach AI y Al Harameen.",
+      "Temurmalik Abdullayev es un desarrollador Full-Stack de Uzbekistán especializado en backend e integraciones de IA. Conoce RunCode Web, Jobify, Donik Coach AI y Al Harameen.",
     ogLocale: "es_ES"
   },
   fr: {
     title: "Temurmalik Abdullayev | Développeur Full-Stack, Backend & IA",
     description:
-      "Temurmalik Abdullayev est un développeur Full-Stack d'Ouzbékistan spécialisé en architecture backend et IA. Découvrez RunCode Web, Donik Coach AI et Al Harameen.",
+      "Temurmalik Abdullayev est un développeur Full-Stack d'Ouzbékistan spécialisé en architecture backend et IA. Découvrez RunCode Web, Jobify, Donik Coach AI et Al Harameen.",
     ogLocale: "fr_FR"
   },
   ja: {
@@ -68,13 +68,13 @@ const localizedMeta: Record<Locale, { title: string; description: string; ogLoca
   de: {
     title: "Temurmalik Abdullayev | Full-Stack-, Backend- & KI-Entwickler",
     description:
-      "Temurmalik Abdullayev ist ein Full-Stack-Entwickler aus Usbekistan mit Fokus auf Backend-Architektur und KI-Integrationen. Entdecken Sie RunCode Web, Donik Coach AI und Al Harameen.",
+      "Temurmalik Abdullayev ist ein Full-Stack-Entwickler aus Usbekistan mit Fokus auf Backend-Architektur und KI-Integrationen. Entdecken Sie RunCode Web, Jobify, Donik Coach AI und Al Harameen.",
     ogLocale: "de_DE"
   },
   it: {
     title: "Temurmalik Abdullayev | Sviluppatore Full-Stack, Backend e IA",
     description:
-      "Temurmalik Abdullayev è uno sviluppatore Full-Stack dell'Uzbekistan focalizzato su ingegneria backend e integrazione di IA. Scopri RunCode Web, Donik Coach AI e Al Harameen.",
+      "Temurmalik Abdullayev è uno sviluppatore Full-Stack dell'Uzbekistan focalizzato su ingegneria backend e integrazione di IA. Scopri RunCode Web, Jobify, Donik Coach AI e Al Harameen.",
     ogLocale: "it_IT"
   },
   tr: {
@@ -86,7 +86,7 @@ const localizedMeta: Record<Locale, { title: string; description: string; ogLoca
   ar: {
     title: "تيمور مالك عبد الله ييف | مطور Full-Stack، مهندس بنية خلفية وذكاء اصطناعي",
     description:
-      "تيمور مالك عبد الله ييف، مطور Full-Stack من أوزبكستان متخصص في البنى الخلفية وتطبيقات الذكاء الاصطناعي. استكشف RunCode Web و Donik Coach AI والمزيد.",
+      "تيمور مالك عبد الله ييف، مطور Full-Stack من أوزبكستان متخصص في البنى الخلفية وتطبيقات الذكاء الاصطناعي. استكشف RunCode Web و Jobify و Donik Coach AI والمزيد.",
     ogLocale: "ar_AR"
   }
 };

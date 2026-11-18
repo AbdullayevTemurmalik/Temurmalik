@@ -30,7 +30,7 @@ export async function generateMetadata({
   const t = dictionaries[locale as Locale] || dictionaries.en;
   const baseUrl = siteConfig.url;
   const title = `${t.projects.allProjectsHeading} — ${siteConfig.name}`;
-  const description = `${t.projects.allProjectsSubtitle} — ${siteConfig.fullName}: RunCode Web, Donik Coach AI, Al Harameen.`;
+  const description = `${t.projects.allProjectsSubtitle} — ${siteConfig.fullName}: RunCode Web, Jobify, Donik Coach AI, Al Harameen.`;
 
   const languageAlternates: Record<string, string> = {
     "x-default": `${baseUrl}/en/projects`
