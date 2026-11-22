@@ -48,6 +48,21 @@
     scrollbar-gutter: stable;
   }
 
+  /* Telegram-style Circular & Directional View Transitions */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 99999;
+  }
+
   body {
     background-color: var(--bg-base);
     color: var(--text-primary);
