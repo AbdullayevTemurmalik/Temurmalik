@@ -78,7 +78,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-semibold hover:opacity-90 transition-all shadow-xs"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-semibold hover:opacity-90 active:scale-[0.98] transition-[color,background-color,opacity,transform] duration-200 shadow-xs"
             >
               <span>{t.projects.liveProject}</span>
               <ArrowUpRight className="w-4 h-4 text-current" />

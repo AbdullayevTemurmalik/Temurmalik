@@ -47,7 +47,7 @@ export default function NotFound() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4 font-mono text-xs sm:text-sm">
           <Link
             href="/en"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-semibold hover:opacity-90 active:scale-[0.98] transition-all shadow-xs"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-semibold hover:opacity-90 active:scale-[0.98] transition-[color,background-color,opacity,transform] duration-200 shadow-xs"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return Home</span>
@@ -55,7 +55,7 @@ export default function NotFound() {
 
           <Link
             href="/en#projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] hover:border-[var(--border-hover)] active:scale-[0.98] transition-[color,background-color,border-color,transform] duration-200"
           >
             <span>Explore Projects</span>
           </Link>

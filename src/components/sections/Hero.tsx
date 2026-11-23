@@ -54,13 +54,13 @@ export function Hero() {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 href={`/${locale}#projects`}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-md font-mono text-xs sm:text-sm font-semibold transition-all duration-200 bg-[var(--text-primary)] text-[var(--bg-base)] hover:opacity-90 active:scale-[0.98] shadow-xs"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-md font-mono text-xs sm:text-sm font-semibold transition-[color,background-color,opacity,transform] duration-200 bg-[var(--text-primary)] text-[var(--bg-base)] hover:opacity-90 active:scale-[0.98] shadow-xs"
               >
                 {t.hero.exploreBtn}
               </Link>
               <Link
                 href={`/${locale}#contact`}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-md font-mono text-xs sm:text-sm font-medium transition-all duration-200 bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] active:scale-[0.98]"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-md font-mono text-xs sm:text-sm font-medium transition-[color,background-color,border-color,transform] duration-200 bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] active:scale-[0.98]"
               >
                 {t.hero.contactBtn}
               </Link>

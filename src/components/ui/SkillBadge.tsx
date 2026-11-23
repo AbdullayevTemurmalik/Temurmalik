@@ -29,7 +29,7 @@ export function SkillBadge({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={openLabel}
-      className={`group/badge font-mono text-xs px-2.5 py-1.5 rounded-md bg-[var(--bg-base)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-primary)] hover:bg-[var(--bg-surface-hover)] hover:-translate-y-0.5 transition-all duration-150 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] cursor-pointer select-none shadow-2xs ${className}`}
+      className={`group/badge font-mono text-xs px-2.5 py-1.5 rounded-md bg-[var(--bg-base)] text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-primary)] hover:bg-[var(--bg-surface-hover)] hover:-translate-y-0.5 transition-[color,background-color,border-color,transform] duration-150 inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] cursor-pointer select-none shadow-2xs ${className}`}
     >
       {showCategoryDot && (
         <span
@@ -42,7 +42,7 @@ export function SkillBadge({
       </span>
       {/* Subtle external link icon */}
       <svg
-        className="w-2.5 h-2.5 text-[var(--text-muted)] opacity-40 group-hover/badge:opacity-100 group-hover/badge:text-[var(--accent-primary)] transition-all transform group-hover/badge:translate-x-0.5 group-hover/badge:-translate-y-0.5 shrink-0"
+        className="w-2.5 h-2.5 text-[var(--text-muted)] opacity-40 group-hover/badge:opacity-100 group-hover/badge:text-[var(--accent-primary)] transition-[color,opacity,transform] duration-150 transform group-hover/badge:translate-x-0.5 group-hover/badge:-translate-y-0.5 shrink-0"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

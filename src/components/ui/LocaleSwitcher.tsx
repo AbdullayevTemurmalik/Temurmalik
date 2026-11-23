@@ -55,7 +55,7 @@ export function LocaleSwitcher() {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={`Language selector. Current: ${currentLocale.nativeName}`}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] transition-all text-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-2xs cursor-pointer select-none"
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] transition-[color,background-color,border-color,box-shadow] duration-150 text-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] shadow-2xs cursor-pointer select-none"
       >
         {/* Globe icon */}
         <svg

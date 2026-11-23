@@ -44,7 +44,7 @@ export function ProjectsSection() {
               key={f.id}
               type="button"
               onClick={() => setActiveFilter(f.id)}
-              className={`px-3 py-1.5 rounded-md transition-all cursor-pointer flex items-center gap-2 select-none ${
+              className={`px-3 py-1.5 rounded-md transition-[color,background-color,border-color,box-shadow] duration-150 cursor-pointer flex items-center gap-2 select-none ${
                 activeFilter === f.id
                   ? "bg-[var(--accent-primary)]/15 text-[var(--accent-primary)] font-semibold border border-[var(--accent-primary)]/35 shadow-2xs"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] border border-transparent"

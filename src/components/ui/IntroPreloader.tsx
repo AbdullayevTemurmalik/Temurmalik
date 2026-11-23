@@ -194,7 +194,7 @@ export function IntroPreloader() {
               ? "M0 0 L1000 0 L1000 0 Q500 0 0 0 Z"
               : "M0 0 L1000 0 L1000 60 Q500 120 0 60 Z"
           }
-          className="transition-all duration-[550ms] ease-curtain fill-[var(--bg-base)]"
+          className="transition-[d,fill] duration-[550ms] ease-curtain fill-[var(--bg-base)]"
         />
       </svg>
     </div>

@@ -144,7 +144,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+      className={`sticky top-0 z-40 w-full transition-[background-color,border-color,padding,box-shadow] duration-200 ${
         scrolled
           ? "bg-[var(--bg-base)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] py-3 shadow-sm"
           : "bg-transparent border-b border-transparent py-4 sm:py-5"
@@ -176,7 +176,7 @@ export function Header() {
                   {item.label}
                   {/* Subtle 2px terminal accent line indicator that ONLY renders when clicked */}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-all duration-200" />
+                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-[opacity,transform] duration-200" />
                   )}
                 </Link>
               );
@@ -238,7 +238,7 @@ export function Header() {
 
       {/* Mobile Slide-Over Drawer from RIGHT */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-all duration-300 ease-out ${
+        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-[transform,opacity] duration-300 ease-out ${
           mobileMenuOpen
             ? "translate-x-0 opacity-100 visible pointer-events-auto"
             : "translate-x-full opacity-0 invisible pointer-events-none"
@@ -280,7 +280,7 @@ export function Header() {
                 key={item.sectionId}
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.sectionId)}
-                className={`px-4 py-3 rounded-lg border transition-all flex items-center justify-between ${
+                className={`px-4 py-3 rounded-lg border transition-[color,background-color,border-color,box-shadow] duration-150 flex items-center justify-between ${
                   isActive
                     ? "border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold shadow-xs"
                     : "border-[var(--border-subtle)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface)]"

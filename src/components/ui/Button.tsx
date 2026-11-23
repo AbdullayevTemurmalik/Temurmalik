@@ -26,7 +26,7 @@ export function Button({
   type = "button"
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-mono font-medium rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF] disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex items-center justify-center font-mono font-medium rounded-md transition-[color,background-color,border-color,opacity,box-shadow,transform] duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79B8FF] disabled:opacity-50 disabled:pointer-events-none";
 
   const sizeStyles = {
     sm: "text-xs px-3 py-1.5 gap-1.5",
