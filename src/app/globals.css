@@ -63,6 +63,38 @@
     z-index: 99999;
   }
 
+  html[data-theme-transition="to-dark"]::view-transition-new(root) {
+    animation: theme-sweep-to-dark 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  html[data-theme-transition="to-light"]::view-transition-new(root) {
+    animation: theme-sweep-to-light 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes theme-sweep-to-dark {
+    0% {
+      clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 100%));
+    }
+    100% {
+      clip-path: circle(var(--theme-r, 160vmax) at var(--theme-x, 50%) var(--theme-y, 100%));
+    }
+  }
+
+  @keyframes theme-sweep-to-light {
+    0% {
+      clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 0%));
+    }
+    100% {
+      clip-path: circle(var(--theme-r, 160vmax) at var(--theme-x, 50%) var(--theme-y, 0%));
+    }
+  }
+
+  /* Prevent CSS transitions from racing with View Transitions during snapshot */
+  html[data-theme-transition],
+  html[data-theme-transition] * {
+    transition-duration: 0ms !important;
+  }
+
   body {
     background-color: var(--bg-base);
     color: var(--text-primary);

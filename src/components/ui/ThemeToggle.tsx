@@ -20,7 +20,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <div
-        className="w-8 h-8 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] opacity-50"
+        className="w-9 h-9 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] opacity-50"
         aria-hidden="true"
       />
     );
@@ -34,12 +34,15 @@ export function ThemeToggle() {
     const targetTheme = isDark ? "light" : "dark";
 
     setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 700);
+    const DURATION = 900;
+    setTimeout(() => setIsAnimating(false), DURATION + 50);
 
     const btn = buttonRef.current;
     const rect = btn?.getBoundingClientRect();
-    const btnX = rect ? rect.left + rect.width / 2 : event.clientX || window.innerWidth / 2;
-    const btnY = rect ? rect.top + rect.height / 2 : event.clientY || 0;
+    const btnX = rect
+      ? rect.left + rect.width / 2
+      : event.clientX || (typeof window !== "undefined" ? window.innerWidth / 2 : 200);
+    const btnY = rect ? rect.top + rect.height / 2 : event.clientY || 40;
 
     // Accessibility: instant toggle for reduced motion
     const prefersReducedMotion =
@@ -51,6 +54,9 @@ export function ThemeToggle() {
       return;
     }
 
+    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const windowHeight = typeof window !== "undefined" ? window.innerHeight : 800;
+
     // Geometry calculation matching user specification:
     // When switching to dark: starts from bottom viewport edge (aligned with button x) and sweeps upwards.
     // When switching to light: starts from top button position and sweeps downwards.
@@ -60,19 +66,30 @@ export function ThemeToggle() {
 
     if (targetTheme === "dark") {
       startX = btnX;
-      startY = typeof window !== "undefined" ? window.innerHeight : 800;
-      endRadius = Math.hypot(
-        Math.max(startX, window.innerWidth - startX),
-        window.innerHeight
-      );
+      startY = windowHeight;
+      endRadius =
+        Math.hypot(
+          Math.max(startX, windowWidth - startX),
+          windowHeight
+        ) * 1.05;
     } else {
       startX = btnX;
       startY = btnY;
-      endRadius = Math.hypot(
-        Math.max(startX, window.innerWidth - startX),
-        window.innerHeight - startY
-      );
+      endRadius =
+        Math.hypot(
+          Math.max(startX, windowWidth - startX),
+          windowHeight - startY
+        ) * 1.05;
     }
+
+    // Set CSS custom properties on documentElement for the @keyframes animation
+    document.documentElement.style.setProperty("--theme-x", `${startX}px`);
+    document.documentElement.style.setProperty("--theme-y", `${startY}px`);
+    document.documentElement.style.setProperty("--theme-r", `${Math.ceil(endRadius)}px`);
+    document.documentElement.setAttribute(
+      "data-theme-transition",
+      targetTheme === "dark" ? "to-dark" : "to-light"
+    );
 
     const doc = document as Document & {
       startViewTransition?: (callback: () => Promise<void> | void) => {
@@ -82,60 +99,83 @@ export function ThemeToggle() {
     };
 
     if (typeof doc.startViewTransition === "function") {
-      const transition = doc.startViewTransition(async () => {
-        document.documentElement.classList.remove("light", "dark");
-        document.documentElement.classList.add(targetTheme);
-        document.documentElement.style.colorScheme = targetTheme;
-        setTheme(targetTheme);
-      });
-
       try {
+        const transition = doc.startViewTransition(async () => {
+          // 1. Manually update HTML classes so computed style changes immediately
+          document.documentElement.classList.remove("light", "dark");
+          document.documentElement.classList.add(targetTheme);
+          document.documentElement.style.colorScheme = targetTheme;
+
+          // 2. Sync with next-themes provider
+          setTheme(targetTheme);
+
+          // 3. Force layout recalculation so the snapshot captures the full new theme
+          void document.documentElement.offsetHeight;
+
+          // 4. Wait one frame so new theme paint is committed into view-transition-new
+          await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+        });
+
         await transition.ready;
-        document.documentElement.animate(
+
+        // Animate pseudoElement with Web Animations API in addition to CSS keyframes
+        const anim = document.documentElement.animate(
           {
             clipPath: [
               `circle(0px at ${startX}px ${startY}px)`,
-              `circle(${endRadius}px at ${startX}px ${startY}px)`,
+              `circle(${Math.ceil(endRadius)}px at ${startX}px ${startY}px)`,
             ],
           },
           {
-            duration: 680,
-            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+            duration: DURATION,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
             pseudoElement: "::view-transition-new(root)",
           }
         );
+
+        await anim.finished;
+        await transition.finished;
       } catch {
+        // Fallback safety if view transition was aborted
         setTheme(targetTheme);
+      } finally {
+        document.documentElement.removeAttribute("data-theme-transition");
       }
     } else {
-      // High-performance fallback overlay sweep
+      // High-performance hardware-accelerated fallback ripple
       const overlay = document.createElement("div");
       overlay.style.position = "fixed";
       overlay.style.inset = "0";
       overlay.style.pointerEvents = "none";
       overlay.style.zIndex = "999999";
       overlay.style.backgroundColor = targetTheme === "dark" ? "#050507" : "#F8FAFC";
+      overlay.style.willChange = "clip-path";
 
       document.body.appendChild(overlay);
 
-      setTheme(targetTheme);
-      document.documentElement.classList.remove("light", "dark");
-      document.documentElement.classList.add(targetTheme);
-      document.documentElement.style.colorScheme = targetTheme;
+      // Pre-apply theme at 25% of the sweep so content underneath is ready
+      setTimeout(() => {
+        setTheme(targetTheme);
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(targetTheme);
+        document.documentElement.style.colorScheme = targetTheme;
+      }, 200);
 
       const animation = overlay.animate(
         [
           { clipPath: `circle(0px at ${startX}px ${startY}px)` },
-          { clipPath: `circle(${endRadius}px at ${startX}px ${startY}px)` },
+          { clipPath: `circle(${Math.ceil(endRadius)}px at ${startX}px ${startY}px)` },
         ],
         {
-          duration: 680,
-          easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+          duration: DURATION,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          fill: "forwards",
         }
       );
 
       const cleanup = () => {
         overlay.remove();
+        document.documentElement.removeAttribute("data-theme-transition");
       };
       animation.onfinish = cleanup;
       animation.oncancel = cleanup;
@@ -148,7 +188,7 @@ export function ThemeToggle() {
       type="button"
       onClick={handleToggle}
       aria-label={isDark ? t.nav.themeLight : t.nav.themeDark}
-      className="relative p-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] active:scale-95 transition-[color,background-color,border-color,transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] overflow-hidden"
+      className="relative p-2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] active:scale-95 transition-[color,background-color,border-color,transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] overflow-hidden cursor-pointer select-none"
       title={isDark ? t.nav.themeLight : t.nav.themeDark}
     >
       {/* Telegram-style micro-pulse on click */}
