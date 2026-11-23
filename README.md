@@ -4,6 +4,7 @@
 > Tashkent, Uzbekistan · Available for worldwide engineering opportunities
 
 [![Next.js](https://img.shields.io/badge/Next.js-16_Turbopack-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Vercel](https://img.shields.io/badge/Platform-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
 [![Locales](https://img.shields.io/badge/i18n-11_Locales-emerald?style=flat)](https://github.com/AbdullayevTemurmalik/Temurmalik)
@@ -38,11 +39,13 @@
 
 ---
 
-## 👥 Authorship & Collaboration
+## 👥 Authorship & Contributors
 
-Crafted and engineered collaboratively by:
+Crafted and engineered collaboratively with world-class infrastructure and AI:
 - **Lead Engineer & Architect**: Temurmalik Abdullayev ([@AbdullayevTemurmalik](https://github.com/AbdullayevTemurmalik))
-- **AI Pair Architect**: Antigravity ([Google DeepMind](https://deepmind.google))
+- **Cloud Platform & Infrastructure**: Vercel ([@vercel](https://github.com/vercel))
+- **AI Engineering & Acceleration**: Antigravity ([Google DeepMind](https://deepmind.google)) & Claude ([Anthropic](https://anthropic.com))
+- **Skills Ecosystem**: Vercel Labs ([@vercel-labs](https://github.com/vercel-labs))
 
 ---
 

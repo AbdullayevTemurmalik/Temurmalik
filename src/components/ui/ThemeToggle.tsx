@@ -148,7 +148,7 @@ export function ThemeToggle() {
       type="button"
       onClick={handleToggle}
       aria-label={isDark ? t.nav.themeLight : t.nav.themeDark}
-      className="relative p-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] overflow-hidden"
+      className="relative p-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] active:scale-95 transition-[color,background-color,border-color,transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] overflow-hidden"
       title={isDark ? t.nav.themeLight : t.nav.themeDark}
     >
       {/* Telegram-style micro-pulse on click */}
@@ -163,7 +163,8 @@ export function ThemeToggle() {
       <span className="relative w-4 h-4 flex items-center justify-center">
         {/* Sun icon for Light Mode (shown in Dark) */}
         <svg
-          className={`w-4 h-4 text-[var(--accent-highlight)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+          aria-hidden="true"
+          className={`w-4 h-4 text-[var(--accent-highlight)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
             isDark
               ? "rotate-0 scale-100 opacity-100"
               : "-rotate-90 scale-0 opacity-0 absolute pointer-events-none"
@@ -182,7 +183,8 @@ export function ThemeToggle() {
 
         {/* Moon icon for Dark Mode (shown in Light) */}
         <svg
-          className={`w-4 h-4 text-[var(--accent-primary)] transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+          aria-hidden="true"
+          className={`w-4 h-4 text-[var(--accent-primary)] transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
             !isDark
               ? "rotate-0 scale-100 opacity-100"
               : "rotate-90 scale-0 opacity-0 absolute pointer-events-none"
