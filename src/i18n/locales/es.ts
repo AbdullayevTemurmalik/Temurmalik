@@ -190,7 +190,7 @@ export const es: Dictionary = {
   "projects": {
     "label": "03 / Trabajos Seleccionados",
     "heading": "Proyectos seleccionados. Productos reales.",
-    "subtitle": "Tres sistemas de producción centrales que demuestran ingeniería backend, arquitecturas completas e integraciones prácticas de IA.",
+    "subtitle": "Cuatro sistemas de producción centrales que demuestran ingeniería backend, arquitecturas completas e integraciones prácticas de IA.",
     "viewCaseStudy": "Ver caso de estudio",
     "liveProject": "Proyecto en vivo",
     "sourceCode": "Repositorio",

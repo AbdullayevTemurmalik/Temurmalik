@@ -52,7 +52,7 @@ export function About() {
               transitionDelay: "240ms",
               transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs sm:text-sm shadow-xs transition-[transform,opacity] ${
+            className={`lg:col-span-5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-6 space-y-4 font-mono text-xs sm:text-sm transition-[transform,opacity] ${
               inView
                 ? "opacity-100 translate-y-0 scale-100"
                 : "opacity-0 translate-y-9 scale-[0.97]"

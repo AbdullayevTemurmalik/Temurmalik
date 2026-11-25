@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { IntroPreloader } from "@/components/ui/IntroPreloader";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -44,6 +45,7 @@ export default async function LocaleLayout({
       />
       <I18nProvider initialLocale={locale as Locale}>
         <SmoothScrollProvider>
+          <ScrollProgressBar />
           <IntroPreloader />
           <CommandPalette />
           <Header />

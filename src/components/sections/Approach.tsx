@@ -38,7 +38,7 @@ export function Approach() {
                 transitionDelay: `${idx * 140}ms`,
                 transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
               }}
-              className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-7 relative flex flex-col justify-between transition-[transform,opacity,border-color] hover:border-[var(--border-hover)] shadow-xs ${
+              className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-6 sm:p-7 relative flex flex-col justify-between transition-[transform,opacity,border-color,background-color] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] ${
                 inView
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 translate-y-9 scale-[0.97]"

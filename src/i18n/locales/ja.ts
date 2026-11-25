@@ -190,7 +190,7 @@ export const ja: Dictionary = {
   "projects": {
     "label": "03 / 主な実績",
     "heading": "選りすぐりの実績。実用プロダクト。",
-    "subtitle": "バックエンドエンジニアリング、フルスタック設計、実用AI統合を実証する3つの本番稼働システム。",
+    "subtitle": "バックエンドエンジニアリング、フルスタック設計、実用AI統合を実証する4つの本番稼働システム。",
     "viewCaseStudy": "事例詳細を見る",
     "liveProject": "公開サイト",
     "sourceCode": "ソースコード",

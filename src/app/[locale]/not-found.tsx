@@ -12,11 +12,11 @@ export default function LocalizedNotFound() {
     <div className="py-24 sm:py-32 flex-1 flex items-center justify-center">
       <Container className="max-w-2xl text-center">
         {/* Terminal Window Box */}
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] overflow-hidden shadow-2xl text-left font-mono">
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card overflow-hidden text-left font-mono">
           <div className="px-4 py-2.5 bg-[var(--bg-base)] border-b border-[var(--border-subtle)] flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#E06C75]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#E5C07B]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#79C0A5]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#E06C75]" aria-hidden="true" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#E5C07B]" aria-hidden="true" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[var(--accent-primary)]" aria-hidden="true" />
             <span className="ml-2 text-xs text-[var(--text-muted)]">terminal — 404 error</span>
           </div>
 

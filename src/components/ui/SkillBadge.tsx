@@ -37,7 +37,10 @@ export function SkillBadge({
           aria-hidden="true"
         />
       )}
-      <span className="font-medium group-hover/badge:text-[var(--text-primary)]">
+      <span
+        translate="no"
+        className="font-medium group-hover/badge:text-[var(--text-primary)]"
+      >
         {skill.name}
       </span>
       {/* Subtle external link icon */}

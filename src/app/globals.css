@@ -106,6 +106,14 @@
     outline-offset: 3px;
   }
 
+  /* Eliminate 300ms/double-tap touch latency on mobile controls */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {
       animation-duration: 0.01ms !important;
@@ -122,6 +130,58 @@
   background-image: 
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+/* Soft radial fade for hero grid so edges dissolve cleanly */
+.hero-grid-mask {
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 25%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 25%, #000 35%, transparent 100%);
+}
+
+/* Architectural elevated surface shadow & top hairline highlight */
+.surface-card {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.06);
+}
+
+html.dark .surface-card {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.045), 0 10px 30px -15px rgba(0, 0, 0, 0.55);
+}
+
+/* GPU-friendly CSS-variable spotlight layer (zero React re-renders) */
+.spotlight-radial {
+  background: radial-gradient(
+    480px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    color-mix(in srgb, var(--accent-primary) 10%, transparent),
+    transparent 78%
+  );
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-dropdown-in {
+  animation: dropdownIn 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Terminal blink cursor */

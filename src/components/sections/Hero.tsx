@@ -10,12 +10,25 @@ import { useTranslation } from "@/i18n/context";
 export function Hero() {
   const { t, locale } = useTranslation();
 
+  const openPalette = () => {
+    window.dispatchEvent(new CustomEvent("open-command-palette"));
+  };
+
   return (
     <section className="relative pt-[15px] md:pt-[20px] lg:pt-[40px] pb-16 sm:pb-24 overflow-hidden">
-      {/* Background Subtle Tech Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[var(--accent-primary)]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 right-0 w-96 h-96 bg-[var(--accent-secondary)]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle Architectural Tech Grid with Soft Radial Edge Fade */}
+      <div
+        className="absolute inset-0 bg-grid-pattern hero-grid-mask opacity-45 pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -top-40 -left-40 w-96 h-96 bg-[var(--accent-primary)]/6 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-40 right-0 w-96 h-96 bg-[var(--accent-secondary)]/6 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
 
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
@@ -24,7 +37,7 @@ export function Hero() {
             {/* Availability Indicator */}
             {siteConfig.isAvailableForWork && (
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-xs font-mono text-[var(--text-secondary)] shadow-2xs">
-                <span className="relative flex h-2 w-2">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-primary)] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-primary)]" />
                 </span>
@@ -33,11 +46,11 @@ export function Hero() {
             )}
 
             {/* Intro & Main Headings */}
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <p className="font-mono text-sm sm:text-base text-[var(--accent-primary)] font-medium">
                 {t.hero.eyebrow}
               </p>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.08]">
                 {t.hero.heading}
               </h1>
               <p className="text-xl sm:text-2xl font-medium text-[var(--text-secondary)] tracking-tight">
@@ -50,7 +63,7 @@ export function Hero() {
               {t.hero.description}
             </p>
 
-            {/* Action Buttons — Unified Without Redundant Text */}
+            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 href={`/${locale}#projects`}
@@ -66,9 +79,22 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Technical Metadata */}
-            <div className="pt-2 flex items-center gap-2 text-xs font-mono text-[var(--text-muted)]">
+            {/* Technical Metadata & Interactive Quick Command Trigger */}
+            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-[var(--text-muted)]">
               <span>{t.hero.metaTags}</span>
+              <span className="hidden sm:inline text-[var(--border-subtle)]" aria-hidden="true">
+                ·
+              </span>
+              <button
+                type="button"
+                onClick={openPalette}
+                translate="no"
+                aria-label="Open quick command palette (Ctrl+K or Cmd+K)"
+                className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[11px] text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--border-hover)] transition-colors cursor-pointer"
+              >
+                <kbd className="font-mono font-semibold text-[var(--accent-primary)]">⌘&nbsp;K</kbd>
+                <span>Quick Jump</span>
+              </button>
             </div>
           </div>
 

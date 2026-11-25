@@ -71,7 +71,7 @@ export function MailIcon({ className = "w-4 h-4", ...props }: React.SVGProps<SVG
 export function TerminalIcon({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -90,7 +90,7 @@ export function TerminalIcon({ className = "w-4 h-4", ...props }: React.SVGProps
 export function ExternalLinkIcon({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -110,7 +110,7 @@ export function ExternalLinkIcon({ className = "w-4 h-4", ...props }: React.SVGP
 export function ArrowUpRight({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -129,7 +129,7 @@ export function ArrowUpRight({ className = "w-4 h-4", ...props }: React.SVGProps
 export function ArrowRight({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -148,7 +148,7 @@ export function ArrowRight({ className = "w-4 h-4", ...props }: React.SVGProps<S
 export function ArrowLeft({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -164,10 +164,29 @@ export function ArrowLeft({ className = "w-4 h-4", ...props }: React.SVGProps<SV
   );
 }
 
+export function ArrowUp({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <path d="M12 19V5" />
+      <path d="m5 12 7-7 7 7" />
+    </svg>
+  );
+}
+
 export function SearchIcon({ className = "w-4 h-4", ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      role="img"
+      aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

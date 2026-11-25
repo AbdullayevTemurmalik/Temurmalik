@@ -107,12 +107,13 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
 
         {/* Visual Showcase Banner */}
-        <div className="my-10 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-base)] overflow-hidden shadow-2xl">
+        <div className="my-10 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-base)] overflow-hidden surface-card">
           <Image
             src={project.imageSrc}
             alt={project.imageAlt}
             width={1200}
             height={750}
+            sizes="(max-width: 1280px) 100vw, 1200px"
             className="w-full h-auto object-cover"
             priority
           />
@@ -133,7 +134,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <span className="text-[var(--text-muted)] block uppercase tracking-wider mb-1">
               {t.projects.timelineLabel}
             </span>
-            <span className="text-[var(--text-primary)] font-medium">
+            <span className="text-[var(--text-primary)] font-medium tabular-nums">
               {project.year}
             </span>
           </div>
@@ -147,7 +148,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
             </span>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <span className="text-[var(--text-muted)] block uppercase tracking-wider mb-1">
               {t.projects.liveEndpointLabel}
             </span>
@@ -155,6 +156,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              translate="no"
               className="text-[var(--accent-primary)] hover:underline truncate block"
             >
               {project.liveUrl.replace("https://", "").replace(/\/$/, "")}
@@ -242,69 +244,81 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           </div>
 
           {/* Right Sidebar: Tech Stack & System Attributes */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-5">
-              <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] pb-3 border-b border-[var(--border-subtle)]">
-                {t.projects.techUsedLabel}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <TechBadge key={tech} name={tech} />
-                ))}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-24 space-y-6">
+              <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-6 space-y-5">
+                <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] pb-3 border-b border-[var(--border-subtle)]">
+                  {t.projects.techUsedLabel}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <TechBadge key={tech} name={tech} />
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-[var(--border-subtle)] space-y-3">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-mono text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-[opacity,transform] duration-200 shadow-xs"
+                  >
+                    <span>{t.projects.visitLiveBtn}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
-              <div className="pt-4 border-t border-[var(--border-subtle)] space-y-3">
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[var(--text-primary)] text-[var(--bg-base)] font-mono text-xs font-semibold hover:opacity-90 transition-colors"
-                >
-                  <span>{t.projects.visitLiveBtn}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
+              {/* Key Verified Results */}
+              <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-6 space-y-4 font-mono text-xs">
+                <h3 className="font-semibold uppercase tracking-wider text-[var(--accent-primary)] pb-2 border-b border-[var(--border-subtle)]">
+                  {"//"} Verified System Notes
+                </h3>
+                <ul className="space-y-2 text-[var(--text-secondary)]">
+                  {content.verifiedHighlights.map((hl, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-[var(--accent-secondary)] shrink-0" aria-hidden="true">›</span>
+                      <span>{hl}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            {/* Key Verified Results */}
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4 font-mono text-xs">
-              <h3 className="font-semibold uppercase tracking-wider text-[var(--accent-primary)] pb-2 border-b border-[var(--border-subtle)]">
-                {"//"} Verified System Notes
-              </h3>
-              <ul className="space-y-2 text-[var(--text-secondary)]">
-                {content.verifiedHighlights.map((hl, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-[var(--accent-secondary)]">›</span>
-                    <span>{hl}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
 
-        {/* Bottom Pagination Links */}
-        <div className="mt-16 pt-8 border-t border-[var(--border-subtle)] flex items-center justify-between font-mono text-xs sm:text-sm">
+        {/* Bottom Pagination Cards */}
+        <div className="mt-16 pt-8 border-t border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs sm:text-sm">
           <Link
             href={`/${locale}/projects/${prevProject.slug}`}
-            className="group flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            className="group flex items-center justify-between gap-3 p-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] transition-[color,background-color,border-color]"
           >
-            <ArrowLeft className="w-4 h-4 text-[var(--accent-primary)] group-hover:-translate-x-1 transition-transform" />
-            <div className="text-left">
-              <span className="block text-[11px] text-[var(--text-muted)]">{t.projects.prevProject}</span>
-              <span className="font-semibold">{prevContent.title}</span>
+            <div className="flex items-center gap-3 min-w-0">
+              <ArrowLeft className="w-4 h-4 text-[var(--accent-primary)] group-hover:-translate-x-1 transition-transform shrink-0" />
+              <div className="text-start min-w-0">
+                <span className="block text-[11px] text-[var(--text-muted)]">{t.projects.prevProject}</span>
+                <span className="font-semibold text-[var(--text-primary)] truncate block">{prevContent.title}</span>
+              </div>
             </div>
+            <span className="text-[11px] text-[var(--text-muted)] tabular-nums shrink-0">
+              {prevProject.number}
+            </span>
           </Link>
 
           <Link
             href={`/${locale}/projects/${nextProject.slug}`}
-            className="group flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-right"
+            className="group flex items-center justify-between gap-3 p-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] transition-[color,background-color,border-color]"
           >
-            <div className="text-right">
-              <span className="block text-[11px] text-[var(--text-muted)]">{t.projects.nextProject}</span>
-              <span className="font-semibold">{nextContent.title}</span>
+            <span className="text-[11px] text-[var(--text-muted)] tabular-nums shrink-0">
+              {nextProject.number}
+            </span>
+            <div className="flex items-center gap-3 min-w-0 ms-auto">
+              <div className="text-end min-w-0">
+                <span className="block text-[11px] text-[var(--text-muted)]">{t.projects.nextProject}</span>
+                <span className="font-semibold text-[var(--text-primary)] truncate block">{nextContent.title}</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-[var(--accent-primary)] group-hover:translate-x-1 transition-transform shrink-0" />
             </div>
-            <ArrowRight className="w-4 h-4 text-[var(--accent-primary)] group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </Container>

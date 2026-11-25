@@ -53,7 +53,7 @@ export function TechStack() {
             </div>
 
             {/* Engineering Positioning Card */}
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5 space-y-3 font-mono text-xs shadow-xs">
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-5 space-y-3 font-mono text-xs">
               <div className="flex items-center justify-between pb-2.5 border-b border-[var(--border-subtle)]/60 text-[var(--text-secondary)]">
                 <span className="text-[var(--accent-primary)] font-semibold">
                   {"//"} {t.techStack.scopeTitle}
@@ -99,7 +99,7 @@ export function TechStack() {
               transitionDelay: "180ms",
               transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)]/60 overflow-hidden shadow-sm transition-[transform,opacity] ${
+            className={`lg:col-span-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card divide-y divide-[var(--border-subtle)]/60 overflow-hidden transition-[transform,opacity] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-9"
             }`}
           >

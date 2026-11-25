@@ -5,7 +5,7 @@ import { locales } from "@/i18n/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  const lastModified = new Date("2026-11-16T00:00:00.000Z");
+  const lastModified = new Date("2026-11-25T00:00:00.000Z");
   const slugs = getAllProjectSlugs();
 
   // Root alternates mapping

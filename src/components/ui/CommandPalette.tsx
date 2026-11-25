@@ -60,9 +60,13 @@ export function CommandPalette() {
     [isHome, locale, router]
   );
 
-  const copyToClipboard = useCallback((text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedText(label);
+  const copyToClipboard = useCallback(async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedText(label);
+    } catch {
+      setCopiedText(text);
+    }
     setTimeout(() => {
       setCopiedText(null);
       setIsOpen(false);
@@ -73,7 +77,7 @@ export function CommandPalette() {
     // Navigation
     {
       id: "nav-home",
-      title: "Home",
+      title: t.projects.backHome,
       subtitle: "Return to workstation top",
       category: "Navigation",
       icon: TerminalIcon,
@@ -81,7 +85,7 @@ export function CommandPalette() {
     },
     {
       id: "nav-about",
-      title: "01 / About",
+      title: `01 / ${t.nav.about}`,
       subtitle: t.about.heading,
       category: "Navigation",
       icon: ArrowRight,
@@ -89,7 +93,7 @@ export function CommandPalette() {
     },
     {
       id: "nav-expertise",
-      title: "02 / Expertise",
+      title: `02 / ${t.nav.expertise}`,
       subtitle: t.expertise.heading,
       category: "Navigation",
       icon: ArrowRight,
@@ -97,7 +101,7 @@ export function CommandPalette() {
     },
     {
       id: "nav-tech-stack",
-      title: "03 / Tech Stack",
+      title: `03 / ${t.nav.techStack}`,
       subtitle: "35+ Verified technologies & official links",
       category: "Navigation",
       icon: ArrowRight,
@@ -105,16 +109,16 @@ export function CommandPalette() {
     },
     {
       id: "nav-projects",
-      title: "04 / Featured Projects",
-      subtitle: "RunCode Web, Donik Coach AI, Al Harameen",
+      title: `04 / ${t.nav.projects}`,
+      subtitle: "RunCode Web, Jobify, Donik Coach AI, Al Harameen",
       category: "Navigation",
       icon: ArrowRight,
       action: () => navigateToSection("projects")
     },
     {
       id: "nav-contact",
-      title: "05 / Contact",
-      subtitle: "Direct engineering contact",
+      title: `05 / ${t.nav.contact}`,
+      subtitle: t.contact.heading,
       category: "Navigation",
       icon: ArrowRight,
       action: () => navigateToSection("contact")
@@ -209,10 +213,10 @@ export function CommandPalette() {
     );
   });
 
-  // Global Keyboard Listener for Cmd+K / Ctrl+K
+  // Global Keyboard Listener for Cmd+K / Ctrl+K & Custom Launcher Event
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setIsOpen((prev) => !prev);
       } else if (e.key === "Escape" && isOpen) {
@@ -221,11 +225,17 @@ export function CommandPalette() {
       }
     };
 
+    const handleCustomOpen = () => setIsOpen(true);
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("open-command-palette", handleCustomOpen);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("open-command-palette", handleCustomOpen);
+    };
   }, [isOpen]);
 
-  // Focus and reset when opened
+  // Focus input and reset query when opened
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -237,7 +247,15 @@ export function CommandPalette() {
     }
   }, [isOpen]);
 
-  // Handle arrow keys and Enter inside palette
+  // Keep active keyboard selection visible inside scrollable container
+  useEffect(() => {
+    if (!isOpen) return;
+    const activeEl = listRef.current?.querySelector<HTMLElement>(
+      `[data-palette-index="${selectedIndex}"]`
+    );
+    activeEl?.scrollIntoView({ block: "nearest" });
+  }, [selectedIndex, isOpen]);
+
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
@@ -262,7 +280,7 @@ export function CommandPalette() {
       onClick={() => setIsOpen(false)}
     >
       <div
-        className="w-full max-w-xl rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm animate-terminal-step"
+        className="w-full max-w-xl rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm animate-dropdown-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
@@ -271,32 +289,44 @@ export function CommandPalette() {
           <input
             ref={inputRef}
             type="text"
+            aria-label="Search commands, projects, and sections"
+            autoComplete="off"
+            spellCheck={false}
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type a command or jump to section..."
+            placeholder="Type a command or jump to section…"
             className="flex-1 bg-transparent text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none text-xs sm:text-sm"
           />
-          <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[10px] text-[var(--text-muted)]">
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close command palette"
+            className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[10px] text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"
+          >
             ESC
-          </kbd>
+          </button>
         </div>
 
         {/* Results List */}
         <div
           ref={listRef}
-          className="max-h-[380px] overflow-y-auto p-2 space-y-1"
+          className="max-h-[380px] overflow-y-auto overscroll-contain p-2 space-y-1"
         >
           {copiedText ? (
-            <div className="p-6 text-center text-xs font-mono text-[var(--accent-primary)] animate-pulse">
+            <div
+              role="status"
+              aria-live="polite"
+              className="p-6 text-center text-xs font-mono text-[var(--accent-primary)]"
+            >
               ✓ {copiedText}
             </div>
           ) : filteredItems.length === 0 ? (
             <div className="p-8 text-center text-xs text-[var(--text-muted)]">
-              No matching commands found.
+              No matching commands found for “{query}”.
             </div>
           ) : (
             filteredItems.map((item, idx) => {
@@ -305,10 +335,11 @@ export function CommandPalette() {
               return (
                 <button
                   key={item.id}
+                  data-palette-index={idx}
                   type="button"
                   onClick={item.action}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition-colors cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-start transition-colors cursor-pointer ${
                     isSelected
                       ? "bg-[var(--accent-primary)]/15 border border-[var(--accent-primary)]/30 text-[var(--text-primary)]"
                       : "border border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -316,7 +347,7 @@ export function CommandPalette() {
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <span
-                      className={`p-1.5 rounded-md border ${
+                      className={`p-1.5 rounded-md border shrink-0 ${
                         isSelected
                           ? "border-[var(--accent-primary)]/40 text-[var(--accent-primary)] bg-[var(--bg-base)]"
                           : "border-[var(--border-subtle)] text-[var(--text-muted)] bg-[var(--bg-surface)]"
@@ -324,7 +355,7 @@ export function CommandPalette() {
                     >
                       <Icon className="w-3.5 h-3.5" />
                     </span>
-                    <div className="truncate">
+                    <div className="min-w-0 truncate">
                       <p className="font-semibold text-xs sm:text-[13px] truncate">
                         {item.title}
                       </p>
@@ -335,7 +366,7 @@ export function CommandPalette() {
                       )}
                     </div>
                   </div>
-                  <span className="text-[10px] text-[var(--text-muted)] shrink-0 ml-2 uppercase tracking-wider font-mono">
+                  <span className="text-[10px] text-[var(--text-muted)] shrink-0 ms-2 uppercase tracking-wider font-mono">
                     {item.category}
                   </span>
                 </button>
@@ -351,8 +382,8 @@ export function CommandPalette() {
             <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
-          <span className="text-[var(--accent-primary)] font-semibold">
-            λ Temurmalik
+          <span translate="no" className="text-[var(--accent-primary)] font-semibold">
+            λ&nbsp;Temurmalik
           </span>
         </div>
       </div>

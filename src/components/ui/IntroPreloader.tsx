@@ -115,6 +115,7 @@ export function IntroPreloader() {
 
   const currentGreeting = GREETINGS[index] || GREETINGS[0];
   const stepNumber = String(index + 1).padStart(2, "0");
+  const totalSteps = String(GREETINGS.length).padStart(2, "0");
 
   return (
     <div
@@ -137,8 +138,8 @@ export function IntroPreloader() {
       {/* Top Bar: Brand & Accessible Skip button */}
       <div className="w-full flex items-center justify-between text-xs font-mono text-[var(--text-muted)] select-none">
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]" />
-          <span className="tracking-wider uppercase font-semibold text-[var(--text-secondary)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]" aria-hidden="true" />
+          <span translate="no" className="tracking-wider uppercase font-semibold text-[var(--text-secondary)]">
             Temurmalik
           </span>
         </div>
@@ -146,7 +147,7 @@ export function IntroPreloader() {
         <button
           type="button"
           onClick={handleSkip}
-          className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] px-2.5 py-1 rounded border border-[var(--border-subtle)] hover:border-[var(--border-hover)] bg-[var(--bg-surface)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+          className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] px-2.5 py-1 rounded border border-[var(--border-subtle)] hover:border-[var(--border-hover)] bg-[var(--bg-surface)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] cursor-pointer"
           aria-label={t.intro?.skipAria || "Skip introductory animation"}
         >
           {t.intro?.skip || "Skip [ESC]"}
@@ -175,8 +176,8 @@ export function IntroPreloader() {
       {/* Bottom Bar: Engineering Progress Indicator */}
       <div className="w-full flex items-center justify-between text-[11px] sm:text-xs font-mono text-[var(--text-muted)] select-none">
         <span>Uzbekistan (UTC+5)</span>
-        <span className="text-[var(--accent-primary)] font-semibold">
-          {stepNumber} / 12
+        <span className="text-[var(--accent-primary)] font-semibold tabular-nums">
+          {stepNumber} / {totalSteps}
         </span>
       </div>
 

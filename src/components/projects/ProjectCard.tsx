@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LocalizedProject } from "@/data/localizedProjects";
@@ -19,50 +19,41 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   const { t, locale: currentLocale } = useTranslation();
   const content = project.translations[currentLocale] || project.translations.en;
-  // Trigger smoothly right as each card enters the lower viewport; stay solid once revealed
+
   const { ref, inView } = useInView<HTMLElement>({
     threshold: 0.1,
     rootMargin: "0px 0px -70px 0px",
     triggerOnce: true
   });
 
-  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  // Update CSS variables directly to guarantee zero React re-renders on hover
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
+    e.currentTarget.style.setProperty("--spotlight-x", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--spotlight-y", `${e.clientY - rect.top}px`);
+  }, []);
 
   return (
     <article
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       style={{
         transitionDuration: "1000ms",
         transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
       }}
-      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 sm:p-8 transition-[transform,opacity,border-color,background-color] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden shadow-xs ${
+      className={`group relative rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] surface-card p-6 sm:p-8 transition-[transform,opacity,border-color,background-color] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] overflow-hidden ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       aria-labelledby={`project-title-${project.id}`}
     >
-      {/* Subtle dynamic mouse spotlight glow */}
+      {/* Dynamic Cursor Spotlight Glow */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 ease-out z-0"
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, rgba(120, 199, 173, 0.075), transparent 75%)`
-        }}
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out z-0 spotlight-radial"
         aria-hidden="true"
       />
+
       <div
-        className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
+        className={`relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
           reverse ? "lg:grid-flow-dense" : ""
         }`}
       >
@@ -83,7 +74,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
         >
           <Link
             href={`/${currentLocale}/projects/${project.slug}`}
-            className="block relative rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-base)] overflow-hidden aspect-[16/10] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] group/img"
+            className="block relative rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-base)] overflow-hidden aspect-[16/10] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] group/img shadow-xs"
             aria-label={`${t.projects.viewCaseStudy} — ${content.title}`}
           >
             <Image
@@ -91,11 +82,25 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
               alt={project.imageAlt}
               width={1200}
               height={750}
-              className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover/img:scale-[1.02]"
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover/img:scale-[1.025]"
               priority={project.number === "01"}
             />
-            {/* Subtle overlay border */}
-            <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-lg pointer-events-none" />
+
+            {/* Subtle edge inner ring */}
+            <div
+              className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/5 rounded-lg pointer-events-none"
+              aria-hidden="true"
+            />
+
+            {/* Discreet corner action pill visible on desktop pointer hover */}
+            <div
+              className="pointer-events-none absolute bottom-3 end-3 hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--border-hover)] bg-[var(--bg-base)]/90 backdrop-blur-md text-[11px] font-mono font-medium text-[var(--text-primary)] opacity-0 translate-y-1.5 group-hover/img:opacity-100 group-hover/img:translate-y-0 transition-[opacity,transform] duration-200 shadow-lg"
+              aria-hidden="true"
+            >
+              <span>{t.projects.viewCaseStudy}</span>
+              <ArrowRight className="w-3 h-3 text-[var(--accent-primary)]" />
+            </div>
           </Link>
         </div>
 
@@ -116,11 +121,11 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-[var(--accent-primary)] font-semibold tracking-wider">
+            <div className="flex items-center justify-between gap-2 text-xs font-mono">
+              <span className="text-[var(--accent-primary)] font-semibold tracking-wider tabular-nums">
                 {"//"} {project.number} · {project.year}
               </span>
-              <span className="text-[var(--text-secondary)] px-2 py-0.5 rounded bg-[var(--bg-base)] border border-[var(--border-subtle)]">
+              <span className="text-[var(--text-secondary)] px-2 py-0.5 rounded bg-[var(--bg-base)] border border-[var(--border-subtle)] truncate max-w-[65%]">
                 {content.category}
               </span>
             </div>
@@ -163,7 +168,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
               transitionDelay: "420ms",
               transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
             }}
-            className={`flex flex-wrap gap-1.5 pt-1 transition-[transform,opacity] ${
+            className={`flex flex-wrap items-center gap-1.5 pt-1 transition-[transform,opacity] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
@@ -171,7 +176,7 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
               <TechBadge key={tech} name={tech} size="sm" />
             ))}
             {project.technologies.length > 5 && (
-              <span className="font-mono text-xs text-[var(--text-muted)] px-1.5 py-0.5">
+              <span className="font-mono text-xs text-[var(--text-muted)] px-1.5 py-0.5 tabular-nums">
                 +{project.technologies.length - 5}
               </span>
             )}

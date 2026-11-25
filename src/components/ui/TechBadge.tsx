@@ -9,15 +9,19 @@ interface TechBadgeProps {
 export function TechBadge({ name, size = "sm", highlight = false }: TechBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center font-mono rounded border transition-colors ${
+      translate="no"
+      className={`inline-flex items-center font-mono rounded border transition-colors shadow-2xs ${
         size === "sm" ? "px-2 py-0.5 text-xs" : "px-3 py-1 text-xs sm:text-sm"
       } ${
         highlight
-          ? "bg-[#182330] text-[#E6EDF3] border-[#394858]"
-          : "bg-[#121922] text-[#8B949E] border-[#26313D] hover:border-[#394858] hover:text-[#E6EDF3]"
+          ? "bg-[var(--bg-surface-hover)] text-[var(--text-primary)] border-[var(--border-hover)] font-medium"
+          : "bg-[var(--bg-base)] text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)]"
       }`}
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-[#79C0A5]/60 mr-1.5 shrink-0" />
+      <span
+        className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]/75 mr-1.5 shrink-0"
+        aria-hidden="true"
+      />
       {name}
     </span>
   );

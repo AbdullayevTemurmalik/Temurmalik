@@ -88,13 +88,16 @@ export function Header() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open, ensuring cleanup on unmount
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   // Active state is explicitly triggered ONLY when the user clicks a nav link
@@ -197,12 +200,13 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)]"
+              className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] cursor-pointer"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             >
               {mobileMenuOpen ? (
                 <svg
+                  aria-hidden="true"
                   className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
@@ -213,6 +217,7 @@ export function Header() {
                 </svg>
               ) : (
                 <svg
+                  aria-hidden="true"
                   className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
@@ -238,7 +243,7 @@ export function Header() {
 
       {/* Mobile Slide-Over Drawer from RIGHT */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-[transform,opacity] duration-300 ease-out ${
+        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-[transform,opacity] duration-300 ease-out overscroll-contain ${
           mobileMenuOpen
             ? "translate-x-0 opacity-100 visible pointer-events-auto"
             : "translate-x-full opacity-0 invisible pointer-events-none"
@@ -249,17 +254,21 @@ export function Header() {
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40">
-          <span className="font-mono text-xs text-[var(--accent-primary)] font-semibold tracking-wider uppercase flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" />
+          <span
+            translate="no"
+            className="font-mono text-xs text-[var(--accent-primary)] font-semibold tracking-wider uppercase flex items-center gap-1.5"
+          >
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" aria-hidden="true" />
             ~/navigation
           </span>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}
-            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors"
+            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors cursor-pointer"
             aria-label={t.nav.closeMenu}
           >
             <svg
+              aria-hidden="true"
               className="w-5 h-5"
               fill="none"
               stroke="currentColor"
@@ -272,7 +281,7 @@ export function Header() {
         </div>
 
         {/* Drawer Navigation Links */}
-        <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-2 font-mono text-sm">
+        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 flex flex-col gap-2 font-mono text-sm">
           {navItems.map((item) => {
             const isActive = activeSection === item.sectionId;
             return (
@@ -287,7 +296,7 @@ export function Header() {
                 }`}
               >
                 <span>{item.label}</span>
-                <span className="text-xs text-[var(--accent-primary)] font-mono">
+                <span className="text-xs text-[var(--accent-primary)] font-mono" aria-hidden="true">
                   {isActive ? "●" : "→"}
                 </span>
               </Link>

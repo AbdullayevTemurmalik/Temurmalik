@@ -14,10 +14,10 @@ export function Badge({
   className = ""
 }: BadgeProps) {
   const variantStyles = {
-    neutral: "bg-[#16202C] text-[#8B949E] border-[#26313D]",
-    accent: "bg-[#79C0A5]/10 text-[#79C0A5] border-[#79C0A5]/30",
-    blue: "bg-[#79B8FF]/10 text-[#79B8FF] border-[#79B8FF]/30",
-    subtle: "bg-transparent text-[#8B949E] border-[#26313D]/60"
+    neutral: "bg-[var(--bg-surface)] text-[var(--text-secondary)] border-[var(--border-subtle)]",
+    accent: "bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border-[var(--accent-primary)]/30",
+    blue: "bg-[var(--accent-secondary)]/10 text-[var(--accent-secondary)] border-[var(--accent-secondary)]/30",
+    subtle: "bg-transparent text-[var(--text-secondary)] border-[var(--border-subtle)]/70"
   };
 
   const sizeStyles = {

@@ -120,10 +120,13 @@ export function Stats() {
               } ${idx === 0 ? "" : "pt-6 md:pt-0 md:pl-8 lg:pl-10"}`}
             >
               <div className="flex items-baseline gap-2">
-                <span className="font-mono text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+                <span className="font-mono text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)] tabular-nums">
                   <AnimatedNumber value={stat.value} inView={inView} />
                 </span>
-                <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" />
+                <span
+                  aria-hidden="true"
+                  className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse"
+                />
               </div>
               <p className="mt-2 text-sm sm:text-base font-medium text-[var(--text-primary)]">
                 {stat.label}
