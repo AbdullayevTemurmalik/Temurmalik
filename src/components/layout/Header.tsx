@@ -9,6 +9,7 @@ import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTranslation } from "@/i18n/context";
 import { smoothScrollTo } from "@/lib/smoothScroll";
+import { siteConfig } from "@/config/site";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,6 +21,7 @@ export function Header() {
   const activeSectionRef = useRef<string>("");
   const isProgrammaticScrollRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   // Sync ref with state so scroll event listener has freshest value without re-binding
   useEffect(() => {
@@ -49,13 +51,12 @@ export function Header() {
       // If programmatically gliding towards the clicked target, don't clear indicator early
       if (isProgrammaticScrollRef.current) return;
 
-      // When an active section was clicked: if user scrolls away from that section, turn indicator OFF!
+      // When an active section was clicked: if user scrolls away from that section, turn indicator OFF
       const currentActive = activeSectionRef.current;
       if (currentActive) {
         const el = document.getElementById(currentActive);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // Active area bounds: if scrolled past the section (top or bottom), it turns OFF
           const isOutOfView =
             rect.bottom < 70 || rect.top > window.innerHeight * 0.7;
           if (isOutOfView) {
@@ -65,8 +66,6 @@ export function Header() {
           setActiveSection("");
         }
       }
-      // CRITICAL: When no section is active, DO NOT auto-activate other sections on scroll!
-      // They stay cleanly off so manual scrolling never flickers or auto-lights indicators.
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -77,31 +76,41 @@ export function Header() {
     };
   }, []);
 
-  // Escape key handler for mobile menu
+  // Close mobile menu cleanly on Escape key or browser back/forward navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileMenuOpen) {
         setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
       }
     };
+    const handlePopState = () => {
+      setMobileMenuOpen(false);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open, ensuring cleanup on unmount
+  // Lock background scroll while mobile menu is open, ensuring cleanup on unmount
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [mobileMenuOpen]);
 
-  // Active state is explicitly triggered ONLY when the user clicks a nav link
-  // Uses 2x slower cinematic smooth scroll (~1250ms)
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     setActiveSection(sectionId);
     activeSectionRef.current = sectionId;
@@ -109,7 +118,6 @@ export function Header() {
     setMobileMenuOpen(false);
 
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    // Allow smooth scroll to complete before scroll-away checking is active
     scrollTimeoutRef.current = setTimeout(() => {
       isProgrammaticScrollRef.current = false;
     }, 2000);
@@ -121,19 +129,24 @@ export function Header() {
       e.preventDefault();
       const el = document.getElementById(sectionId);
       if (el) {
-        const yOffset = -70; // offset for sticky header
-        const y = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset + yOffset);
-        const dist = Math.abs(y - window.pageYOffset);
-        const calculatedDuration = Math.min(
-          2400,
-          Math.max(1000, Math.round(800 + Math.sqrt(dist) * 26))
-        );
-        smoothScrollTo(y, calculatedDuration);
-        window.history.pushState(null, "", `#${sectionId}`);
-        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = setTimeout(() => {
-          isProgrammaticScrollRef.current = false;
-        }, calculatedDuration + 150);
+        // Wait two frames so mobile drawer unmount effect unlocks scroll cleanly first
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const yOffset = -70;
+            const y = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset + yOffset);
+            const dist = Math.abs(y - window.pageYOffset);
+            const calculatedDuration = Math.min(
+              2400,
+              Math.max(1000, Math.round(800 + Math.sqrt(dist) * 26))
+            );
+            smoothScrollTo(y, calculatedDuration);
+            window.history.pushState(null, "", `#${sectionId}`);
+            if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+            scrollTimeoutRef.current = setTimeout(() => {
+              isProgrammaticScrollRef.current = false;
+            }, calculatedDuration + 150);
+          });
+        });
       }
     }
   };
@@ -146,95 +159,99 @@ export function Header() {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full transition-[background-color,border-color,padding,box-shadow] duration-200 ${
-        scrolled
-          ? "bg-[var(--bg-base)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] py-3 shadow-sm"
-          : "bg-transparent border-b border-transparent py-4 sm:py-5"
-      }`}
-    >
-      <Container>
-        <div className="flex items-center justify-between gap-4">
-          {/* Brand Wordmark — Clicking smoothly navigates to top and resets active state */}
-          <Wordmark onClick={handleResetActive} />
+    <>
+      <header
+        className={`sticky top-0 z-40 w-full transition-[background-color,border-color,padding,box-shadow] duration-200 ${
+          scrolled
+            ? "bg-[var(--bg-base)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] py-3 shadow-sm"
+            : "bg-transparent border-b border-transparent py-4 sm:py-5"
+        }`}
+      >
+        <Container>
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
+            {/* Brand Wordmark */}
+            <Wordmark onClick={handleResetActive} />
 
-          {/* Desktop Navigation Links — Pure, clean typography */}
-          <nav
-            className="hidden md:flex items-center gap-1 font-mono text-xs sm:text-sm"
-            aria-label="Main Navigation"
-          >
-            {navItems.map((item) => {
-              const isActive = activeSection === item.sectionId;
-              return (
-                <Link
-                  key={item.sectionId}
-                  href={item.href}
-                  onClick={(e) => handleLinkClick(e, item.sectionId)}
-                  className={`relative px-3 py-1.5 rounded font-mono transition-colors duration-150 outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-secondary)] ${
-                    isActive
-                      ? "text-[var(--text-primary)] font-semibold"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                  }`}
-                >
-                  {item.label}
-                  {/* Subtle 2px terminal accent line indicator that ONLY renders when clicked */}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-[opacity,transform] duration-200" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Desktop Right Controls: Language & Theme Switcher */}
-          <div className="hidden md:flex items-center gap-2.5">
-            <LocaleSwitcher />
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile Right Controls: Switchers + Menu Button */}
-          <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
-            <LocaleSwitcher />
-            <ThemeToggle />
-
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] cursor-pointer"
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
+            {/* Desktop Navigation Links */}
+            <nav
+              className="hidden md:flex items-center gap-1 font-mono text-xs sm:text-sm"
+              aria-label="Main Navigation"
             >
-              {mobileMenuOpen ? (
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-      </Container>
+              {navItems.map((item) => {
+                const isActive = activeSection === item.sectionId;
+                return (
+                  <Link
+                    key={item.sectionId}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(e, item.sectionId)}
+                    className={`relative px-3 py-1.5 rounded font-mono transition-colors duration-150 outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-secondary)] ${
+                      isActive
+                        ? "text-[var(--text-primary)] font-semibold"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[var(--accent-primary)] rounded-full transition-[opacity,transform] duration-200" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-      {/* Mobile Slide-Over Backdrop */}
+            {/* Desktop Right Controls */}
+            <div className="hidden md:flex items-center gap-2.5 shrink-0">
+              <LocaleSwitcher />
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Right Controls: Switchers + Menu Button */}
+            <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+              <LocaleSwitcher />
+              <ThemeToggle />
+
+              <button
+                ref={menuButtonRef}
+                type="button"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                className="min-w-[38px] min-h-[38px] flex items-center justify-center p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors cursor-pointer"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation-drawer"
+                aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
+              >
+                {mobileMenuOpen ? (
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </Container>
+      </header>
+
+      {/* Mobile Slide-Over Backdrop & Drawer rendered OUTSIDE <header>
+          so backdrop-blur-md on sticky <header> NEVER traps position:fixed inside a 60px box */}
       <div
-        className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[55] bg-black/65 transition-opacity duration-250 md:hidden ${
           mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
@@ -243,17 +260,20 @@ export function Header() {
 
       {/* Mobile Slide-Over Drawer from RIGHT */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-[transform,opacity] duration-300 ease-out overscroll-contain ${
+        id="mobile-navigation-drawer"
+        aria-hidden={!mobileMenuOpen}
+        inert={!mobileMenuOpen ? true : undefined}
+        className={`fixed inset-y-0 right-0 z-[60] w-[300px] max-w-[85vw] bg-[var(--bg-base)] border-l border-[var(--border-subtle)] shadow-2xl flex flex-col md:hidden transform transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] overscroll-contain ${
           mobileMenuOpen
-            ? "translate-x-0 opacity-100 visible pointer-events-auto"
-            : "translate-x-full opacity-0 invisible pointer-events-none"
+            ? "translate-x-0 pointer-events-auto"
+            : "translate-x-full pointer-events-none"
         }`}
         role="dialog"
-        aria-modal="true"
+        aria-modal={mobileMenuOpen ? "true" : undefined}
         aria-label="Mobile Navigation"
       >
         {/* Drawer Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/50">
           <span
             translate="no"
             className="font-mono text-xs text-[var(--accent-primary)] font-semibold tracking-wider uppercase flex items-center gap-1.5"
@@ -263,8 +283,11 @@ export function Header() {
           </span>
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(false)}
-            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors cursor-pointer"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              menuButtonRef.current?.focus();
+            }}
+            className="min-w-[38px] min-h-[38px] flex items-center justify-center p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-md border border-[var(--border-subtle)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-secondary)] transition-colors cursor-pointer"
             aria-label={t.nav.closeMenu}
           >
             <svg
@@ -281,7 +304,13 @@ export function Header() {
         </div>
 
         {/* Drawer Navigation Links */}
-        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 flex flex-col gap-2 font-mono text-sm">
+        <nav
+          data-lenis-prevent
+          data-scroll-prevent
+          onWheel={(e) => e.stopPropagation()}
+          aria-label="Mobile Navigation Links"
+          className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 flex flex-col gap-2.5 font-mono text-sm"
+        >
           {navItems.map((item) => {
             const isActive = activeSection === item.sectionId;
             return (
@@ -289,7 +318,7 @@ export function Header() {
                 key={item.sectionId}
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.sectionId)}
-                className={`px-4 py-3 rounded-lg border transition-[color,background-color,border-color,box-shadow] duration-150 flex items-center justify-between ${
+                className={`px-4 py-3.5 rounded-lg border transition-[color,background-color,border-color,box-shadow] duration-150 flex items-center justify-between ${
                   isActive
                     ? "border-[var(--accent-primary)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold shadow-xs"
                     : "border-[var(--border-subtle)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface)]"
@@ -302,28 +331,28 @@ export function Header() {
               </Link>
             );
           })}
-        </div>
+        </nav>
 
         {/* Drawer Footer with Quick Connect & Profile Identity */}
         <div className="p-5 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 flex flex-col gap-3 font-mono text-xs">
           <div className="flex items-center justify-between">
             <span className="text-[var(--text-muted)]">Direct Contact:</span>
             <a
-              href="https://t.me/TM_Backdev"
+              href={siteConfig.social.telegram.url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--accent-primary)] hover:underline flex items-center gap-1 font-semibold"
             >
               <span>Telegram</span>
-              <span>↗</span>
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
           <div className="text-[var(--text-muted)] text-[11px] leading-relaxed pt-2 border-t border-[var(--border-subtle)]">
-            <p className="font-semibold text-[var(--text-secondary)]">Temurmalik Abdullayev</p>
-            <p>Full-Stack Developer · Uzbekistan</p>
+            <p className="font-semibold text-[var(--text-secondary)]">{siteConfig.fullName}</p>
+            <p>{siteConfig.title} · {siteConfig.location}</p>
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
