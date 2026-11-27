@@ -30,9 +30,9 @@ const localizedMeta: Record<Locale, { title: string; description: string; ogLoca
     ogLocale: "en_US"
   },
   uz: {
-    title: "Temurmalik Abdullayev | Full-Stack va Backend Dasturchi",
+    title: "Temurmalik Abdullayev | Full-Stack va Backend Dasturçi",
     description:
-      "Temurmalik Abdullayev — O‘zbekistondagi Full-Stack dasturchi. Backend tizimlari, AI integratsiyalari va zamonaviy veb-ilovalar yaratadi. RunCode Web, Jobify, Donik Coach AI va Al Harameen loyihalarini ko‘ring.",
+      "Temurmalik Abdullayev — Özbekistondagi Full-Stack dasturçi. Backend tizimlari, AI integratsiyalari va zamonaviy veb-ilovalar yaratadi. RunCode Web, Jobify, Donik Coach AI va Al Harameen loyihalarini köring.",
     ogLocale: "uz_UZ"
   },
   ru: {

@@ -20,10 +20,10 @@ const extras = {
   uz: {
     terminalYearsUnit: "yil",
     primaryRoleLabel: "Asosiy Mutaxassislik",
-    specializationLabel: "Ixtisoslashuv",
-    openOfficialSite: "{name} rasmiy saytini ochish",
-    skip: "O‘tkazib yuborish [ESC]",
-    skipAria: "Kirish animatsiyasini o‘tkazib yuborish"
+    specializationLabel: "Ixtisoslaşuv",
+    openOfficialSite: "{name} rasmiy saytini oçiş",
+    skip: "Ötkazib yuboriş [ESC]",
+    skipAria: "Kiriş animatsiyasini ötkazib yuboriş"
   },
   ru: {
     terminalYearsUnit: "года",

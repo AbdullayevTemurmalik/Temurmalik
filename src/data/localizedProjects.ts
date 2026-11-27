@@ -112,52 +112,52 @@ export const localizedProjects: LocalizedProject[] = [
       },
       uz: {
         title: "RunCode Web",
-        tagline: "Zamonaviy dasturlash ta’limi va amaliyot platformasi",
-        category: "Dasturlash Ta’limi / Onlayn Platforma",
+        tagline: "Zamonaviy dasturlaş ta’limi va amaliyot platformasi",
+        category: "Dasturlaş Ta’limi / Onlayn Platforma",
         description:
-          "React, Tailwind CSS hamda Node.js/TypeScript AI o‘qituvchi backend tizimi asosida qurilgan zamonaviy dasturlash ta’lim platformasi.",
+          "React, Tailwind CSS hamda Node.js/TypeScript AI öqituvçi backend tizimi asosida qurilgan zamonaviy dasturlaş ta’lim platformasi.",
         detailedDescription: [
-          "RunCode Web — dasturlash asoslari va texnologiyalarni amaliy, tizimli hamda interaktiv tarzda o‘rganish uchun mo‘ljallangan ta’lim platformasi.",
-          "Foydalanuvchi interfeysi Vite, React va Tailwind CSS yordamida tezkor, qulay va chalg‘itmaydigan qorong‘u rejimda yaratilgan. Backend qismida Node.js, Express, PostgreSQL bilan Prisma ORM, real-vaqt aloqasi uchun WebSockets va sun’iy intellekt maslahatchisi uchun Google Gemini API integratsiya qilingan."
+          "RunCode Web — dasturlaş asoslari va texnologiyalarni amaliy, tizimli hamda interaktiv tarzda örganiş uçun möljallangan ta’lim platformasi.",
+          "Foydalanuvçi interfeysi Vite, React va Tailwind CSS yordamida tezkor, qulay va çalğitmaydigan qoronğu rejimda yaratilgan. Backend qismida Node.js, Express, PostgreSQL bilan Prisma ORM, real-vaqt aloqasi uçun WebSockets va sun’iy intellekt maslahatçisi uçun Google Gemini API integratsiya qilingan."
         ],
-        role: "Full-Stack Dasturchi va Backend Arxitektori",
+        role: "Full-Stack Dasturçi va Backend Arxitektori",
         timeline: "2026",
-        statusText: "2026-yilda ishga tushirilgan",
+        statusText: "2026-yilda işga tuşirilgan",
         verifiedHighlights: [
-          "React frontend va TypeScript backend ajratilgan modulli to‘liq sikldagi arxitektura",
-          "PostgreSQL va Prisma ORM orqali darslar va foydalanuvchilar progressini xavfsiz boshqarish",
-          "O‘quvchilarga kod yozishda ko‘maklashuvchi Google Gemini sun’iy intellekti integratsiyasi",
-          "Vercel platformasida sub-soniyalik yuklanish va optimallashtirilgan hajm"
+          "React frontend va TypeScript backend ajratilgan modulli töliq sikldagi arxitektura",
+          "PostgreSQL va Prisma ORM orqali darslar va foydalanuvçilar progressini xavfsiz boşqariş",
+          "Öquvçilarga kod yozişda kömaklaşuvçi Google Gemini sun’iy intellekti integratsiyasi",
+          "Vercel platformasida sub-soniyalik yuklaniş va optimallaştirilgan hajm"
         ],
         problemAndGoal:
-          "Dasturlashni endi boshlayotgan o‘quvchilar nazariya va amaliyot o‘rtasidagi uzilish tufayli ko‘p qiyinchiliklarga duch kelishadi. RunCode Web loyihasining bosh maqsadi — nazariya, amaliy kod muharriri va AI yordamchini yagona qulay oynada birlashtirish.",
+          "Dasturlaşni endi boşlayotgan öquvçilar nazariya va amaliyot örtasidagi uziliş tufayli köp qiyinçiliklarga duç kelişadi. RunCode Web loyihasining boş maqsadi — nazariya, amaliy kod muharriri va AI yordamçini yagona qulay oynada birlaştiriş.",
         solutionAndArchitecture: [
-          "React va Tailwind CSS asosida bir zumda yuklanadigan, interaktiv va qorong‘u rejimli SPA ishlab chiqildi.",
-          "TypeScript va Express yordamida qat’iy Zod ma’lumot tekshiruvi va xavfsiz sessiyalarga ega backend yaratildi.",
+          "React va Tailwind CSS asosida bir zumda yuklanadigan, interaktiv va qoronğu rejimli SPA işlab çiqildi.",
+          "TypeScript va Express yordamida qat’iy Zod ma’lumot tekşiruvi va xavfsiz sessiyalarga ega backend yaratildi.",
           "Prisma ORM sxemalari orqali kurslar, modullar va test natijalari mustahkam relyatsion bazada tartibga solindi.",
-          "Google Generative AI moduli ulanib, kod xatolarini tushuntirish va to‘g‘ri yo‘nalish ko‘rsatish yo‘lga qo‘yildi."
+          "Google Generative AI moduli ulanib, kod xatolarini tuşuntiriş va töğri yönaliş körsatiş yölga qöyildi."
         ],
         verifiedFeatures: [
-          "Interaktiv dasturlash darslari va amaliy mashg‘ulotlar",
-          "Dasturchilar uchun maxsus sintaksis uslubidagi qulay interfeys",
-          "AI O‘qituvchi orqali real-vaqtda yordam olish imkoniyati",
-          "Qorong‘u va yorug‘ rejimda ko‘zga qulay yuqori kontrastli dizayn"
+          "Interaktiv dasturlaş darslari va amaliy maşğulotlar",
+          "Dasturçilar uçun maxsus sintaksis uslubidagi qulay interfeys",
+          "AI Öqituvçi orqali real-vaqtda yordam oliş imkoniyati",
+          "Qoronğu va yoruğ rejimda közga qulay yuqori kontrastli dizayn"
         ],
         technicalDecisions: [
           {
             title: "Mustaqil Modulli Arxitektura",
             description:
-              "Frontend va backend tizimlari alohida ajratilib, yangilanishlarni xavfsiz va kechikishlarsiz yetkazib berish ta’minlandi."
+              "Frontend va backend tizimlari alohida ajratilib, yangilanişlarni xavfsiz va keçikişlarsiz yetkazib beriş ta’minlandi."
           },
           {
             title: "PostgreSQL va Prisma ORM",
             description:
-              "To‘liq tip xavfsizligi, tezkor SQL so‘rovlari va xavfsiz migratsiyalar uchun Prisma tanlandi."
+              "Töliq tip xavfsizligi, tezkor SQL sörovlari va xavfsiz migratsiyalar uçun Prisma tanlandi."
           },
           {
-            title: "To‘g‘ridan-to‘g‘ri Gemini AI Integratsiyasi",
+            title: "Töğridan-töğri Gemini AI Integratsiyasi",
             description:
-              "Ortiqcha qatlamlarsiz rasmiy SDK orqali foydalanuvchi kodini tahlil qiluvchi tezkor AI ulandi."
+              "Ortiqça qatlamlarsiz rasmiy SDK orqali foydalanuvçi kodini tahlil qiluvçi tezkor AI ulandi."
           }
         ]
       },
@@ -698,52 +698,52 @@ export const localizedProjects: LocalizedProject[] = [
       },
       uz: {
         title: "Jobify",
-        tagline: "Iqtidorli mutaxassislar va nufuzli ish beruvchilarni birlashtiruvchi platforma",
-        category: "Full-Stack / Ish qidirish va Rekruting",
+        tagline: "Iqtidorli mutaxassislar va nufuzli iş beruvçilarni birlaştiruvçi platforma",
+        category: "Full-Stack / Iş qidiriş va Rekruting",
         description:
-          "Nomzodlar uchun tezkor rezyume joylash va ish topish, ish beruvchilar uchun esa eng sara iqtidorlarni saralab olish imkonini beruvchi to‘liq funksional rekruting platformasi.",
+          "Nomzodlar uçun tezkor rezyume joylaş va iş topiş, iş beruvçilar uçun esa eng sara iqtidorlarni saralab oliş imkonini beruvçi töliq funksional rekruting platformasi.",
         detailedDescription: [
-          "Jobify — O‘zbekistonda zamonaviy ish qidirish va xodimlarni saralab olish (recruitment) jarayonini soddalashtirish uchun yaratilgan keng qamrovli platforma.",
-          "Platforma 'Find aspiring talents and great employers' falsafasi asosida ish beruvchilar va izlanuvchan mutaxassislar o‘rtasida to‘g‘ridan-to‘g‘ri aloqa ko‘prigini o‘rnatadi. Tizimda vakansiyalar katalogi, nomzodlar profili, malaka bo‘yicha tezkor qidiruv hamda rekruterlar uchun qulay boshqaruv paneli ishlab chiqilgan."
+          "Jobify — Özbekistonda zamonaviy iş qidiriş va xodimlarni saralab oliş (recruitment) jarayonini soddalaştiriş uçun yaratilgan keng qamrovli platforma.",
+          "Platforma 'Find aspiring talents and great employers' falsafasi asosida iş beruvçilar va izlanuvçan mutaxassislar örtasida töğridan-töğri aloqa köprigini örnatadi. Tizimda vakansiyalar katalogi, nomzodlar profili, malaka böyiça tezkor qidiruv hamda rekruterlar uçun qulay boşqaruv paneli işlab çiqilgan."
         ],
-        role: "Full-Stack Dasturchi & Backend Arxitektor",
+        role: "Full-Stack Dasturçi & Backend Arxitektor",
         timeline: "2025",
-        statusText: "Ishga tushirilgan (2025)",
+        statusText: "Işga tuşirilgan (2025)",
         verifiedHighlights: [
-          "Ish beruvchilar va iqtidorli mutaxassislar uchun to‘liq funksional rekruting tizimi",
-          "Ko‘nikmalar (skills) va toifalar bo‘yicha tezkor saralash filtrlari",
-          "Rekruterlar va nomzodlar uchun alohida ruxsat tizimiga ega kabinetlar",
-          "PostgreSQL va Prisma ORM yordamida optimallashgan relyatsion ma’lumotlar bazasi"
+          "Iş beruvçilar va iqtidorli mutaxassislar uçun töliq funksional rekruting tizimi",
+          "Könikmalar (skills) va toifalar böyiça tezkor saralaş filtrlari",
+          "Rekruterlar va nomzodlar uçun alohida ruxsat tizimiga ega kabinetlar",
+          "PostgreSQL va Prisma ORM yordamida optimallaşgan relyatsion ma’lumotlar bazasi"
         ],
         problemAndGoal:
-          "Munosib nomzod topish doimo murakkab jarayon bo‘lib kelgan. Eskirgan e’lonlar doskalari va noqulay filtrlar sababli rekruterlar vaqt yo‘qotadi, nomzodlar esa javobsiz qoladi. Jobify’ning maqsadi — har ikki tomon uchun toza, tezkor va shaffof qidiruv ekotizimini taqdim etishdir.",
+          "Munosib nomzod topiş doimo murakkab jarayon bölib kelgan. Eskirgan e’lonlar doskalari va noqulay filtrlar sababli rekruterlar vaqt yöqotadi, nomzodlar esa javobsiz qoladi. Jobify’ning maqsadi — har ikki tomon uçun toza, tezkor va şaffof qidiruv ekotizimini taqdim etişdir.",
         solutionAndArchitecture: [
-          "Foydalanuvchilar uchun qulay, zamonaviy va mobil qurilmalarga to‘liq moslashgan veb-interfeys ishlab chiqildi.",
-          "Nomzodlar, kompaniyalar, vakansiyalar va arizalar relyatsion munosabatlarini boshqarish uchun Node.js va PostgreSQL backend arxitekturasi barpo etildi.",
-          "Xavfsiz JWT autentifikatsiyasi va rollarga asoslangan ruxsat tizimi (Nomzod vs Ish beruvchi) joriy qilindi.",
-          "Katta hajmdagi vakansiyalar orasidan qulay filtrlash va tezkor saralash mexanizmlari tatbiq etildi."
+          "Foydalanuvçilar uçun qulay, zamonaviy va mobil qurilmalarga töliq moslaşgan veb-interfeys işlab çiqildi.",
+          "Nomzodlar, kompaniyalar, vakansiyalar va arizalar relyatsion munosabatlarini boşqariş uçun Node.js va PostgreSQL backend arxitekturasi barpo etildi.",
+          "Xavfsiz JWT autentifikatsiyasi va rollarga asoslangan ruxsat tizimi (Nomzod vs Iş beruvçi) joriy qilindi.",
+          "Katta hajmdagi vakansiyalar orasidan qulay filtrlaş va tezkor saralaş mexanizmlari tatbiq etildi."
         ],
         verifiedFeatures: [
-          "Vakansiyalarni sohalar va ko‘nikmalar bo‘yicha interaktiv qidirish",
-          "Nomzodlar portfoliosi va rezyumesini qulay taqdim etish",
-          "Ish beruvchilar uchun ariza va rezyumelarni saralash boshqaruv paneli",
-          "Mobil va kompyuterlar uchun optimallashgan yuqori tezlikdagi dizayn"
+          "Vakansiyalarni sohalar va könikmalar böyiça interaktiv qidiriş",
+          "Nomzodlar portfoliosi va rezyumesini qulay taqdim etiş",
+          "Iş beruvçilar uçun ariza va rezyumelarni saralaş boşqaruv paneli",
+          "Mobil va kompyuterlar uçun optimallaşgan yuqori tezlikdagi dizayn"
         ],
         technicalDecisions: [
           {
             title: "Relyatsion ma’lumotlar modeli",
             description:
-              "Nomzod ko‘nikmalari, kompaniya ma’lumotlari va arizalar tarixini yaxlit saqlash uchun PostgreSQL va Prisma ORM dan foydalanildi."
+              "Nomzod könikmalari, kompaniya ma’lumotlari va arizalar tarixini yaxlit saqlaş uçun PostgreSQL va Prisma ORM dan foydalanildi."
           },
           {
-            title: "Xavfsiz rollar boshqaruvi",
+            title: "Xavfsiz rollar boşqaruvi",
             description:
-              "Nomzod va rekruter profillari uchun alohida huquqlar va xavfsiz JWT sessiya boshqaruvi yo‘lga qo‘yildi."
+              "Nomzod va rekruter profillari uçun alohida huquqlar va xavfsiz JWT sessiya boşqaruvi yölga qöyildi."
           },
           {
-            title: "Qidiruv va tezlik optimallashuvi",
+            title: "Qidiruv va tezlik optimallaşuvi",
             description:
-              "Vakansiyalarni yuklash va saralash tezligini oshirish uchun indeksatsiyalangan so‘rovlar va kesh strategiyalari qo‘llanildi."
+              "Vakansiyalarni yuklaş va saralaş tezligini oşiriş uçun indeksatsiyalangan sörovlar va keş strategiyalari qöllanildi."
           }
         ]
       },
@@ -1278,47 +1278,47 @@ export const localizedProjects: LocalizedProject[] = [
       },
       uz: {
         title: "Donik Coach AI",
-        tagline: "Taom suratidan kaloriya aniqlash, 9 ta ratsion va zal mashqlari platformasi",
+        tagline: "Taom suratidan kaloriya aniqlaş, 9 ta ratsion va zal maşqlari platformasi",
         category: "Telegram Mini Ilova / Fitnes va AI",
         description:
-          "Taom suratidan kaloriya va ozuqa moddalarini aniqlash, 9 ta professional ratsion hamda zal mashg‘ulotlarini o‘z ichiga olgan aqlli platforma.",
+          "Taom suratidan kaloriya va ozuqa moddalarini aniqlaş, 9 ta professional ratsion hamda zal maşğulotlarini öz içiga olgan aqlli platforma.",
         detailedDescription: [
-          "Donik Coach AI fitnes rejalashtirish va ovqatlanish tahlilini to‘g‘ridan-to‘g‘ri Telegram va veb-platformaga olib chiqadi, bu esa ortiqcha qo‘lda qidirish qiyinchiliklarini bartaraf etadi.",
-          "Tizim multimodal AI yordamida taom fotosuratlarini tahlil qiladi, 9 xil maxsus ratsionni tavsiya etadi va zal mashqlari bo‘yicha batafsil dasturlarni taqdim etadi."
+          "Donik Coach AI fitnes rejalaştiriş va ovqatlaniş tahlilini töğridan-töğri Telegram va veb-platformaga olib çiqadi, bu esa ortiqça qölda qidiriş qiyinçiliklarini bartaraf etadi.",
+          "Tizim multimodal AI yordamida taom fotosuratlarini tahlil qiladi, 9 xil maxsus ratsionni tavsiya etadi va zal maşqlari böyiça batafsil dasturlarni taqdim etadi."
         ],
-        role: "Backend va AI Bot Dasturchisi",
+        role: "Backend va AI Bot Dasturçisi",
         timeline: "2026",
         statusText: "2026-yilda faol",
         verifiedHighlights: [
-          "Telegram boti va veb-fitnes platformasi orqali to‘liq ishlaydigan fitnes ekotizimi",
-          "Multimodal sun’iy intellekt orqali taom fotosuratidan oqsil, yog‘, uglevod va kaloriyalarni hisoblash",
-          "9 ta individual maqsadlar uchun tuzilgan professional ratsionlar majmuasi",
-          "Mushak guruhlari bo‘yicha tizimlashtirilgan zal mashqlari bazasi"
+          "Telegram boti va veb-fitnes platformasi orqali töliq işlaydigan fitnes ekotizimi",
+          "Multimodal sun’iy intellekt orqali taom fotosuratidan oqsil, yoğ, uglevod va kaloriyalarni hisoblaş",
+          "9 ta individual maqsadlar uçun tuzilgan professional ratsionlar majmuasi",
+          "Muşak guruhlari böyiça tizimlaştirilgan zal maşqlari bazasi"
         ],
         problemAndGoal:
-          "Har kuni kaloriyalarni daftarga yoki noqulay ilovalarga yozib borish foydalanuvchilarning 80% ida tashlab ketishga sabab bo‘ladi. Donik Coach AI taomni shunchaki rasmga olib yuborish orqali tezkor tahlil beradi va tartibli mashg‘ulotlar tizimini yo‘lga qo‘yadi.",
+          "Har kuni kaloriyalarni daftarga yoki noqulay ilovalarga yozib boriş foydalanuvçilarning 80% ida taşlab ketişga sabab böladi. Donik Coach AI taomni şunçaki rasmga olib yuboriş orqali tezkor tahlil beradi va tartibli maşğulotlar tizimini yölga qöyadi.",
         solutionAndArchitecture: [
-          "Telegram Bot API webhooklari orqali soniyali tezkor aloqa yo‘lga qo‘yildi.",
-          "Multimodal AI ko‘rish modeli orqali rasmdagi ingredientlar va ozuqaviy qiymatlar aniqlanadi.",
-          "Turli maqsadlar (vazn tashlash, mushak massasi to‘plash, quritish) uchun 9 ta professional menyu kiritildi.",
-          "Foydalanuvchi telefon raqami orqali xavfsiz avtorizatsiya qilinadigan veb-panel qurildi."
+          "Telegram Bot API webhooklari orqali soniyali tezkor aloqa yölga qöyildi.",
+          "Multimodal AI köriş modeli orqali rasmdagi ingredientlar va ozuqaviy qiymatlar aniqlanadi.",
+          "Turli maqsadlar (vazn taşlaş, muşak massasi töplaş, quritiş) uçun 9 ta professional menyu kiritildi.",
+          "Foydalanuvçi telefon raqami orqali xavfsiz avtorizatsiya qilinadigan veb-panel qurildi."
         ],
         verifiedFeatures: [
-          "Taom suratidan kaloriya va makronutriyentlarni avtomatik aniqlash",
-          "9 ta ilmiy asoslangan professional taomlanish ratsioni",
-          "Zal mashg‘ulotlari va to‘g‘ri texnika bo‘yicha ko‘rsatmalar",
+          "Taom suratidan kaloriya va makronutriyentlarni avtomatik aniqlaş",
+          "9 ta ilmiy asoslangan professional taomlaniş ratsioni",
+          "Zal maşğulotlari va töğri texnika böyiça körsatmalar",
           "Telegram bot va veb-portalning yagona ma’lumotlar bazasi orqali integratsiyasi"
         ],
         technicalDecisions: [
           {
-            title: "Telegram Bot Boshlang‘ich Platforma Sifatida",
+            title: "Telegram Bot Boşlanğiç Platforma Sifatida",
             description:
-              "O‘zbekiston bozorida Telegram eng ommabop aloqa vositasi bo‘lgani sababli foydalanuvchilar uchun kirish to‘sig‘i minimallashtirildi."
+              "Özbekiston bozorida Telegram eng ommabop aloqa vositasi bölgani sababli foydalanuvçilar uçun kiriş tösiği minimallaştirildi."
           },
           {
             title: "Multimodal AI Tahlili",
             description:
-              "Qo‘lda yozish o‘rniga tasvirni to‘g‘ridan-to‘g‘ri tahlil qiluvchi ko‘rish modellari joriy etildi."
+              "Qölda yoziş örniga tasvirni töğridan-töğri tahlil qiluvçi köriş modellari joriy etildi."
           }
         ]
       },
@@ -1807,47 +1807,47 @@ export const localizedProjects: LocalizedProject[] = [
       },
       uz: {
         title: "Al Harameen Uzbekistan",
-        tagline: "Al Harameen brendining O‘zbekistondagi rasmiy distribyutori sayti",
+        tagline: "Al Harameen brendining Özbekistondagi rasmiy distribyutori sayti",
         category: "Elektron Tijorat / Rasmiy Distribyutor",
         description:
-          "Al Harameen original aqlli islomiy soatlari va devor azon soatlarining O‘zbekistondagi rasmiy distribyutori veb-sayti va mahsulotlar katalogi.",
+          "Al Harameen original aqlli islomiy soatlari va devor azon soatlarining Özbekistondagi rasmiy distribyutori veb-sayti va mahsulotlar katalogi.",
         detailedDescription: [
-          "Al Harameen Uzbekistan — Al Harameen brendining O‘zbekistondagi rasmiy distribyutorining birlamchi onlayn vitrinasi va brend veb-sayti.",
-          "Sayt original aqlli islomiy qo‘l va stol/devor soatlari, azon ovozi, namoz vaqtlari va qibla yo‘nalishini ko‘rsatuvchi funksiyalar, rasmiy 1 yillik kafolat va O‘zbekiston bo‘ylab yetkazib berish shartlarini taqdim etadi."
+          "Al Harameen Uzbekistan — Al Harameen brendining Özbekistondagi rasmiy distribyutorining birlamçi onlayn vitrinasi va brend veb-sayti.",
+          "Sayt original aqlli islomiy qöl va stol/devor soatlari, azon ovozi, namoz vaqtlari va qibla yönalişini körsatuvçi funksiyalar, rasmiy 1 yillik kafolat va Özbekiston böylab yetkazib beriş şartlarini taqdim etadi."
         ],
-        role: "Frontend Dasturchisi",
+        role: "Frontend Dasturçisi",
         timeline: "2025",
-        statusText: "2025-yilda ishga tushirilgan",
+        statusText: "2025-yilda işga tuşirilgan",
         verifiedHighlights: [
-          "Original Al Harameen brendining O‘zbekistondagi rasmiy distribyutori sertifikati va taqdimoti",
+          "Original Al Harameen brendining Özbekistondagi rasmiy distribyutori sertifikati va taqdimoti",
           "Azon ovozi, qibla kompas va namoz vaqtlari hisob-kitoblarining texnik vitrinasi",
-          "Google qidiruv tizimida yuqori o‘rinlar uchun to‘liq JSON-LD va OpenGraph SEO optimallashtiruvi",
-          "Mobil qurilmalarda tezkor yuklanuvchi va xaridorga qulay zamonaviy dizayn"
+          "Google qidiruv tizimida yuqori örinlar uçun töliq JSON-LD va OpenGraph SEO optimallaştiruvi",
+          "Mobil qurilmalarda tezkor yuklanuvçi va xaridorga qulay zamonaviy dizayn"
         ],
         problemAndGoal:
-          "Bozordagi nusxalar (feyklar) orasida mijozlarga rasmiy distribyutorning haqiqiy mahsulotlarini ko‘rsatish, rasmiy sertifikat va 1 yillik kafolat bilan xaridorlar ishonchini qozonish talab etilgan edi.",
+          "Bozordagi nusxalar (feyklar) orasida mijozlarga rasmiy distribyutorning haqiqiy mahsulotlarini körsatiş, rasmiy sertifikat va 1 yillik kafolat bilan xaridorlar işonçini qozoniş talab etilgan edi.",
         solutionAndArchitecture: [
-          "React va Tailwind CSS asosida tezkor, oqlangan va premium ko‘rinishdagi interfeys qurildi.",
-          "Mahsulotlar katalogi azon, qibla va taqvim xususiyatlari bo‘yicha to‘liq ta’riflandi.",
-          "Schema.org Store va Brand formatidagi JSON-LD ma’lumotlari kiritilib, qidiruv natijalari yaxshilandi.",
-          "Buyurtmalarni tezkor qabul qilish uchun Telegram va telefon orqali aloqa bog‘landi."
+          "React va Tailwind CSS asosida tezkor, oqlangan va premium körinişdagi interfeys qurildi.",
+          "Mahsulotlar katalogi azon, qibla va taqvim xususiyatlari böyiça töliq ta’riflandi.",
+          "Schema.org Store va Brand formatidagi JSON-LD ma’lumotlari kiritilib, qidiruv natijalari yaxşilandi.",
+          "Buyurtmalarni tezkor qabul qiliş uçun Telegram va telefon orqali aloqa boğlandi."
         ],
         verifiedFeatures: [
-          "Islomiy qo‘l va devor soatlarining to‘liq modeli katalogi",
+          "Islomiy qöl va devor soatlarining töliq modeli katalogi",
           "Rasmiy sertifikat va 1 yillik kafolat kafolati",
-          "Tezkor yuklanuvchi, barcha smartfonlarga moslashgan interfeys",
-          "O‘zbekiston bo‘ylab buyurtma berishning qulay mexanizmi"
+          "Tezkor yuklanuvçi, barça smartfonlarga moslaşgan interfeys",
+          "Özbekiston böylab buyurtma berişning qulay mexanizmi"
         ],
         technicalDecisions: [
           {
-            title: "Yuqori Tezlikdagi Statik Yetkazib Berish",
+            title: "Yuqori Tezlikdagi Statik Yetkazib Beriş",
             description:
-              "Mobil internet tezligi past bo‘lgan sharoitda ham sayt bir zumda ochilishi uchun yengil va optimallashtirilgan tuzilma tanlandi."
+              "Mobil internet tezligi past bölgan şaroitda ham sayt bir zumda oçilişi uçun yengil va optimallaştirilgan tuzilma tanlandi."
           },
           {
-            title: "Qidiruv Tizimlari Uchun Strukturaviy Ma’lumot",
+            title: "Qidiruv Tizimlari Uçun Strukturaviy Ma’lumot",
             description:
-              "Google va boshqa qidiruv platformalarida brend distribyutori sifatida birinchi o‘rinlarda chiqishi uchun maxsus Schema integratsiya qilindi."
+              "Google va boşqa qidiruv platformalarida brend distribyutori sifatida birinçi örinlarda çiqişi uçun maxsus Schema integratsiya qilindi."
           }
         ]
       },

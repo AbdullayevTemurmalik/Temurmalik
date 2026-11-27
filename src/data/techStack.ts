@@ -39,7 +39,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Modern component-driven web applications, responsive styling & reactive state",
-      uz: "Komponentli zamonaviy veb-ilovalar, moslashuvchan dizayn va reaktiv holat boshqaruvi",
+      uz: "Komponentli zamonaviy veb-ilovalar, moslaşuvçan dizayn va reaktiv holat boşqaruvi",
       ru: "Компонентные веб-приложения, адаптивная верстка и реактивное управление состоянием",
       zh: "现代化组件驱动应用、全屏响应式适配及响应式状态机",
       es: "Aplicaciones web modernas basadas en componentes, diseño responsivo y estado reactivo",
@@ -93,7 +93,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Predictable API contracts, secure authentication & real-time messaging protocols",
-      uz: "Ishonchli API kontraktlari, xavfsiz avtorizatsiya va real-vaqt xabarlashuv protokollari",
+      uz: "Işonçli API kontraktlari, xavfsiz avtorizatsiya va real-vaqt xabarlaşuv protokollari",
       ru: "Надежные контракты API, безопасная авторизация и протоколы обмена сообщениями в реальном времени",
       zh: "可预测的高可用 API、安全身份校验与实时全双工协议",
       es: "Contratos de API predecibles, autenticación segura y protocolos en tiempo real",
@@ -142,7 +142,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Data schemas, persistence layers, migrations & database administration",
-      uz: "Ma’lumotlar sxemalari, SQL/NoSQL saqlash, xavfsiz migratsiyalar va boshqaruv",
+      uz: "Ma’lumotlar sxemalari, SQL/NoSQL saqlaş, xavfsiz migratsiyalar va boşqaruv",
       ru: "Схемы данных, слой персистентности, безопасные миграции и администрирование",
       zh: "数据模型定义、持久化架构、无损迁移及运维管理",
       es: "Esquemas de datos, capas de persistencia, migraciones y administración",
@@ -163,7 +163,7 @@ export const techStackCategories: TechStackCategory[] = [
     id: "devops",
     names: {
       en: "DevOps & Deployment",
-      uz: "DevOps va Joylashtirish",
+      uz: "DevOps va Joylaştiriş",
       ru: "DevOps и Развертывание",
       zh: "DevOps 与云原生部署",
       es: "DevOps y Despliegue",
@@ -189,7 +189,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Containerization, automated deployments, hosting & version control",
-      uz: "Konteynerizatsiya, avtomatlashtirilgan CI/CD yetkazib berish va versiyalar nazorati",
+      uz: "Konteynerizatsiya, avtomatlaştirilgan CI/CD yetkazib beriş va versiyalar nazorati",
       ru: "Контейнеризация, автоматизированный CI/CD деплой и контроль версий",
       zh: "容器化编排、CI/CD 自动化流水线、弹性托管与版本管控",
       es: "Contenedores, despliegues automáticos, alojamiento y control de versiones",
@@ -213,7 +213,7 @@ export const techStackCategories: TechStackCategory[] = [
     id: "tools",
     names: {
       en: "Development Tools",
-      uz: "Dasturlash Vositalari",
+      uz: "Dasturlaş Vositalari",
       ru: "Инструменты Разработки",
       zh: "开发与测试工具",
       es: "Herramientas de Desarrollo",
@@ -226,7 +226,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     shortLabels: {
       en: "Engineering Workflow",
-      uz: "Muhandislik Ish Jarayoni",
+      uz: "Muhandislik Iş Jarayoni",
       ru: "Инженерный рабочий процесс",
       zh: "工程师工作流",
       es: "Flujo de Trabajo",
@@ -239,7 +239,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "API testing, code authoring, debugging & design collaboration",
-      uz: "API testlash, kod yozish muhiti, nosozliklarni tuzatish va dizayn vositalari",
+      uz: "API testlaş, kod yoziş muhiti, nosozliklarni tuzatiş va dizayn vositalari",
       ru: "Тестирование API, написание кода, отладка и дизайн-коллаборация",
       zh: "API 调试、现代编辑器、性能分析与设计协作工具",
       es: "Pruebas de API, edición de código, depuración y colaboración en diseño",
@@ -273,7 +273,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     shortLabels: {
       en: "Agentic Engineering",
-      uz: "Agentli Dasturlash va Modellash",
+      uz: "Agentli Dasturlaş va Modellaş",
       ru: "Агентная инженерия и LLM",
       zh: "AI 代理工程与大模型应用",
       es: "Ingeniería de Agentes e IA",
@@ -286,7 +286,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Practical model integration, multimodal vision & autonomous AI developer tooling",
-      uz: "Amaliy AI modellari integratsiyasi, multimodal ko‘rish va ilg‘or AI vositalari",
+      uz: "Amaliy AI modellari integratsiyasi, multimodal köriş va ilğor AI vositalari",
       ru: "Интеграция прикладных моделей, мультимодальное зрение и современные AI-инструменты",
       zh: "大模型落地、多模态视觉识别与现代化自主式 AI 研发辅助",
       es: "Integración práctica de modelos, visión multimodal y herramientas avanzadas de IA",
