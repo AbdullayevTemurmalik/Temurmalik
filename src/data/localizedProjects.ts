@@ -112,13 +112,13 @@ export const localizedProjects: LocalizedProject[] = [
       },
       uz: {
         title: "RunCode Web",
-        tagline: "Zamonaviy dasturlash ta'limi va amaliyot platformasi",
-        category: "Dasturlash Ta'limi / Onlayn Platforma",
+        tagline: "Zamonaviy dasturlash ta’limi va amaliyot platformasi",
+        category: "Dasturlash Ta’limi / Onlayn Platforma",
         description:
-          "React, Tailwind CSS hamda Node.js/TypeScript AI o‘qituvchi backend tizimi asosida qurilgan zamonaviy dasturlash ta'lim platformasi.",
+          "React, Tailwind CSS hamda Node.js/TypeScript AI o‘qituvchi backend tizimi asosida qurilgan zamonaviy dasturlash ta’lim platformasi.",
         detailedDescription: [
-          "RunCode Web — dasturlash asoslari va texnologiyalarni amaliy, tizimli hamda interaktiv tarzda o‘rganish uchun mo‘ljallangan ta'lim platformasi.",
-          "Foydalanuvchi interfeysi Vite, React va Tailwind CSS yordamida tezkor, qulay va chalg‘itmaydigan qorong‘u rejimda yaratilgan. Backend qismida Node.js, Express, PostgreSQL bilan Prisma ORM, real-vaqt aloqasi uchun WebSockets va sun'iy intellekt maslahatchisi uchun Google Gemini API integratsiya qilingan."
+          "RunCode Web — dasturlash asoslari va texnologiyalarni amaliy, tizimli hamda interaktiv tarzda o‘rganish uchun mo‘ljallangan ta’lim platformasi.",
+          "Foydalanuvchi interfeysi Vite, React va Tailwind CSS yordamida tezkor, qulay va chalg‘itmaydigan qorong‘u rejimda yaratilgan. Backend qismida Node.js, Express, PostgreSQL bilan Prisma ORM, real-vaqt aloqasi uchun WebSockets va sun’iy intellekt maslahatchisi uchun Google Gemini API integratsiya qilingan."
         ],
         role: "Full-Stack Dasturchi va Backend Arxitektori",
         timeline: "2026",
@@ -126,14 +126,14 @@ export const localizedProjects: LocalizedProject[] = [
         verifiedHighlights: [
           "React frontend va TypeScript backend ajratilgan modulli to‘liq sikldagi arxitektura",
           "PostgreSQL va Prisma ORM orqali darslar va foydalanuvchilar progressini xavfsiz boshqarish",
-          "O‘quvchilarga kod yozishda ko‘maklashuvchi Google Gemini sun'iy intellekti integratsiyasi",
+          "O‘quvchilarga kod yozishda ko‘maklashuvchi Google Gemini sun’iy intellekti integratsiyasi",
           "Vercel platformasida sub-soniyalik yuklanish va optimallashtirilgan hajm"
         ],
         problemAndGoal:
           "Dasturlashni endi boshlayotgan o‘quvchilar nazariya va amaliyot o‘rtasidagi uzilish tufayli ko‘p qiyinchiliklarga duch kelishadi. RunCode Web loyihasining bosh maqsadi — nazariya, amaliy kod muharriri va AI yordamchini yagona qulay oynada birlashtirish.",
         solutionAndArchitecture: [
           "React va Tailwind CSS asosida bir zumda yuklanadigan, interaktiv va qorong‘u rejimli SPA ishlab chiqildi.",
-          "TypeScript va Express yordamida qat'iy Zod ma'lumot tekshiruvi va xavfsiz sessiyalarga ega backend yaratildi.",
+          "TypeScript va Express yordamida qat’iy Zod ma’lumot tekshiruvi va xavfsiz sessiyalarga ega backend yaratildi.",
           "Prisma ORM sxemalari orqali kurslar, modullar va test natijalari mustahkam relyatsion bazada tartibga solindi.",
           "Google Generative AI moduli ulanib, kod xatolarini tushuntirish va to‘g‘ri yo‘nalish ko‘rsatish yo‘lga qo‘yildi."
         ],
@@ -147,7 +147,7 @@ export const localizedProjects: LocalizedProject[] = [
           {
             title: "Mustaqil Modulli Arxitektura",
             description:
-              "Frontend va backend tizimlari alohida ajratilib, yangilanishlarni xavfsiz va kechikishlarsiz yetkazib berish ta'minlandi."
+              "Frontend va backend tizimlari alohida ajratilib, yangilanishlarni xavfsiz va kechikishlarsiz yetkazib berish ta’minlandi."
           },
           {
             title: "PostgreSQL va Prisma ORM",
@@ -701,49 +701,49 @@ export const localizedProjects: LocalizedProject[] = [
         tagline: "Iqtidorli mutaxassislar va nufuzli ish beruvchilarni birlashtiruvchi platforma",
         category: "Full-Stack / Ish qidirish va Rekruting",
         description:
-          "Nomzodlar uchun tezkor rezyume joylash va ish topish, ish beruvchilar uchun esa eng sara iqtidorlarni saralab olish imkonini beruvchi to'liq funksional rekruting platformasi.",
+          "Nomzodlar uchun tezkor rezyume joylash va ish topish, ish beruvchilar uchun esa eng sara iqtidorlarni saralab olish imkonini beruvchi to‘liq funksional rekruting platformasi.",
         detailedDescription: [
-          "Jobify — O'zbekistonda zamonaviy ish qidirish va xodimlarni saralab olish (recruitment) jarayonini soddalashtirish uchun yaratilgan keng qamrovli platforma.",
-          "Platforma 'Find aspiring talents and great employers' falsafasi asosida ish beruvchilar va izlanuvchan mutaxassislar o'rtasida to'g'ridan-to'g'ri aloqa ko'prigini o'rnatadi. Tizimda vakansiyalar katalogi, nomzodlar profili, malaka bo'yicha tezkor qidiruv hamda rekruterlar uchun qulay boshqaruv paneli ishlab chiqilgan."
+          "Jobify — O‘zbekistonda zamonaviy ish qidirish va xodimlarni saralab olish (recruitment) jarayonini soddalashtirish uchun yaratilgan keng qamrovli platforma.",
+          "Platforma 'Find aspiring talents and great employers' falsafasi asosida ish beruvchilar va izlanuvchan mutaxassislar o‘rtasida to‘g‘ridan-to‘g‘ri aloqa ko‘prigini o‘rnatadi. Tizimda vakansiyalar katalogi, nomzodlar profili, malaka bo‘yicha tezkor qidiruv hamda rekruterlar uchun qulay boshqaruv paneli ishlab chiqilgan."
         ],
         role: "Full-Stack Dasturchi & Backend Arxitektor",
         timeline: "2025",
         statusText: "Ishga tushirilgan (2025)",
         verifiedHighlights: [
-          "Ish beruvchilar va iqtidorli mutaxassislar uchun to'liq funksional rekruting tizimi",
-          "Ko'nikmalar (skills) va toifalar bo'yicha tezkor saralash filtrlari",
+          "Ish beruvchilar va iqtidorli mutaxassislar uchun to‘liq funksional rekruting tizimi",
+          "Ko‘nikmalar (skills) va toifalar bo‘yicha tezkor saralash filtrlari",
           "Rekruterlar va nomzodlar uchun alohida ruxsat tizimiga ega kabinetlar",
-          "PostgreSQL va Prisma ORM yordamida optimallashgan relyatsion ma'lumotlar bazasi"
+          "PostgreSQL va Prisma ORM yordamida optimallashgan relyatsion ma’lumotlar bazasi"
         ],
         problemAndGoal:
-          "Munosib nomzod topish doimo murakkab jarayon bo'lib kelgan. Eskirgan e'lonlar doskalari va noqulay filtrlar sababli rekruterlar vaqt yo'qotadi, nomzodlar esa javobsiz qoladi. Jobify'ning maqsadi — har ikki tomon uchun toza, tezkor va shaffof qidiruv ekotizimini taqdim etishdir.",
+          "Munosib nomzod topish doimo murakkab jarayon bo‘lib kelgan. Eskirgan e’lonlar doskalari va noqulay filtrlar sababli rekruterlar vaqt yo‘qotadi, nomzodlar esa javobsiz qoladi. Jobify’ning maqsadi — har ikki tomon uchun toza, tezkor va shaffof qidiruv ekotizimini taqdim etishdir.",
         solutionAndArchitecture: [
-          "Foydalanuvchilar uchun qulay, zamonaviy va mobil qurilmalarga to'liq moslashgan veb-interfeys ishlab chiqildi.",
+          "Foydalanuvchilar uchun qulay, zamonaviy va mobil qurilmalarga to‘liq moslashgan veb-interfeys ishlab chiqildi.",
           "Nomzodlar, kompaniyalar, vakansiyalar va arizalar relyatsion munosabatlarini boshqarish uchun Node.js va PostgreSQL backend arxitekturasi barpo etildi.",
           "Xavfsiz JWT autentifikatsiyasi va rollarga asoslangan ruxsat tizimi (Nomzod vs Ish beruvchi) joriy qilindi.",
           "Katta hajmdagi vakansiyalar orasidan qulay filtrlash va tezkor saralash mexanizmlari tatbiq etildi."
         ],
         verifiedFeatures: [
-          "Vakansiyalarni sohalar va ko'nikmalar bo'yicha interaktiv qidirish",
+          "Vakansiyalarni sohalar va ko‘nikmalar bo‘yicha interaktiv qidirish",
           "Nomzodlar portfoliosi va rezyumesini qulay taqdim etish",
           "Ish beruvchilar uchun ariza va rezyumelarni saralash boshqaruv paneli",
           "Mobil va kompyuterlar uchun optimallashgan yuqori tezlikdagi dizayn"
         ],
         technicalDecisions: [
           {
-            title: "Relyatsion ma'lumotlar modeli",
+            title: "Relyatsion ma’lumotlar modeli",
             description:
-              "Nomzod ko'nikmalari, kompaniya ma'lumotlari va arizalar tarixini yaxlit saqlash uchun PostgreSQL va Prisma ORM dan foydalanildi."
+              "Nomzod ko‘nikmalari, kompaniya ma’lumotlari va arizalar tarixini yaxlit saqlash uchun PostgreSQL va Prisma ORM dan foydalanildi."
           },
           {
             title: "Xavfsiz rollar boshqaruvi",
             description:
-              "Nomzod va rekruter profillari uchun alohida huquqlar va xavfsiz JWT sessiya boshqaruvi yo'lga qo'yildi."
+              "Nomzod va rekruter profillari uchun alohida huquqlar va xavfsiz JWT sessiya boshqaruvi yo‘lga qo‘yildi."
           },
           {
             title: "Qidiruv va tezlik optimallashuvi",
             description:
-              "Vakansiyalarni yuklash va saralash tezligini oshirish uchun indeksatsiyalangan so'rovlar va kesh strategiyalari qo'llanildi."
+              "Vakansiyalarni yuklash va saralash tezligini oshirish uchun indeksatsiyalangan so‘rovlar va kesh strategiyalari qo‘llanildi."
           }
         ]
       },
@@ -1291,7 +1291,7 @@ export const localizedProjects: LocalizedProject[] = [
         statusText: "2026-yilda faol",
         verifiedHighlights: [
           "Telegram boti va veb-fitnes platformasi orqali to‘liq ishlaydigan fitnes ekotizimi",
-          "Multimodal sun'iy intellekt orqali taom fotosuratidan oqsil, yog‘, uglevod va kaloriyalarni hisoblash",
+          "Multimodal sun’iy intellekt orqali taom fotosuratidan oqsil, yog‘, uglevod va kaloriyalarni hisoblash",
           "9 ta individual maqsadlar uchun tuzilgan professional ratsionlar majmuasi",
           "Mushak guruhlari bo‘yicha tizimlashtirilgan zal mashqlari bazasi"
         ],
@@ -1307,7 +1307,7 @@ export const localizedProjects: LocalizedProject[] = [
           "Taom suratidan kaloriya va makronutriyentlarni avtomatik aniqlash",
           "9 ta ilmiy asoslangan professional taomlanish ratsioni",
           "Zal mashg‘ulotlari va to‘g‘ri texnika bo‘yicha ko‘rsatmalar",
-          "Telegram bot va veb-portalning yagona ma'lumotlar bazasi orqali integratsiyasi"
+          "Telegram bot va veb-portalning yagona ma’lumotlar bazasi orqali integratsiyasi"
         ],
         technicalDecisions: [
           {
@@ -1828,8 +1828,8 @@ export const localizedProjects: LocalizedProject[] = [
           "Bozordagi nusxalar (feyklar) orasida mijozlarga rasmiy distribyutorning haqiqiy mahsulotlarini ko‘rsatish, rasmiy sertifikat va 1 yillik kafolat bilan xaridorlar ishonchini qozonish talab etilgan edi.",
         solutionAndArchitecture: [
           "React va Tailwind CSS asosida tezkor, oqlangan va premium ko‘rinishdagi interfeys qurildi.",
-          "Mahsulotlar katalogi azon, qibla va taqvim xususiyatlari bo‘yicha to‘liq ta'riflandi.",
-          "Schema.org Store va Brand formatidagi JSON-LD ma'lumotlari kiritilib, qidiruv natijalari yaxshilandi.",
+          "Mahsulotlar katalogi azon, qibla va taqvim xususiyatlari bo‘yicha to‘liq ta’riflandi.",
+          "Schema.org Store va Brand formatidagi JSON-LD ma’lumotlari kiritilib, qidiruv natijalari yaxshilandi.",
           "Buyurtmalarni tezkor qabul qilish uchun Telegram va telefon orqali aloqa bog‘landi."
         ],
         verifiedFeatures: [
@@ -1845,7 +1845,7 @@ export const localizedProjects: LocalizedProject[] = [
               "Mobil internet tezligi past bo‘lgan sharoitda ham sayt bir zumda ochilishi uchun yengil va optimallashtirilgan tuzilma tanlandi."
           },
           {
-            title: "Qidiruv Tizimlari Uchun Strukturaviy Ma'lumot",
+            title: "Qidiruv Tizimlari Uchun Strukturaviy Ma’lumot",
             description:
               "Google va boshqa qidiruv platformalarida brend distribyutori sifatida birinchi o‘rinlarda chiqishi uchun maxsus Schema integratsiya qilindi."
           }

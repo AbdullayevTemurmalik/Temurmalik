@@ -116,7 +116,7 @@ export const techStackCategories: TechStackCategory[] = [
     id: "database",
     names: {
       en: "Database",
-      uz: "Ma'lumotlar Bazasi",
+      uz: "Ma’lumotlar Bazasi",
       ru: "Базы Данных",
       zh: "数据持久化",
       es: "Bases de Datos",
@@ -142,7 +142,7 @@ export const techStackCategories: TechStackCategory[] = [
     },
     descriptions: {
       en: "Data schemas, persistence layers, migrations & database administration",
-      uz: "Ma'lumotlar sxemalari, SQL/NoSQL saqlash, xavfsiz migratsiyalar va boshqaruv",
+      uz: "Ma’lumotlar sxemalari, SQL/NoSQL saqlash, xavfsiz migratsiyalar va boshqaruv",
       ru: "Схемы данных, слой персистентности, безопасные миграции и администрирование",
       zh: "数据模型定义、持久化架构、无损迁移及运维管理",
       es: "Esquemas de datos, capas de persistencia, migraciones y administración",
@@ -260,7 +260,7 @@ export const techStackCategories: TechStackCategory[] = [
     id: "ai",
     names: {
       en: "AI Integration & Intelligent Systems",
-      uz: "Sun'iy Intellekt va Agent Tizimlari",
+      uz: "Sun’iy Intellekt va Agent Tizimlari",
       ru: "Интеграция AI и Агентные Системы",
       zh: "AI 集成与智能代理系统",
       es: "Integración de IA y Sistemas Inteligentes",
